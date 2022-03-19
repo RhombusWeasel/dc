@@ -14,7 +14,7 @@ export default class EnemySheet extends HeroSheet {
   
     /** @override */
     get template() {
-      return `systems/hq/templates/actor/${this.actor.data.type}-sheet.html`;
+      return `systems/hq/templates/${this.actor.data.type}-sheet.html`;
     }
   
     /** @override */
