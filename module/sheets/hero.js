@@ -12,7 +12,7 @@ export default class HeroSheet extends ActorSheet {
   
     /** @override */
     get template() {
-      return `systems/hq/templates/${this.actor.data.type}-sheet.html`;
+      return `systems/dc/templates/${this.actor.data.type}-sheet.html`;
     }
   
     /** @override */

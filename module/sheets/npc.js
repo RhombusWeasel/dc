@@ -14,7 +14,7 @@ export default class NPCSheet extends HeroSheet {
   
     /** @override */
     get template() {
-      return `systems/hq/templates/${this.actor.data.type}-sheet.html`;
+      return `systems/dc/templates/${this.actor.data.type}-sheet.html`;
     }
   
     /** @override */
