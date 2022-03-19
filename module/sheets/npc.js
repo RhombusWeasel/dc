@@ -1,3 +1,5 @@
+import HeroSheet from "./hero.js"
+
 export default class NPCSheet extends HeroSheet {
 
     /** @override */
