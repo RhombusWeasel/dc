@@ -66,9 +66,6 @@ function load_handlebars_helpers() {
 Hooks.once("init", function () {
     console.log("Initializing System.");
 
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet(SYSTEM_NAME, item_sheet, {makeDefault: true});
-
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet(SYSTEM_NAME, hero_sheet, {makeDefault: true});
     Actors.registerSheet(SYSTEM_NAME, npc_sheet, {makeDefault: false});
