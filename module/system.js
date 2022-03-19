@@ -1,8 +1,8 @@
-import item_sheet from "./module/sheets/item.js";
-import hero_sheet from "./module/sheets/hero.js"
-import npc_sheet from "./module/sheets/npc.js"
-import enemy_sheet from "./module/sheets/enemy.js"
-import gm_sheet from "./module/sheets/gm.js"
+//import item_sheet from "./sheets/item.js";
+import hero_sheet from "./sheets/hero.js"
+import npc_sheet from "./sheets/npc.js"
+import enemy_sheet from "./sheets/enemy.js"
+import gm_sheet from "./sheets/gm.js"
 
 let SYSTEM_NAME = 'dc'
 
