@@ -1,0 +1,48 @@
+.center {
+    text-align: center;
+}
+.flexrow {
+flex-direction: row;
+}
+.perc90 {
+width: 90%
+}
+.perc80 {
+width: 80%
+}
+.perc70 {
+width: 70%
+}
+.perc60 {
+width: 60%
+}
+.perc50 {
+width: 50%
+}
+.perc45 {
+width: 45%
+}
+.perc40 {
+width: 40%
+}
+.perc30 {
+width: 30%
+}
+.perc25 {
+width: 25%
+}
+.perc20 {
+width: 20%
+}
+.perc15 {
+width: 15%
+}
+.perc12 {
+width: 12%
+}
+.perc10 {
+width: 10%
+}
+.perc5 {
+width: 5%
+}

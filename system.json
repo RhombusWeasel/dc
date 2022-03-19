@@ -1,0 +1,29 @@
+{
+    "name": "dc",
+    "title": "Dungeon Crawler",
+    "description": "A new Dungeon Crawler",
+    "version": "0.0.1",
+    "minimumCoreVersion": "9",
+    "compatibleCoreVersion": "9",
+    "author": "RhombusWeasel",
+    "esmodules": ["module/system.js"],
+    "styles": ["css/hq.css"],
+    "scripts": ["lib/lib.js", "lib/socket.js"],
+    "packs": [],
+    "socket": true,
+    "languages": [
+      {
+        "lang": "en",
+        "name": "English",
+        "path": "lang/en.json"
+      }
+    ],
+    "gridDistance": 5,
+    "gridUnits": "ft",
+    "primaryTokenAttribute": "hp",
+    "secondaryTokenAttribute": "mp",
+    "url": "https://github.com/RhombusWeasel/dc/",
+    "manifest": "https://raw.githubusercontent.com/RhombusWeasel/dc/master/system.json",
+    "download": "https://github.com/RhombusWeasel/dc/releases/download/0.0.1/dc.zip",
+    "license": "LICENSE.txt"
+}

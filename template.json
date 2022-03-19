@@ -1,0 +1,50 @@
+{
+    "Actor": {
+        "types": [
+            "hero",
+            "npc",
+            "enemy",
+            "gm"
+        ],
+        "templates": {
+            "core": {
+                "name_set": false,
+                "hp": {
+                    "min": 0,
+                    "max": 10,
+                    "value": 10
+                },
+                "mp": {
+                    "min": 0,
+                    "max": 10,
+                    "value": 10
+                }
+            }
+        },
+        "hero": {
+            "templates": ["core"]
+        },
+        "enemy": {
+            "templates": ["core"]
+        },
+        "npc": {
+            "templates": ["core"]
+        },
+        "gm": {
+            "templates": ["core"]
+        }
+    },
+    "Item": {
+        "types": [
+            "item"
+        ],
+        "templates": {
+            "core": {
+                "description": ""
+            }
+        },
+        "item": {
+            "templates": ["core"]
+        }
+    }
+}
