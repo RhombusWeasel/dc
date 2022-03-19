@@ -13,18 +13,7 @@ async function preload_handlebars_templates() {
     return loadTemplates(template_paths);
 }
 
-Hooks.once("init", function () {
-    console.log("Initializing System.");
-
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet(SYSTEM_NAME, item_sheet, {makeDefault: true});
-
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet(SYSTEM_NAME, hero_sheet, {makeDefault: true});
-    Actors.registerSheet(SYSTEM_NAME, npc_sheet, {makeDefault: false});
-    Actors.registerSheet(SYSTEM_NAME, enemy_sheet, {makeDefault: false});
-    Actors.registerSheet(SYSTEM_NAME, gm_sheet, {makeDefault: false});
-
+function load_handlebars_helpers() {
     Handlebars.registerHelper('isGM', function (options) {
         if (game.user.isGM) {
             return options.fn(this);
@@ -72,6 +61,20 @@ Hooks.once("init", function () {
                 return options.inverse(this);
         }
     });
+}
 
+Hooks.once("init", function () {
+    console.log("Initializing System.");
+
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet(SYSTEM_NAME, item_sheet, {makeDefault: true});
+
+    Actors.unregisterSheet("core", ActorSheet);
+    Actors.registerSheet(SYSTEM_NAME, hero_sheet, {makeDefault: true});
+    Actors.registerSheet(SYSTEM_NAME, npc_sheet, {makeDefault: false});
+    Actors.registerSheet(SYSTEM_NAME, enemy_sheet, {makeDefault: false});
+    Actors.registerSheet(SYSTEM_NAME, gm_sheet, {makeDefault: false});
+
+    load_handlebars_helpers();
     preload_handlebars_templates();
 });
