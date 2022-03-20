@@ -101,7 +101,6 @@ function load_handlebars_helpers() {
     Handlebars.registerHelper('get_pips', function (stat, race, value, max, options) {
         let race_mod = utils.template.races[race].stat_bonuses?.[stat] ? utils.template.races[race].stat_bonuses[stat] : 0;
         value += race_mod;
-        console.log(`DC : Handlebars : get_pips : `, stat, race, value, max, race_mod);
         let t = ``;
         for (let i = 0; i < value; i++) {
             t += `<i class="fas fas-circle"></i>`;
@@ -109,6 +108,7 @@ function load_handlebars_helpers() {
         for (let i = value; i < max; i++) {
             t += `<i class="fal fas-circle"></i>`;
         }
+        console.log(`DC : Handlebars : get_pips : `, stat, race, value, max, race_mod, t);
         return new Handlebars.SafeString(t);
     });
 }
