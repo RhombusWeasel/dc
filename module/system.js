@@ -99,6 +99,7 @@ function load_handlebars_helpers() {
 }
 
 function load_system() {
+    if (!game.user.isGM) return;
     let j_name = game.settings.get('dc', 'system_journal');
     let journal = game.journal.getName(j_name);
     if (journal) {
