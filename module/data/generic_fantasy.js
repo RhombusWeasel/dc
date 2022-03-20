@@ -40,6 +40,8 @@ function import_fantasy_system() {
                 playable: true,
             },
             elf: {
+                label: 'Elf',
+                playable: true,
                 variants: {
                     high_elf: {
                         label: 'High Elf',
