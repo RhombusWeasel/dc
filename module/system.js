@@ -106,7 +106,7 @@ function load_handlebars_helpers() {
             t += `<i class="fas fa-circle"/>`;
         }
         for (let i = value; i < max; i++) {
-            t += `<i class="fal fa-circle"/>`;
+            t += `<i class="far fa-circle"/>`;
         }
         console.log(`DC : Handlebars : get_pips : `, stat, race, value, max, race_mod, t);
         return new Handlebars.SafeString(t);
