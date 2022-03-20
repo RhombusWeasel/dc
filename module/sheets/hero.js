@@ -2,14 +2,24 @@ export default class HeroSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
+      let races = utils.template.races;
+      let tabs = [
+        {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},
+        {navSelector: ".race-tabs", contentSelector: ".race-body", initial: "human"},
+      ];
+      for (const key in races) {
+        if (Object.hasOwnProperty.call(races, key)) {
+          const race = races[key];
+          if (race?.variants) {
+            tabs.push({ navSelector: `.${key}-tabs`, contentSelector: `.${key}-body`, initial: `${Object.keys(race.variants)[0]}`});
+          }
+        }
+      }
       return mergeObject(super.defaultOptions, {
         classes: ["style_doc"],
         width: 400,
         height: 800,
-        tabs: [
-          { navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core" },
-          { navSelector: ".race-tabs", contentSelector: ".race-body", initial: "human" },
-        ]
+        tabs: tabs
       });
     }
   
