@@ -39,48 +39,52 @@ function import_fantasy_system() {
                 },
                 playable: true,
             },
-            high_elf: {
-                label: 'High Elf',
-                stat_bonuses: {
-                    'dex': 1,
-                    'int': 1,
-                    'con': -1,
-                    'str': -1,
+            elf: {
+                variants: {
+                    high_elf: {
+                        label: 'High Elf',
+                        stat_bonuses: {
+                            'dex': 1,
+                            'int': 1,
+                            'con': -1,
+                            'str': -1,
+                        },
+                        bonus_feats: 0,
+                        descriptions: { 
+                            main: [
+                                "",
+                                "",
+                                "",
+                                "",
+                            ],
+                            rules: [
+                                ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                            ],
+                        },
+                        playable: true,
+                    },
+                    wood_elf: {
+                        label: 'Wood Elf',
+                        stat_bonuses: {
+                            'dex': 1,
+                            'wis': 1,
+                            'con': -1,
+                            'str': -1,
+                        },
+                        bonus_feats: 0,
+                        descriptions: { 
+                            main: [
+                                "",
+                                "",
+                                "",
+                            ],
+                            rules: [
+                                ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                            ],
+                        },
+                        playable: true,
+                    },
                 },
-                bonus_feats: 0,
-                descriptions: { 
-                    main: [
-                        "",
-                        "",
-                        "",
-                        "",
-                    ],
-                    rules: [
-                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
-                    ],
-                },
-                playable: true,
-            },
-            wood_elf: {
-                label: 'Wood Elf',
-                stat_bonuses: {
-                    'dex': 1,
-                    'wis': 1,
-                    'con': -1,
-                    'str': -1,
-                },
-                bonus_feats: 0,
-                descriptions: { 
-                    main: [
-                        "",
-                        "",
-                        "",
-                    ],
-                    rules: [
-                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
-                    ],
-                },
-                playable: true,
             },
             half_orc: {
                 label: 'Half Orc',
