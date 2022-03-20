@@ -1,5 +1,13 @@
 <form>
     <h1 class="center">{{actor.name}}</h1>
+    <!-- Show race select page for new characters -->
+    {{#if (eq data.data.race 'None')}}
+        {{> "systems/dc/templates/tabs/race_select.hbs"}}
+    {{else}}
+    <!-- Show class select for new characters -->
+        {{#if (eq data.data.class 'None')}}
+
+        {{else}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a data-tab="core">Core</a>
         <a data-tab="notes">Notes</a>
@@ -12,4 +20,6 @@
             <textarea class="textbox" name="data.notes" id="notes" cols="30" rows="30">{{data.data.notes}}</textarea>
         </div>
     </section>
+        {{/if}}
+    {{/if}}
 </form>

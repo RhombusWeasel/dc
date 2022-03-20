@@ -1,0 +1,21 @@
+<section>
+    <nav class="race-tabs tabs" data-group="race">
+        {{#each races as |race|}}
+            {{#if (eq race.playable true)}}
+        <a data-tab="{{@key}}">{{race.label}}</a>
+            {{/if}}
+        {{/each}}
+    </nav>
+    <section class="race-body scroller border">
+        {{#each races as |race|}}
+            {{#if (eq race.playable true)}}
+        <div class="tab core" data-group="race" data-tab="{{@key}}">
+            <h2 class="center">{{race.label}}</h2>
+            <table>
+                
+            </table>
+        </div>
+            {{/if}}
+        {{/each}}
+    </section>
+</section>

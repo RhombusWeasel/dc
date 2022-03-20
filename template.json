@@ -9,6 +9,8 @@
         "templates": {
             "core": {
                 "name_set": false,
+                "race": "None",
+                "class": "None",
                 "hp": {
                     "min": 0,
                     "max": 10,

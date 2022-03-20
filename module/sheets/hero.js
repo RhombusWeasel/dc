@@ -6,7 +6,10 @@ export default class HeroSheet extends ActorSheet {
         classes: ["style_doc"],
         width: 400,
         height: 800,
-        tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core" }]
+        tabs: [
+          { navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core" },
+          { navSelector: ".race-tabs", contentSelector: ".race-body", initial: "human" },
+        ]
       });
     }
   
@@ -18,7 +21,7 @@ export default class HeroSheet extends ActorSheet {
     /** @override */
     getData() {
         const data = super.getData();
-        
+        if (this.actor.data.data.race == 'None') data.races = utils.template.races
         return data;
     }
   
