@@ -11,18 +11,19 @@
         {{#if (eq race.playable true)}}
         <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}">
             {{#if race.variants}}
-                <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
+            <h2 class="center">Variants</h2>
+            <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
                 {{#each race.variants as |variant|}}
-                    <a data-tab="{{@key}}">{{variant.label}}</a>
+                <a data-tab="{{@key}}">{{variant.label}}</a>
                 {{/each}}
-                </nav>
-                <section class="{{@key}}-body">
+            </nav>
+            <section class="{{@key}}-body">
                 {{#each race.variants as |variant|}}
-                    <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
-                        {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=variant}}
-                    </div>
+                <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
+                    {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=variant}}
+                </div>
                 {{/each}}
-                </section>
+            </section>
             {{else}}
                 {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=race}}
             {{/if}}
