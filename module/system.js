@@ -104,7 +104,7 @@ function load_system() {
     let journal = game.journal.getName(j_name);
     if (journal) {
         console.log(`DC : load_system : Loading ${j_name}.`);
-        utils.template = utils.journal.load(jname);
+        utils.template = utils.journal.load(j_name);
     }else{
         console.log('DC : First run : Creating Generic Fantasy System.');
         utils.template = utils.journal.load('Generic Fantasy System', import_fantasy_system());
