@@ -103,10 +103,10 @@ function load_handlebars_helpers() {
         value += race_mod;
         let t = ``;
         for (let i = 0; i < value; i++) {
-            t += `<i class="fas fas-circle"/>`;
+            t += `<i class="fas fa-circle"/>`;
         }
         for (let i = value; i < max; i++) {
-            t += `<i class="fal fas-circle"/>`;
+            t += `<i class="fal fa-circle"/>`;
         }
         console.log(`DC : Handlebars : get_pips : `, stat, race, value, max, race_mod, t);
         return new Handlebars.SafeString(t);
