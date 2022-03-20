@@ -7,13 +7,13 @@ function import_fantasy_system() {
                 bonus_feats: 1,
                 descriptions: { 
                     main: [
-                        "Humans are young amongst the other races.",
+                        "We humans are the youngest amongst the races.",
                         "That's how it always goes in these stories isn't it? As if we're the pinnacle of some fantasy evolutionary tree when the bloody Elves can live forever.",
-                        "They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.",
-                        "Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well",
+                        "We don't live long, often rutting like horny teenagers to make up for it so we're always needing to build new cities.",
+                        "Apparently all of this means we are completely average at everything and our tendancy to specialize means we get an extra feat.",
                     ],
                     rules: [
-                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                        {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                     ],
                 },
                 playable: true,
@@ -29,9 +29,9 @@ function import_fantasy_system() {
                 bonus_feats: 0,
                 descriptions: { 
                     main: [
-                        "",
-                        "",
-                        "",
+                        "Who you callin' short pal? Talk down to me again and I'll force feed you your feckin' kneecaps ye ken?",
+                        "We dwarfs are a proud and passionate people, short in stature and temper. That's right, I can say it, it's you that cannae alright?  We were engineered you know! *Quaffs horn of ale* Aye, thas' right, the High Elves feckin made the first of us using their poxy magicks!  With a K no less!",
+                        "They bred us durable and stout to work their Mythril mines and d'you know what I think? *leans in* Come here lad *grabs poor orphan* I think those arrogant pricks thought we'd be GRATEFUL!",
                     ],
                     rules: [
                         ['Bonus Feat', 'Humans start the game with a feat available to them.']
