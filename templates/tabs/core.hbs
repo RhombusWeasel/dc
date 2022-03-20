@@ -5,7 +5,7 @@
             <input class="center" type="text" name="name" value="{{actor.name}}" data-edit="name"/>
         </div>
         <div>
-            
+            {{> "systems/dc/templates/shared/stat-block.hbs" stats=../stats race=@../key}}
         </div>
     </div>
 </section>

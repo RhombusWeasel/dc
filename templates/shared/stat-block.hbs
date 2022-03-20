@@ -1,0 +1,10 @@
+<section>
+    <table>
+    {{#each ../stats as |stat|}}
+        <tr>
+            <th class="center">{{stat.label}}</th>
+            <td class="center">{{get_pips stat.key race stat.value stat.max}}</td>
+        </tr>
+    {{/each}}
+    </table>
+</section>

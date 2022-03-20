@@ -1,5 +1,4 @@
 <section>
-    {{log this}}
     <nav class="race-tabs tabs" data-group="race">
     {{#each races as |race|}}
         {{#if (eq race.playable true)}}
@@ -10,20 +9,23 @@
     <section class="race-body scroller border">
     {{#each races as |race|}}
         {{#if (eq race.playable true)}}
-        <div class="tab core" data-group="race" data-tab="{{@key}}">
-            <h2 class="center">{{race.label}}</h2>
-        {{#each race.descriptions.main as |line|}}
-            <p class="center">{{line}}</p>
-        {{/each}}
-            <h1 class="center">Stats</h1>
-            <table>
-        {{#each ../stats as |stat|}}
-                <tr>
-                    <th class="center">{{stat.label}}</th>
-                    <td class="center">{{get_pips stat.key @../key stat.value stat.max}}</td>
-                </tr>
-        {{/each}}
-            </table>
+        <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}"></div>
+            {{#if race.sub_classes}}
+                <nav class="{{@key}}-variants">
+                {{#each race.variants as |variant|}}
+                    <a data-tab="{{@key}}">{{variant.label}}</a>
+                {{/each}}
+                </nav>
+                <section>
+                {{#each race.variants as |variant|}}
+                    <div class="tab {{@key}}" data-group="{{@key}}-variant" data-tab="{{@key}}">
+                        {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=variant}}
+                    </div>
+                {{/each}}
+                </section>
+            {{else}}
+                {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=race}}
+            {{/if}}
         </div>
         {{/if}}
     {{/each}}
