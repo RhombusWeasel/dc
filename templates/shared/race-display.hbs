@@ -1,8 +1,13 @@
+{{!-- 
+    @param: {DICT} stats : The stats for the loaded system
+    @param: {DICT} race  : The data object for the race to be displayed.
+    @param: {STR}  key   : The key for the current race.
+ --}}
 <section>
     <h2 class="center">{{race.label}}</h2>
     {{#each race.descriptions.main as |line|}}
         <p class="center">{{line}}</p>
     {{/each}}
     <h2 class="center">Stats</h2>
-    {{> "systems/dc/templates/shared/stat-block.hbs" stats=../stats race=race key=key}}
+    {{> "systems/dc/templates/shared/stat-block.hbs" stats=stats race=race key=key}}
 </section>
