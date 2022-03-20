@@ -102,14 +102,14 @@ function load_handlebars_helpers() {
         let race_mod = utils.template.races[race].stat_bonuses?.[stat] ? utils.template.races[race].stat_bonuses[stat] : 0;
         value += race_mod;
         console.log(`DC : Handlebars : get_pips : `, stat, race, value, max, race_mod);
-        let t = `<div class="flexrow">`;
+        let t = ``;
         for (let i = 0; i < value; i++) {
-            t += `<i class="fas fas-circle"></i>`
+            t += `<i class="fas fas-circle"></i>`;
         }
         for (let i = value; i < max; i++) {
-            t += `<i class="fal fas-circle"></i>`
+            t += `<i class="fal fas-circle"></i>`;
         }
-        return t += `</div>`
+        return t;
     });
 }
 
