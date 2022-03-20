@@ -11,6 +11,8 @@
                 "name_set": false,
                 "race": "None",
                 "class": "None",
+                "level": 0,
+                "max_level": 0,
                 "hp": {
                     "min": 0,
                     "max": 10,

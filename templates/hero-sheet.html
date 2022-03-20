@@ -1,5 +1,5 @@
 <form>
-    <h1 class="center">{{actor.name}}</h1>
+    <h2 class="center">{{actor.name}}</h2>
     <!-- Show race select page for new characters -->
     {{#if (eq data.data.race 'None')}}
         {{> "systems/dc/templates/tabs/race_select.hbs" this}}
