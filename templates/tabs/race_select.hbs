@@ -18,7 +18,7 @@
                 </nav>
                 <section>
                 {{#each race.variants as |variant|}}
-                    <div class="tab {{@key}}" data-group="{{@key}}-variant" data-tab="{{@key}}">
+                    <div class="tab {{@key}}" data-group="{{@key}}-variants" data-tab="{{@key}}">
                         {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=variant key=@key}}
                     </div>
                 {{/each}}
