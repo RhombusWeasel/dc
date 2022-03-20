@@ -109,7 +109,7 @@ function load_handlebars_helpers() {
         for (let i = value; i < max; i++) {
             t += `<i class="fal fas-circle"></i>`
         }
-        return t + `</div>`
+        return t += `</div>`
     });
 }
 
