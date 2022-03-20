@@ -12,19 +12,33 @@ function register_sheets() {
     Actors.registerSheet(SYSTEM_NAME, npc_sheet, {makeDefault: false});
     Actors.registerSheet(SYSTEM_NAME, enemy_sheet, {makeDefault: false});
     Actors.registerSheet(SYSTEM_NAME, gm_sheet, {makeDefault: false});
+    console.log("DC: Actor sheets registered.");
 }
 
 function register_settings() {
-    game.settings.register('deadlands_classic', 'combat_active', {
-        name: 'Combat Active',
+    game.settings.register('dc', 'system_journal', {
+        name: 'System Journal',
+        hint: 'The journal containing system json data',
         scope: 'world',     // "world" = sync to db, "client" = local storage 
-        config: false,       // false if you dont want it to show in module config
-        type: Boolean,       // Number, Boolean, String,  
-        default: false,
+        config: true,       // false if you dont want it to show in module config
+        type: String,       // Number, Boolean, String,  
+        default: 'generic_fantasy_system',
         onChange: value => {
-            console.log('Combat Active: ', value);
+            console.log('DC: Settings : system_journal', value);
         }
     });
+    game.settings.register('dc', 'maximum_ability', {
+        name: 'Maximum Ability Score',
+        hint: 'The maximum ability score any character can acheive',
+        scope: 'world',     // "world" = sync to db, "client" = local storage 
+        config: false,       // false if you dont want it to show in module config
+        type: Number,       // Number, Boolean, String,  
+        default: 5,
+        onChange: value => {
+            console.log('DC: Settings : Maximum ability score: ', value);
+        }
+    });
+    console.log("DC: Game settings registered.");
 }
 
 async function preload_handlebars_templates() {
@@ -84,9 +98,18 @@ function load_handlebars_helpers() {
     });
 }
 
-Hooks.once("init", function () {
-    console.log("Initializing System.");
+function load_setting() {
+    let j_name = game.settings.get('dc', 'system_journal');
+    let journal = game.journal.getName(j_name);
+    if (journal) {
+        utils.template = utils.journal.load(jname);
+    }else{
+        utils.template = utils.journal.load('Generic Fantasy System', import_fantasy_system());
+    }
+}
 
+Hooks.once("init", function () {
+    console.log("DC: Initializing System.");
     register_sheets();
     register_settings();
     load_handlebars_helpers();

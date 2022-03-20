@@ -18,6 +18,7 @@ export default class HeroSheet extends ActorSheet {
     /** @override */
     getData() {
         const data = super.getData();
+        
         return data;
     }
   

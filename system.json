@@ -7,8 +7,8 @@
     "compatibleCoreVersion": "9",
     "author": "RhombusWeasel",
     "esmodules": ["module/system.js"],
-    "styles": ["css/hq.css"],
-    "scripts": ["lib/lib.js", "lib/socket.js"],
+    "styles": ["css/style_doc.css"],
+    "scripts": ["lib/lib.js", "lib/socket.js", "module/data/generic_fantasy.js"],
     "packs": [],
     "socket": true,
     "languages": [
