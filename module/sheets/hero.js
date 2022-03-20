@@ -21,6 +21,7 @@ export default class HeroSheet extends ActorSheet {
     /** @override */
     getData() {
         const data = super.getData();
+        data.stats = utils.template.stats
         if (this.actor.data.data.race == 'None') data.races = utils.template.races
         return data;
     }

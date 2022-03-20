@@ -53,7 +53,7 @@ function import_fantasy_system() {
             },
         },
         entity: {
-            race: 'Unset',
+            race: 'None',
             stat_points: 5,
             stats: [
                 {
