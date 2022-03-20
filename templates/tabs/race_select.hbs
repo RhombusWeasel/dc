@@ -11,8 +11,24 @@
             {{#if (eq race.playable true)}}
         <div class="tab core" data-group="race" data-tab="{{@key}}">
             <h2 class="center">{{race.label}}</h2>
+            {{#each race.descriptions.main as |line|}}
+            <p class="center">{{line}}</p>
+            {{/each}}
             <table>
-                
+            {{#each ../data.data.stats as |stat|}}
+                <tr>
+                    <th class="center">{{stat.label}}</th>
+                    <td>
+                {{#each race.stat_bonuses as |bonus|}}
+                    {{#if (eq ../stat.key @key)}}
+                        {{#get_pips (sum ../stat.value '+' bonus) ../stat.max}}
+                    {{else}}
+                        {{#get_pips ../stat.value ../stat.max}}
+                    {{/if}}
+                {{/each}}
+                    </td>
+                </tr>
+            {{/each}}
             </table>
         </div>
             {{/if}}

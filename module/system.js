@@ -97,6 +97,17 @@ function load_handlebars_helpers() {
                 return options.inverse(this);
         }
     });
+
+    Handlebars.registerHelper('get_pips', function (value, max, options) {
+        let t = `<div class="flexrow">`;
+        for (let i = 0; i < value; i++) {
+            t += `<i class="fas fas-circle"></i>`
+        }
+        for (let i = value; i < max; i++) {
+            t += `<i class="fal fas-circle"></i>`
+        }
+        return t + `</div>`
+    });
 }
 
 function load_system() {

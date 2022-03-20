@@ -5,6 +5,16 @@ function import_fantasy_system() {
                 label: 'Human',
                 stat_bonuses: {},
                 bonus_feats: 1,
+                descriptions: { 
+                    main: [
+                        `Humans are young amongst the other races, that's how it always goes isn't it?`
+                        `They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.`,
+                        `Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well`
+                    ],
+                    rules: [
+                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                    ],
+                },
                 playable: true,
             },
             dwarf: {
@@ -19,7 +29,7 @@ function import_fantasy_system() {
                 playable: true,
             },
             high_elf: {
-                label: 'Elf',
+                label: 'High Elf',
                 stat_bonuses: {
                     'dex': 1,
                     'int': 1,
@@ -55,41 +65,43 @@ function import_fantasy_system() {
         entity: {
             race: 'None',
             stat_points: 5,
+            feat_points: 0,
+            spell_points: 0,
             stats: [
                 {
                     label: 'Smashing',
                     key: 'str',
-                    value: 1,
+                    value: 2,
                     max: 5
                 },
                 {
                     label: 'Dodging',
                     key: 'dex',
-                    value: 1,
+                    value: 2,
                     max: 5
                 },
                 {
                     label: 'Flexing',
                     key: 'con',
-                    value: 1,
+                    value: 2,
                     max: 5
                 },
                 {
                     label: 'Brains',
                     key: 'int',
-                    value: 1,
+                    value: 2,
                     max: 5
                 },
                 {
                     label: 'Charm',
                     key: 'cha',
-                    value: 1,
+                    value: 2,
                     max: 5
                 },
                 {
                     label: 'Savvy',
                     key: 'wis',
-                    value: 1,
+                    value: 2,
                     max: 5
                 },
             ],
