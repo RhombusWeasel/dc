@@ -6,7 +6,7 @@
         {{/if}}
     {{/each}}
     </nav>
-    <section class="race-body scroller border">
+    <section class="race-body">
     {{#each races as |race|}}
         {{#if (eq race.playable true)}}
         <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}"></div>
@@ -16,7 +16,7 @@
                     <a data-tab="{{@key}}">{{variant.label}}</a>
                 {{/each}}
                 </nav>
-                <section>
+                <section class="{{@key}}-body">
                 {{#each race.variants as |variant|}}
                     <div class="tab {{@key}}" data-group="{{@key}}-variants" data-tab="{{@key}}">
                         {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=variant key=@key}}
