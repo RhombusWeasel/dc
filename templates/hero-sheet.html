@@ -2,7 +2,7 @@
     <h1 class="center">{{actor.name}}</h1>
     <!-- Show race select page for new characters -->
     {{#if (eq data.data.race 'None')}}
-        {{> "systems/dc/templates/tabs/race_select.hbs"}}
+        {{> "systems/dc/templates/tabs/race_select.hbs" stats=stats}}
     {{else}}
     <!-- Show class select for new characters -->
         {{#if (eq data.data.class 'None')}}
