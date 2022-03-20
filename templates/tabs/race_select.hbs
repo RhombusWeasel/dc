@@ -14,8 +14,9 @@
             {{#each race.descriptions.main as |line|}}
             <p class="center">{{line}}</p>
             {{/each}}
+            <h1>Stats</h1>
             <table>
-            {{#each ../data.data.stats as |stat|}}
+            {{#each ../../data.data.stats as |stat|}}
                 <tr>
                     <th class="center">{{stat.label}}</th>
                     <td>
