@@ -20,7 +20,7 @@
         {{#each ../stats as |stat|}}
                 <tr>
                     <th class="center">{{stat.label}}</th>
-                    <td>{{{get_pips stat.key @../key stat.value stat.max}}}</td>
+                    <td>{{get_pips stat.key @../key stat.value stat.max}}</td>
                 </tr>
         {{/each}}
             </table>
