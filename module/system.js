@@ -115,5 +115,8 @@ Hooks.once("init", function () {
     register_settings();
     load_handlebars_helpers();
     preload_handlebars_templates();
+});
+
+Hooks.on("ready", function() {
     load_system();
 });
