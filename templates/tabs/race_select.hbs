@@ -1,38 +1,39 @@
 <section>
+    {{log stats}}
     <nav class="race-tabs tabs" data-group="race">
-        {{#each races as |race|}}
-            {{#if (eq race.playable true)}}
+    {{#each races as |race|}}
+        {{#if (eq race.playable true)}}
         <a data-tab="{{@key}}">{{race.label}}</a>
-            {{/if}}
-        {{/each}}
+        {{/if}}
+    {{/each}}
     </nav>
     <section class="race-body scroller border">
-        {{#each races as |race|}}
-            {{#if (eq race.playable true)}}
+    {{#each races as |race|}}
+        {{#if (eq race.playable true)}}
         <div class="tab core" data-group="race" data-tab="{{@key}}">
             <h2 class="center">{{race.label}}</h2>
-            {{#each race.descriptions.main as |line|}}
+        {{#each race.descriptions.main as |line|}}
             <p class="center">{{line}}</p>
-            {{/each}}
+        {{/each}}
             <h1 class="center">Stats</h1>
             <table>
-            {{#each ../stats as |stat|}}
+        {{#each ../stats as |stat|}}
                 <tr>
                     <th class="center">{{stat.label}}</th>
                     <td>
-                {{#each race.stat_bonuses as |bonus|}}
-                    {{#if (eq ../stat.key @key)}}
-                        {{get_pips (sum ../stat.value '+' bonus) ../stat.max}}
-                    {{else}}
-                        {{get_pips ../stat.value ../stat.max}}
-                    {{/if}}
-                {{/each}}
+            {{#each race.stat_bonuses as |bonus|}}
+                {{#if (eq ../stat.key @key)}}
+                    {{get_pips (sum ../stat.value '+' bonus) ../stat.max}}
+                {{else}}
+                    {{get_pips ../stat.value ../stat.max}}
+                {{/if}}
+            {{/each}}
                     </td>
                 </tr>
-            {{/each}}
+        {{/each}}
             </table>
         </div>
-            {{/if}}
-        {{/each}}
+        {{/if}}
+    {{/each}}
     </section>
 </section>
