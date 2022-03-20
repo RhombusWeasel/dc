@@ -20,7 +20,7 @@
             <section class="{{@key}}-body">
                 {{#each race.variants as |variant|}}
                 <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
-                    {{> "systems/dc/templates/shared/race-display.hbs" stats=../stats race=variant}}
+                    {{> "systems/dc/templates/shared/race-display.hbs" stats=../../stats race=variant}}
                 </div>
                 {{/each}}
             </section>
