@@ -7,9 +7,9 @@ function import_fantasy_system() {
                 bonus_feats: 1,
                 descriptions: { 
                     main: [
-                        `Humans are young amongst the other races, that's how it always goes isn't it?`
-                        `They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.`,
-                        `Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well`
+                        "Humans are young amongst the other races, that's how it always goes isn't it?",
+                        "They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.",
+                        "Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well",
                     ],
                     rules: [
                         ['Bonus Feat', 'Humans start the game with a feat available to them.']
@@ -26,6 +26,16 @@ function import_fantasy_system() {
                     'cha': -1,
                 },
                 bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Humans are young amongst the other races, that's how it always goes isn't it?",
+                        "They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.",
+                        "Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well",
+                    ],
+                    rules: [
+                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                    ],
+                },
                 playable: true,
             },
             high_elf: {
@@ -37,6 +47,16 @@ function import_fantasy_system() {
                     'str': -1,
                 },
                 bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Humans are young amongst the other races, that's how it always goes isn't it?",
+                        "They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.",
+                        "Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well",
+                    ],
+                    rules: [
+                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                    ],
+                },
                 playable: true,
             },
             wood_elf: {
@@ -48,6 +68,16 @@ function import_fantasy_system() {
                     'str': -1,
                 },
                 bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Humans are young amongst the other races, that's how it always goes isn't it?",
+                        "They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.",
+                        "Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well",
+                    ],
+                    rules: [
+                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                    ],
+                },
                 playable: true,
             },
             half_orc: {
@@ -59,6 +89,16 @@ function import_fantasy_system() {
                     'cha': -1,
                 },
                 bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Humans are young amongst the other races, that's how it always goes isn't it?",
+                        "They don't live long, often rutting like horny teenagers to make up for it so they're always needing to build new cities.",
+                        "Apparently all of this means they are somehow more able to dedicate their short lives to honing one set of skills well",
+                    ],
+                    rules: [
+                        ['Bonus Feat', 'Humans start the game with a feat available to them.']
+                    ],
+                },
                 playable: true,
             },
         },
