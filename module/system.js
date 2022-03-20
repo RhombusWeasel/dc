@@ -22,7 +22,7 @@ function register_settings() {
         scope: 'world',     // "world" = sync to db, "client" = local storage 
         config: true,       // false if you dont want it to show in module config
         type: String,       // Number, Boolean, String,  
-        default: 'generic_fantasy_system',
+        default: 'Generic Fantasy System',
         onChange: value => {
             console.log('DC: Settings : system_journal', value);
         }
@@ -98,7 +98,7 @@ function load_handlebars_helpers() {
     });
 }
 
-function load_setting() {
+function load_system() {
     let j_name = game.settings.get('dc', 'system_journal');
     let journal = game.journal.getName(j_name);
     if (journal) {
@@ -114,4 +114,5 @@ Hooks.once("init", function () {
     register_settings();
     load_handlebars_helpers();
     preload_handlebars_templates();
+    load_system();
 });
