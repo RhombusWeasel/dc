@@ -22,9 +22,9 @@
                     <td>
                 {{#each race.stat_bonuses as |bonus|}}
                     {{#if (eq ../stat.key @key)}}
-                        {{#get_pips (sum ../stat.value '+' bonus) ../stat.max}}{{/get_pips}}
+                        {{get_pips (sum ../stat.value '+' bonus) ../stat.max}}
                     {{else}}
-                        {{#get_pips ../stat.value ../stat.max}}{{/get_pips}}
+                        {{get_pips ../stat.value ../stat.max}}
                     {{/if}}
                 {{/each}}
                     </td>
