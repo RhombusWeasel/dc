@@ -46,7 +46,7 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/shared/race-display.hbs',
         'systems/dc/templates/shared/stat-block.hbs',
         'systems/dc/templates/tabs/core.hbs',
-        'systems/dc/templates/tabs/race_select.hbs',
+        'systems/dc/templates/tabs/race-select.hbs',
     ];
     return loadTemplates(template_paths);
 }
