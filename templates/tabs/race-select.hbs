@@ -1,5 +1,5 @@
 <section>
-    <h1 class="center">Races</h1>
+    <h1 class="center">Select your Race</h1>
     <nav class="race-tabs tabs" data-group="race">
     {{#each races as |race|}}
         {{#if (eq race.playable true)}}
@@ -12,6 +12,7 @@
         {{#if (eq race.playable true)}}
         <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}">
             {{#if race.variants}}
+            <h2 class="center">{{race.label}}</h2>
                 {{#each race.descriptions.main as |line|}}
             <p class="center">{{line}}</p>
                 {{/each}}
