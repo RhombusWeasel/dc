@@ -49,7 +49,7 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/tabs/core.hbs',
         'systems/dc/templates/tabs/race-select.hbs',
         //GM Sheet
-        'systems/dc/templates/tabs/race-select.hbs',
+        'systems/dc/templates/tabs/system-editor.hbs',
     ];
     return loadTemplates(template_paths);
 }
@@ -113,7 +113,6 @@ function load_handlebars_helpers() {
         for (let i = value; i < max; i++) {
             t += `<i class="far fa-circle"/>`;
         }
-        console.log(`DC : Handlebars : get_pips : `, stat, race, value, max, race_mod, t);
         return new Handlebars.SafeString(t);
     });
 }
