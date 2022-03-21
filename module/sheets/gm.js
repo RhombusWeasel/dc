@@ -8,7 +8,10 @@ export default class GMSheet extends HeroSheet {
         classes: ["style_doc"],
         width: 400,
         height: 800,
-        tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core" }]
+        tabs: [
+          {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "system"},
+          {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
+        ]
       });
     }
   
@@ -20,6 +23,7 @@ export default class GMSheet extends HeroSheet {
     /** @override */
     getData() {
         const data = super.getData();
+        data.template = utils.template;
         return data;
     }
   

@@ -1,0 +1,19 @@
+<section>
+    <nav class="system-tabs" data-group="system-main">
+        <a data-tab="races">Races</a>
+        <a data-tab="classes">Classes</a>
+        <a data-tab="abilities">Abilities</a>
+        <a data-tab="spells">Spells</a>
+    </nav>
+    <section class="system-body">
+        <div class="tab editor" data-group="GM" data-tab="editor">
+            <table>
+            {{#each template.races as |race|}}
+                <tr>
+                    <td>{{race.name}}</td>
+                </tr>
+            {{/each}}
+            </table>
+        </div>
+    </section>
+</section>

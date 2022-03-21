@@ -1,6 +1,16 @@
 <form>
-    <h1 class="center">{{actor.name}}</h1>
-    <div>
-        
-    </div>
+    <h1 class="center">GM Screen</h1>
+    <nav class="sheet-tabs" data-group="GM">
+        <a data-tab="system">System</a>
+        <a data-tab="notes">Notes</a>
+    </nav>
+    <section class="sheet-body">
+        <div class="tab system" data-group="GM" data-tab="system">
+            {{> /systems/dc/templates/tabs/system-editor.hbs this}}
+        </div>
+
+        <div class="tab notes" data-group="primary" data-tab="notes">
+            <textarea class="textbox" name="data.notes" id="notes" cols="30" rows="30">{{data.data.notes}}</textarea>
+        </div>
+    </section>
 </form>
