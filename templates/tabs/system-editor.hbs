@@ -9,12 +9,18 @@
     <section class="system-body">
         <div class="tab races" data-group="system-main" data-tab="races">
             <table>
+                <tr>
+                    <th class="center">Race/Bloodline</th>
+                    <th class="center">Edit</th>
+                    <th class="center">Delete</th>
+                </tr>
             {{#each template.races as |race|}}
                 {{#if (eq race.playable true)}}
                     <tr>
-                        <td class="center">{{race.label}}</td>
-                        <td class="center race-edit" data-variant="false" data-race="{{@key}}"><i class="fas fa-edit"/></td>
-                        <td class="center race-delete" data-variant="false" data-race="{{@key}}"><i class="fas fa-trash"/></td>
+                        <td class="center"><b>{{race.label}}</b></td>
+                        <td class="center race-edit" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-add"/></a></td>
+                        <td class="center race-edit" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+                        <td class="center race-delete" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-trash"/></a></td>
                     </tr>
                     {{#if race.variants}}
                         {{#each race.variants as |variant|}}
@@ -27,7 +33,6 @@
                     {{/if}}
                 {{/if}}
             {{/each}}
-
             {{#each template.races as |race|}}
                 {{#if (eq race.playable false)}}
                 <tr>
