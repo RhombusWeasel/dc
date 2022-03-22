@@ -14,12 +14,14 @@
                     <tr>
                         <td class="center">{{race.label}}</td>
                         <td class="center race-edit" data-variant="false" data-race="{{@key}}"><i class="fas fa-pen-to-square"/></td>
+                        <td class="center race-delete" data-variant="false" data-race="{{@key}}"><i class="fas fa-plus"/></td>
                     </tr>
                     {{#if race.variants}}
                         {{#each race.variants as |variant|}}
                             <tr>
                                 <td>{{variant.label}}</td>
                                 <td class="center race-edit" data-variant="true" data-race="{{@key}}"><i class="fas fa-pen-to-square"/></td>
+                                <td class="center race-delete" data-variant="false" data-race="{{@key}}"><i class="fas fa-plus"/></td>
                             </tr>
                         {{/each}}
                     {{/if}}
