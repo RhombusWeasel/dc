@@ -1,17 +1,17 @@
 <section>
     <tr>
         <td class="center"><b>{{race.label}}</b></td>
-        <td class="perc10 center bloodline-create" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-plus"/></a></td>
-        <td class="perc10 center race-edit" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-edit"/></a></td>
-        <td class="perc10 center race-delete" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-trash"/></a></td>
+        <td class="perc10 center create-bloodline" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-plus"/></a></td>
+        <td class="perc10 center edit-race" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+        <td class="perc10 center delete-race" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-trash"/></a></td>
     </tr>
     {{#if race.variants}}
         {{#each race.variants as |variant|}}
             <tr>
                 <td>{{variant.label}}</td>
                 <td></td>
-                <td class="perc10 center race-edit" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-edit"/></a></td>
-                <td class="perc10 center race-delete" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-trash"/></a></td>
+                <td class="perc10 center edit-race" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+                <td class="perc10 center delete-race" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-trash"/></a></td>
             </tr>
         {{/each}}
     {{/if}}
