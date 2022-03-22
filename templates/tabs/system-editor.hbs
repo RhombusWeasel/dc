@@ -12,12 +12,12 @@
             {{#each template.races as |race|}}
                 {{#if (eq race.playable true)}}
                     <tr>
-                        <td>{{race.label}}</td>
+                        <td class="center">{{race.label}}</td>
                     </tr>
                     {{#if race.variants}}
                         {{#each race.variants as |variant|}}
                             <tr>
-                                <td>{{race.label}}</td>
+                                <td>{{variant.label}}</td>
                             </tr>
                         {{/each}}
                     {{/if}}
