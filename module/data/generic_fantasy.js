@@ -208,38 +208,38 @@ function import_fantasy_system() {
             spell_points: 0,
             stats: [
                 {
-                    label: 'Smashing',
+                    label: 'Butch',
                     key: 'str',
                     value: 2,
                     max: 5
                 },
                 {
-                    label: 'Dodging',
-                    key: 'dex',
-                    value: 2,
-                    max: 5
-                },
-                {
-                    label: 'Flexing',
+                    label: 'Buff',
                     key: 'con',
                     value: 2,
                     max: 5
                 },
                 {
-                    label: 'Brains',
+                    label: 'Brainy',
                     key: 'int',
                     value: 2,
                     max: 5
                 },
                 {
-                    label: 'Charm',
-                    key: 'cha',
+                    label: 'Spry',
+                    key: 'dex',
                     value: 2,
                     max: 5
                 },
                 {
-                    label: 'Savvy',
+                    label: 'Sage',
                     key: 'wis',
+                    value: 2,
+                    max: 5
+                },
+                {
+                    label: 'Suave',
+                    key: 'cha',
                     value: 2,
                     max: 5
                 },
