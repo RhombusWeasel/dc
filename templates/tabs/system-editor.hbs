@@ -1,4 +1,5 @@
 <section>
+    {{log this}}
     <nav class="system-tabs tabs" data-group="system-main">
         <a data-tab="races">Races</a>
         <a data-tab="classes">Classes</a>
@@ -8,7 +9,7 @@
     <section class="system-body">
         <div class="tab editor" data-group="GM" data-tab="editor">
             <table>
-            {{#each races as |race|}}
+            {{#each template.races as |race|}}
                 <tr>
                     <td>{{race.name}}</td>
                 </tr>
