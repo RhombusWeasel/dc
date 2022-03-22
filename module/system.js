@@ -50,6 +50,8 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/tabs/race-select.hbs',
         //GM Sheet
         'systems/dc/templates/tabs/system-editor.hbs',
+        //Editor Table Rows
+        'systems/dc/templates/table-rows/race-editor-tr.hbs',
     ];
     return loadTemplates(template_paths);
 }
