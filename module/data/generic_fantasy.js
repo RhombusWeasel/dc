@@ -214,8 +214,20 @@ function import_fantasy_system() {
                     max: 5
                 },
                 {
+                    label: 'Spry',
+                    key: 'dex',
+                    value: 2,
+                    max: 5
+                },
+                {
                     label: 'Buff',
                     key: 'con',
+                    value: 2,
+                    max: 5
+                },
+                {
+                    label: 'Suave',
+                    key: 'cha',
                     value: 2,
                     max: 5
                 },
@@ -225,21 +237,10 @@ function import_fantasy_system() {
                     value: 2,
                     max: 5
                 },
-                {
-                    label: 'Spry',
-                    key: 'dex',
-                    value: 2,
-                    max: 5
-                },
+                
                 {
                     label: 'Sage',
                     key: 'wis',
-                    value: 2,
-                    max: 5
-                },
-                {
-                    label: 'Suave',
-                    key: 'cha',
                     value: 2,
                     max: 5
                 },

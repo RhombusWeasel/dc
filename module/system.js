@@ -130,7 +130,7 @@ function load_system() {
         console.log('DC : First run : Creating Generic Fantasy System.');
         utils.template = utils.journal.load('Generic Fantasy System', import_fantasy_system());
     }
-    utils.journal.save(j_name, utils.template);
+    //utils.journal.save(j_name, utils.template);
 }
 
 Hooks.once("init", function () {
