@@ -10,9 +10,26 @@
         <div class="tab races" data-group="system-main" data-tab="races">
             <table>
             {{#each template.races as |race|}}
+                {{#if (eq race.playable true)}}
+                    <tr>
+                        <td>{{race.label}}</td>
+                    </tr>
+                    {{#if race.variants}}
+                        {{#each race.variants as |variant}}
+                            <tr>
+                                <td>{{race.label}}</td>
+                            </tr>
+                        {{/each}}
+                    {{/if}}
+                {{/if}}
+            {{/each}}
+
+            {{#each template.races as |race|}}
+                {{#if (eq race.playable false)}}
                 <tr>
                     <td>{{race.label}}</td>
                 </tr>
+                {{/if}}
             {{/each}}
             </table>
         </div>
