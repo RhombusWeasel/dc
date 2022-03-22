@@ -1,5 +1,18 @@
 function import_fantasy_system() {
     return {
+        race_template: {
+            label: '',
+            stat_bonuses: {},
+            bonus_feats: 0,
+            descriptions: {
+                main: [],
+                flavor: [],
+            },
+            rules: [
+                {label: '', text: '', effects: []},
+            ],
+            playable: false,
+        },
         races: {
             human: {
                 label: 'Human',
@@ -10,21 +23,25 @@ function import_fantasy_system() {
                         "Humans are the youngest amongst the races, they actually evolved from Apes deep in the worlds misty mountains.",
                         "Versitility is their strength, they are moderately competent in most tasks and their ability to learn new skills quickly can be an early advantage."
                     ],
-                    rules: [
-                        {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
-                    ],
                 },
+                rules: [
+                    {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
+                ],
                 playable: true,
             },
             dwarf: {
-                label: 'Dwarf',
+                label: 'Dwarves',
                 playable: true,
                 descriptions: {
                     main: [
                         "Dwarfs were created by the Elves thousands of years ago in the time before the rise of Humans.  The Elves had not intended for the Dwarfs to have the use of magic or in fact even free will but it seems that in the case of the latter at least life found a way.",
                         "There are many types of Dwarf but the most common are Tunnel Dwarfs, because of their inability to naturally use magic the Dwarves had to develop Technomancy."
                     ],
+                    flavor: [],
                 },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
                 variants: {
                     tunnel_dwarves: {
                         label: 'Tunnel Dwarf',
@@ -45,10 +62,10 @@ function import_fantasy_system() {
                                 "We dwarves are a proud and passionate people, short in stature and temper. That's right, I can say it, it's you that cannae alright?  We were engineered you know! *Quaffs horn of ale* Aye, thas' right, the High Elves feckin made the first of us using their poxy magicks!  With a K no less!",
                                 "They bred us durable and stout to work their Mythril mines and d'you know what I think? *leans in* Come here lad *grabs poor orphan* I think those arrogant pricks thought we'd be GRATEFUL!",
                             ],
-                            rules: [
-                                ['Darkvision', 'Tunnel Dwarves raised in the underground have darkvision for 30ft']
-                            ],
                         },
+                        rules: [
+                            {label: '', text: '', effects: []},
+                        ],
                         playable: true,
                     },
                     outer_dwarves: {
@@ -66,23 +83,27 @@ function import_fantasy_system() {
                                 "They live in the lands outside the Tunnel Dwarves mountains and trade them food for."
                             ],
                             flavor: ["",],
-                            rules: [
-                                ['Bonus Feat', 'Humans start the game with a feat available to them.']
-                            ],
                         },
+                        rules: [
+                            {label: '', text: '', effects: []},
+                        ],
                         playable: true,
                     },
                 },
             },
             elf: {
-                label: 'Elf',
+                label: 'Elves',
                 playable: true,
                 descriptions: {
                     main: [
                         "Elves are the oldest of the races, they split philosophically five centuries ago into the noble and proud High Elves and the Wise Wood Elves.",
                         "Very skilled with magic all Elves start with additional Mana points.",
                     ],
+                    flavor: [],
                 },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
                 variants: {
                     high_elf: {
                         label: 'High Elf',
@@ -97,10 +118,11 @@ function import_fantasy_system() {
                             main: [
                                 "High Elves take the concept of nobility and grace to etherial levels.  Masters of charm magic and conjuration",
                             ],
-                            rules: [
-                                ['Bonus Feat', 'Humans start the game with a feat available to them.']
-                            ],
+                            flavor: [],
                         },
+                        rules: [
+                            {label: '', text: '', effects: []},
+                        ],
                         playable: true,
                     },
                     wood_elf: {
@@ -116,10 +138,11 @@ function import_fantasy_system() {
                             main: [
                                 "Wood Elves split from their noble cousins and took to the forests of the world.  They are natural Druids and Rangers",
                             ],
-                            rules: [
-                                ['Bonus Feat', 'Humans start the game with a feat available to them.']
-                            ],
+                            flavor: [],
                         },
+                        rules: [
+                            {label: '', text: '', effects: []},
+                        ],
                         playable: true,
                     },
                 },
@@ -131,8 +154,30 @@ function import_fantasy_system() {
                     main: [
                         "Half Bloods are often outcasts on the fringe of society, never fully accepted and trusted by either community.",
                     ],
+                    flavor: []
                 },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
                 variants: {
+                    half_elf: {
+                        label: 'Half Elf',
+                        stat_bonuses: {
+                            'con': -1,
+                            'dex': 1,
+                        },
+                        bonus_feats: 0,
+                        descriptions: { 
+                            main: [
+                                "Half Elf, half whatever.  Feel the love baby."
+                            ],
+                            flavor: [],
+                        },
+                        rules: [
+                            {label: '', text: '', effects: []},
+                        ],
+                        playable: true,
+                    },
                     half_orc: {
                         label: 'Half Orc',
                         stat_bonuses: {
@@ -146,16 +191,17 @@ function import_fantasy_system() {
                             main: [
                                 "Half man, half Orc.  Total badass."
                             ],
-                            rules: [
-                                ['Bonus Feat', 'Humans start the game with a feat available to them.']
-                            ],
+                            flavor: [],
                         },
+                        rules: [
+                            {label: '', text: '', effects: []},
+                        ],
                         playable: true,
                     },
                 },
             },
         },
-        entity: {
+        entity_template: {
             race: 'None',
             stat_points: 5,
             feat_points: 0,

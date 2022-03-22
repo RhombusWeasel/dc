@@ -30,15 +30,15 @@ export default class GMSheet extends HeroSheet {
     activateListeners(html) {
         //Buttons:
         //System Editor
-        html.find(".race-edit").click(this._on_race_edit.bind(this));
+        html.find(".create-race").click(this._on_create_race.bind(this));
         return super.activateListeners(html);
     }
 
     //System Editor Functions:
-    _on_race_edit(ev) {
+    _on_create_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        
+
     }
 
 }

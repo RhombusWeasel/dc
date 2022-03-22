@@ -5,10 +5,11 @@
  --}}
 <section>
     <div>
-        <h2 class="center">{{race.label}}</h2>
+        <h3 class="center">{{race.label}}</h3>
     {{#each race.descriptions.main as |line|}}
         <p class="center">{{line}}</p>
     {{/each}}
+        <h2></h2>
         <h2 class="center">Stats</h2>
         {{> "systems/dc/templates/shared/stat-block.hbs" stats=stats race=race}}
     </div>
