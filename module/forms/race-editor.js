@@ -20,6 +20,7 @@ class RaceEditor extends FormApplication {
             template: `systems/dc/templates/editor/race-editor.html`,
             id: 'race-editor',
             title: 'Race Editor',
+            width: 500,
         });
     }
   
@@ -43,7 +44,7 @@ class RaceEditor extends FormApplication {
     _on_toggle_value(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        
+
     }
 }
   
