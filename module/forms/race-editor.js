@@ -17,7 +17,7 @@ class RaceEditor extends FormApplication {
         return mergeObject(super.defaultOptions, {
             classes: ['style_doc'],
             popOut: true,
-            template: `systems/dc/templates/forms/race-editor.html`,
+            template: `systems/dc/templates/editor/race-editor.html`,
             id: 'race-editor',
             title: 'Race Editor',
         });
