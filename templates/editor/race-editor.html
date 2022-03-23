@@ -4,7 +4,7 @@
     <div class="flexrow">
         <!-- Editor Side -->
         <div>
-            <h2>Core</h2>
+            <h2 class="center">Core</h2>
             <table>
                 <tr>
                     <td class="perc30 center">Name</td>
@@ -45,15 +45,16 @@
                     {{/if}}
                 </tr>
             </table>
-            <h2>Stat Bonuses</h2>
+            <h2 class="center">Stat Bonuses</h2>
             <table>
                 {{#each stats as |stat|}}
                     <tr>
                         <td class="perc30 center">{{stat.label}}</td>
-                        <td><input class="stat-modifier" type="number" data-key="{{stat.key}}" value="{{lookup race.stat_bonuses stat.key}}"/></td>
+                        <td><input class="stat-modifier" type="number" data-key="{{stat.key}}" value="{{lookup ../race.stat_bonuses stat.key}}"/></td>
                     </tr>
                 {{/each}}
             </table>
+            <h2 class="center">Abilities</h2>
         </div>
         <!-- Preview Side -->
         <div>
