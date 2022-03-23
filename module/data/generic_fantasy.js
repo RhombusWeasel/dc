@@ -28,6 +28,7 @@ function import_fantasy_system() {
                     {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                 ],
                 playable: true,
+                allow_variants: false,
             },
             dwarf: {
                 label: 'Dwarves',
@@ -42,6 +43,7 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
+                allow_variants: true,
                 variants: {
                     tunnel_dwarves: {
                         label: 'Tunnel Dwarf',
@@ -67,6 +69,7 @@ function import_fantasy_system() {
                             {label: '', text: '', effects: []},
                         ],
                         playable: true,
+                        allow_variants: false,
                     },
                     outer_dwarves: {
                         label: 'Outer Dwarf',
@@ -88,6 +91,7 @@ function import_fantasy_system() {
                             {label: '', text: '', effects: []},
                         ],
                         playable: true,
+                        allow_variants: false,
                     },
                 },
             },
@@ -104,6 +108,7 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
+                allow_variants: true,
                 variants: {
                     high_elf: {
                         label: 'High Elf',
@@ -124,6 +129,7 @@ function import_fantasy_system() {
                             {label: '', text: '', effects: []},
                         ],
                         playable: true,
+                        allow_variants: false,
                     },
                     wood_elf: {
                         label: 'Wood Elf',
@@ -144,6 +150,7 @@ function import_fantasy_system() {
                             {label: '', text: '', effects: []},
                         ],
                         playable: true,
+                        allow_variants: false,
                     },
                 },
             },
@@ -159,6 +166,7 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
+                allow_variants: true,
                 variants: {
                     half_elf: {
                         label: 'Half Elf',
@@ -177,6 +185,7 @@ function import_fantasy_system() {
                             {label: '', text: '', effects: []},
                         ],
                         playable: true,
+                        allow_variants: false,
                     },
                     half_orc: {
                         label: 'Half Orc',
@@ -197,6 +206,7 @@ function import_fantasy_system() {
                             {label: '', text: '', effects: []},
                         ],
                         playable: true,
+                        allow_variants: false,
                     },
                 },
             },

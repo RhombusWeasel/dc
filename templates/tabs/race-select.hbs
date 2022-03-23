@@ -12,7 +12,7 @@
     {{#each races as |race|}}
         {{#if (eq race.playable true)}}
         <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}">
-            {{#if race.variants}}
+            {{#if race.allow_variants}}
             <h2 class="center">{{race.label}}</h2>
                 {{#each race.descriptions.main as |line|}}
             <p class="center">{{line}}</p>
