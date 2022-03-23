@@ -13,7 +13,7 @@ class RaceEditor extends FormApplication {
         }else{
             this.race_edits = utils.system.race_template();
         }
-        console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits);
+        console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits, tmp.races);
     }
   
     static get defaultOptions() {
