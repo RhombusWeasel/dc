@@ -44,7 +44,7 @@ class RaceEditor extends FormApplication {
     _on_toggle_value(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-
+        this.race_edits[el.dataset.key] = !this.race_edits[el.dataset.key];
     }
 }
   

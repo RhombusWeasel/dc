@@ -16,6 +16,12 @@
                     <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-times"></i></a></td>
                     {{/if}}
                 </tr>
+                <tr>
+                    <td class="perc30 center">Description</td>
+                    {{#each race.description.main as |str|}}
+                    <td><input type="text" name="race.description.main" data-index="{{@index}}" value="{{str}}"/></td>
+                    {{/each}}
+                </tr>
             </table>
         </div>
         <!-- Preview Side -->
