@@ -7,7 +7,18 @@
             <table>
                 <tr>
                     <td class="perc30 center">Name</td>
-                    <td><input type="text" name="race.label" value="{{race.label}}"/></td>
+                    <td><input class="text-change" type="text" data-path="label" value="{{race.label}}"/></td>
+                </tr>
+                <tr>
+                    <td class="perc30 center">Description</td>
+                    <td></td>
+                <tr>
+                    <td></td>
+                    {{#each race.descriptions.main as |str|}}
+                        {{#if (gt 0 @index)}}
+                    <td><input class="text-change" type="text" data-path="descriptions.main[{{@index}}]" value="{{str}}"/></td>
+                        {{/if}}
+                    {{/each}}
                 </tr>
                 <tr>
                     <td class="center">Playable</td>
@@ -16,12 +27,6 @@
                     {{else}}
                     <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-times"></i></a></td>
                     {{/if}}
-                </tr>
-                <tr>
-                    <td class="perc30 center">Description</td>
-                    {{#each race.descriptions.main as |str|}}
-                    <td><input type="text" name="race.description.main" data-index="{{@index}}" value="{{str}}"/></td>
-                    {{/each}}
                 </tr>
             </table>
         </div>
