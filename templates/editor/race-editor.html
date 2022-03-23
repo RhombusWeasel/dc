@@ -11,11 +11,11 @@
                 </tr>
                 <tr>
                     <td class="perc30 center">Description</td>
-                    <td></td>
+                    <td><input class="text-change" type="text" data-path="descriptions.main[0]" value="{{descriptions.main[0]}}"/></td>
                 <tr>
                     <td></td>
                     {{#each race.descriptions.main as |str|}}
-                        {{#if (gt 0 @index)}}
+                        {{#if (gt @index 0)}}
                     <td><input class="text-change" type="text" data-path="descriptions.main[{{@index}}]" value="{{str}}"/></td>
                         {{/if}}
                     {{/each}}
