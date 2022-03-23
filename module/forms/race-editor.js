@@ -39,7 +39,7 @@ class RaceEditor extends FormApplication {
     activateListeners(html) {
         html.find(".toggle-value").click(this._on_toggle_value.bind(this));
         //Text Inputs
-        html.find(".text-change").on('input', this._on_text_edit.bind(this));
+        html.find(".text-change").on('input', this._on_value_change.bind(this));
         return super.activateListeners(html);
     }
   
@@ -54,7 +54,7 @@ class RaceEditor extends FormApplication {
         this.render(true);
     }
 
-    _on_text_edit(ev) {
+    _on_value_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
         if (el.dataset?.index) {
