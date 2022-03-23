@@ -11,13 +11,17 @@
                 </tr>
                 <tr>
                     <td class="perc30 center">Description</td>
-                    <td><input class="text-change" type="text" data-path="descriptions" data-subpath="main" data-index="0" value="{{lookup descriptions.main 0}}"/></td>
-                <tr>
-                    <td></td>
-                    {{#each race.descriptions.main as |str|}}
-                    <td><input class="text-change" type="text" data-path="descriptions" data-subpath="main" data-index="{{@index}}" value="{{str}}"/></td>
-                    {{/each}}
-                </tr>
+                {{#each race.descriptions.main as |str|}}
+                    {{#if (eq @index 0)}}
+                            <td><input class="text-change" type="text" data-path="descriptions" data-subpath="main" data-index="0" value="{{str}}"/></td>
+                        </tr>
+                    {{else}}
+                        <tr>
+                            <td></td>
+                            <td><input class="text-change" type="text" data-path="descriptions" data-subpath="main" data-index="{{@index}}" value="{{str}}"/></td>
+                        </tr>
+                    {{/if}}
+                {{/each}}
                 <tr>
                     <td class="center">Playable</td>
                     {{#if (eq race.playable true)}}
