@@ -40,6 +40,7 @@ class RaceEditor extends FormApplication {
         html.find(".toggle-value").click(this._on_toggle_value.bind(this));
         //Text Inputs
         html.find(".text-change").on('input', this._on_value_change.bind(this));
+        html.find(".stat-modifier").change(this._on_stat_change.bind(this));
         return super.activateListeners(html);
     }
   
@@ -67,6 +68,12 @@ class RaceEditor extends FormApplication {
             this.race_edits[el.dataset.path] = el.value;
         }
         document.getElementById(el.dataset.id).innerText = el.value;
+    }
+
+    _on_stat_change(ev) {
+        ev.preventDefault();
+        let el = ev.currentTarget;
+        this.race_edits.stat_bonuses[el.dataset.key] = el.value;
     }
 }
   
