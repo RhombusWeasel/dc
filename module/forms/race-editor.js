@@ -57,6 +57,7 @@ class RaceEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         this.race_edits[el.dataset.path] = el.value;
+        this.render(true);
     }
 }
   
