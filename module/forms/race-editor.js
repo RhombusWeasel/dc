@@ -24,7 +24,7 @@ class RaceEditor extends FormApplication {
             id: 'race-editor',
             title: 'Race Editor',
             width: 500,
-            resizeable: true,
+            resizable: true,
         });
     }
   
