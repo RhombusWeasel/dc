@@ -7,7 +7,7 @@
             <table>
                 <tr>
                     <td class="perc30 center">Name</td>
-                    <td><input type="text" name="race.name" value="{{race.name}}"/></td>
+                    <td><input type="text" name="race.label" value="{{race.label}}"/></td>
                 </tr>
                 <tr>
                     <td class="center">Playable</td>
@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td class="perc30 center">Description</td>
-                    {{#each race.description.main as |str|}}
+                    {{#each race.descriptions.main as |str|}}
                     <td><input type="text" name="race.description.main" data-index="{{@index}}" value="{{str}}"/></td>
                     {{/each}}
                 </tr>
