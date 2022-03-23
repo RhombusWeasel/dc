@@ -4,6 +4,7 @@
     <div class="flexrow">
         <!-- Editor Side -->
         <div>
+            <h2>Core</h2>
             <table>
                 <tr>
                     <td class="perc30 center">Name</td>
@@ -43,6 +44,15 @@
                     <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-times"></i></a></td>
                     {{/if}}
                 </tr>
+            </table>
+            <h2>Stat Bonuses</h2>
+            <table>
+                {{#each stats as |stat|}}
+                    <tr>
+                        <td class="perc30 center">{{stat.label}}</td>
+                        <td><input class="stat-modifier" type="number" data-key="{{stat.key}}" value="{{lookup races.stat_bonuses stat.key}}"/></td>
+                    </tr>
+                {{/each}}
             </table>
         </div>
         <!-- Preview Side -->
