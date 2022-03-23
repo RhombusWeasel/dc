@@ -65,7 +65,7 @@ class RaceEditor extends FormApplication {
         }else{
             this.race_edits[el.dataset.path] = el.value;
         }
-        document.getElementById(el.dataset.path).innerText = el.value;
+        document.getElementById(el.dataset.id).innerText = el.value;
     }
 }
   

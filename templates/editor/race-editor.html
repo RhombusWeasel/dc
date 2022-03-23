@@ -13,12 +13,12 @@
                     <td class="perc30 center">Description</td>
                 {{#each race.descriptions.main as |str|}}
                     {{#if (eq @index 0)}}
-                            <td><input class="text-change" type="text" data-path="descriptions" data-subpath="main" data-index="0" value="{{str}}"/></td>
+                            <td><input class="text-change" type="text" data-id="descriptions-main-0" data-path="descriptions" data-subpath="main" data-index="0" value="{{str}}"/></td>
                         </tr>
                     {{else}}
                         <tr>
                             <td></td>
-                            <td><input class="text-change" type="text" data-path="descriptions" data-subpath="main" data-index="{{@index}}" value="{{str}}"/></td>
+                            <td><input class="text-change" type="text" data-id="descriptions-main-{{@index}}" data-path="descriptions" data-subpath="main" data-index="{{@index}}" value="{{str}}"/></td>
                         </tr>
                     {{/if}}
                 {{/each}}
