@@ -26,8 +26,8 @@ class RaceEditor extends FormApplication {
     getData() {
         // Return data to the template
         return {
-            msg: this.exampleOption,
-            color: 'red',
+            race: this.race_edits,
+            stats: utils.template.entity_template.stats,
         };
     }
   
