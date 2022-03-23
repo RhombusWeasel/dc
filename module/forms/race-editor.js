@@ -32,11 +32,18 @@ class RaceEditor extends FormApplication {
     }
   
     activateListeners(html) {
-        super.activateListeners(html);
+        html.find(".toggle-value").click(this._on_toggle_value.bind(this));
+        return super.activateListeners(html);
     }
   
     async _updateObject(event, formData) {
         console.log(formData.exampleInput);
+    }
+
+    _on_toggle_value(ev) {
+        ev.preventDefault();
+        let el = ev.currentTarget;
+        
     }
 }
   
