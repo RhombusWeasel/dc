@@ -5,15 +5,15 @@
         <div>
             <table>
                 <tr>
-                    <td class="center">Name</td>
+                    <td class="perc30 center">Name</td>
                     <td><input type="text" name="race.name" value="{{race.name}}"/></td>
                 </tr>
                 <tr>
                     <td class="center">Playable</td>
                     {{#if (eq race.playable true)}}
-                    <td class="perc5 center"><a class="toggle-value" data-key="playable"><i class="fas fa-check"></i></a></td>
+                    <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-check"></i></a></td>
                     {{else}}
-                    <td class="perc5 center"><a class="toggle-value" data-key="playable"><i class="fas fa-times"></i></a></td>
+                    <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-times"></i></a></td>
                     {{/if}}
                 </tr>
             </table>
