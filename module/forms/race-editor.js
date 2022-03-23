@@ -13,6 +13,7 @@ class RaceEditor extends FormApplication {
         }else{
             this.race_edits = utils.system.race_template();
         }
+        console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits);
     }
   
     static get defaultOptions() {
@@ -36,6 +37,8 @@ class RaceEditor extends FormApplication {
   
     activateListeners(html) {
         html.find(".toggle-value").click(this._on_toggle_value.bind(this));
+        //Text Inputs
+
         return super.activateListeners(html);
     }
   
