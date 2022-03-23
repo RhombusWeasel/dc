@@ -8,7 +8,12 @@
     "author": "RhombusWeasel",
     "esmodules": ["module/system.js"],
     "styles": ["css/style_doc.css"],
-    "scripts": ["lib/lib.js", "lib/socket.js", "module/data/generic_fantasy.js"],
+    "scripts": [
+      "lib/lib.js",
+      "lib/socket.js",
+      "module/data/generic_fantasy.js",
+      "module/forms/race-editor.js"
+    ],
     "packs": [],
     "socket": true,
     "languages": [
