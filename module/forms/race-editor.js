@@ -73,7 +73,8 @@ class RaceEditor extends FormApplication {
     _on_stat_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        this.race_edits.stat_bonuses[el.dataset.key] = el.value;
+        this.race_edits.stat_bonuses[el.dataset.key] = parseInt(el.value);
+        this.render(true);
     }
 }
   
