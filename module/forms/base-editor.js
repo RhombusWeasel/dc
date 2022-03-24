@@ -52,6 +52,7 @@ export default class BaseEditor extends FormApplication {
         let list = utils.tools.get_path(this.race_edits, el.dataset.path);
         list.push('');
         utils.tools.set_path(this.race_edits, el.dataset.path, list);
+        this.render(true);
     }
 
     _on_toggle_value(ev) {
