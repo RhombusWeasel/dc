@@ -5,9 +5,10 @@ class RaceEditor extends FormApplication {
         this.race = race;
         this.variant = variant;
         if (race != 'New Race') {
+            this.race_data  = tmp.races[race];
             if (variant) {
                 if (variant != 'New Race') {
-                    this.race_edits = tmp.races[race].variants[variant];    
+                    this.race_edits = tmp.races[race].variants[variant];
                 }else{
                     this.race_edits = utils.system.race_template();
                 }
@@ -35,7 +36,8 @@ class RaceEditor extends FormApplication {
     getData() {
         // Return data to the template
         return {
-            race: this.race_edits,
+            race:      this.race_edits,
+            bloodline: this.variant != false ? this.
             stats: utils.template.entity_template.stats,
         };
     }
@@ -43,8 +45,9 @@ class RaceEditor extends FormApplication {
     activateListeners(html) {
         html.find(".toggle-value").click(this._on_toggle_value.bind(this));
         //Text Inputs
-        html.find(".text-change").on('input', this._on_value_change.bind(this));
-        html.find(".stat-modifier").change(this._on_stat_change.bind(this));
+        html.find(".text-change").on('input', this._on_text_change.bind(this));
+        //Numerical Inputs
+        html.find(".stat-modifier").change(this._on_int_change.bind(this));
         return super.activateListeners(html);
     }
   
@@ -59,17 +62,17 @@ class RaceEditor extends FormApplication {
         this.render(true);
     }
 
-    _on_value_change(ev) {
+    _on_text_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.modify_path(this.race_edits, el.dataset.path, el.value);
+        utils.tools.set_path(this.race_edits, el.dataset.path, el.value);
         document.getElementById(el.dataset.path).innerText = el.value;
     }
 
-    _on_stat_change(ev) {
+    _on_int_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        this.race_edits.stat_bonuses[el.dataset.key] = parseInt(el.value);
+        utils.tools.set_path(this.race_edits, el.dataset.path, parseInt(el.value));
         this.render(true);
     }
 }
