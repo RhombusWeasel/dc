@@ -1,5 +1,4 @@
 <form>
-    {{log this}}
     <h1 class="center">Edit Race</h1>
     <div class="flexrow">
         <!-- Editor Side -->
@@ -53,7 +52,7 @@
         </div>
         <!-- Preview Side -->
         <div>
-            {{> "systems/dc/templates/shared/race-display.hbs" stats=stats race=race}}
+            {{> "systems/dc/templates/shared/race-display.hbs" stats=stats race=race bloodline=bloodline}}
         </div>
     </div>
 </form>

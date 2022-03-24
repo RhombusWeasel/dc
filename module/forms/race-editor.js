@@ -6,7 +6,11 @@ class RaceEditor extends FormApplication {
         this.variant = variant;
         if (race != 'New Race') {
             if (variant) {
-                this.race_edits = tmp.races[race].variants[variant];
+                if (variant != 'New Race') {
+                    this.race_edits = tmp.races[race].variants[variant];    
+                }else{
+                    this.race_edits = utils.system.race_template();
+                }
             }else{
                 this.race_edits = tmp.races[race];
             }
