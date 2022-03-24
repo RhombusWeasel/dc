@@ -57,6 +57,7 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.set_path(this.race_edits, el.dataset.path, el.value);
+        console.log(`${this.uuid}-${el.dataset.path}`);
         document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
     }
 
