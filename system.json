@@ -6,14 +6,16 @@
     "minimumCoreVersion": "9",
     "compatibleCoreVersion": "9",
     "author": "RhombusWeasel",
-    "esmodules": ["module/system.js"],
+    "esmodules": [
+      "module/system.js",
+      "module/forms/base-editor.js",
+      "module/forms/race-editor.js"
+    ],
     "styles": ["css/style_doc.css"],
     "scripts": [
       "lib/lib.js",
       "lib/socket.js",
-      "module/data/generic_fantasy.js",
-      "module/forms/base-editor.js",
-      "module/forms/race-editor.js"
+      "module/data/generic_fantasy.js"
     ],
     "packs": [],
     "socket": true,
