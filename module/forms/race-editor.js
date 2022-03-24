@@ -3,7 +3,7 @@ import BaseEditor from "./base-editor.js"
 class RaceEditor extends BaseEditor {
     constructor(race, variant) {
         super();
-        this.template    = utils.journal.load(game.settings.get('dc', 'system_journal'));
+        this.game_data   = utils.journal.load(game.settings.get('dc', 'system_journal'));
         this.editor_type = 'race'
         this.race        = race;
         this.variant     = variant;
@@ -13,12 +13,12 @@ class RaceEditor extends BaseEditor {
             if (variant) {
                 this.header = 'Bloodline';
                 if (variant != 'New Race') {
-                    this.race_edits = this.template.races[race].variants[variant];
+                    this.race_edits = this.game_data.races[race].variants[variant];
                 }else{
                     this.race_edits = utils.system.race_template();
                 }
             }else{
-                this.race_edits = this.template.races[race];
+                this.race_edits = this.game_data.races[race];
             }
         }else{
             this.race_edits = utils.system.race_template();
