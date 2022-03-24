@@ -16,6 +16,7 @@ function import_fantasy_system() {
         races: {
             human: {
                 label: 'Human',
+                bloodline: 'None',
                 stat_bonuses: {},
                 bonus_feats: 1,
                 descriptions: { 
@@ -28,11 +29,11 @@ function import_fantasy_system() {
                     {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                 ],
                 playable: true,
-                allow_variants: false,
             },
             dwarf: {
                 label: 'Dwarves',
                 playable: true,
+                bloodline: 'None',
                 descriptions: {
                     main: [
                         "Dwarfs were created by the Elves thousands of years ago in the time before the rise of Humans.  The Elves had not intended for the Dwarfs to have the use of magic or in fact even free will but it seems that in the case of the latter at least life found a way.",
@@ -47,56 +48,56 @@ function import_fantasy_system() {
                     'con': 1,
                     'dex': -1,
                 },
-                allow_variants: true,
-                variants: {
-                    tunnel_dwarves: {
-                        label: 'Tunnel Dwarf',
-                        stat_bonuses: {
-                            'str': 1,
-                            'cha': -1,
-                        },
-                        bonus_feats: 0,
-                        descriptions: { 
-                            main: [
-                                "Tunnel Dwarves are the miners of the dwarven race, these are hardy folk and have a reputation for being hard workers and staunch fighters.",
-                                "They live in socialist micro-collectives and are the hardiest and strongest of the Dwarven races.",
-                            ],
-                            flavor: [
-                                "Who you callin' short pal? Talk down to me again and I'll force feed you your feckin' kneecaps ye ken?",
-                                "We dwarves are a proud and passionate people, short in stature and temper. That's right, I can say it, it's you that cannae alright?  We were engineered you know! *Quaffs horn of ale* Aye, thas' right, the High Elves feckin made the first of us using their poxy magicks!  With a K no less!",
-                                "They bred us durable and stout to work their Mythril mines and d'you know what I think? *leans in* Come here lad *grabs poor orphan* I think those arrogant pricks thought we'd be GRATEFUL!",
-                            ],
-                        },
-                        rules: [
-                            {label: '', text: '', effects: []},
-                        ],
-                        playable: true,
-                        allow_variants: false,
-                    },
-                    outer_dwarves: {
-                        label: 'Outer Dwarf',
-                        stat_bonuses: {
-                            'wis': 1,
-                            'cha': -1,
-                        },
-                        bonus_feats: 0,
-                        descriptions: { 
-                            main: [
-                                "Outer Dwarves are the farmers and hunters of the dwarven race, these are skilled craftsmen and have a reputation for being hard workers and staunch fighters.",
-                                "They live in the lands outside the Tunnel Dwarves mountains and trade them food for."
-                            ],
-                            flavor: ["",],
-                        },
-                        rules: [
-                            {label: '', text: '', effects: []},
-                        ],
-                        playable: true,
-                        allow_variants: false,
-                    },
+            },
+            tunnel_dwarves: {
+                label: 'Tunnel Dwarf',
+                bloodline: 'dwarf',
+                stat_bonuses: {
+                    'str': 1,
+                    'cha': -1,
                 },
+                bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Tunnel Dwarves are the miners of the dwarven race, these are hardy folk and have a reputation for being hard workers and staunch fighters.",
+                        "They live in socialist micro-collectives and are the hardiest and strongest of the Dwarven races.",
+                    ],
+                    flavor: [
+                        "Who you callin' short pal? Talk down to me again and I'll force feed you your feckin' kneecaps ye ken?",
+                        "We dwarves are a proud and passionate people, short in stature and temper. That's right, I can say it, it's you that cannae alright?  We were engineered you know! *Quaffs horn of ale* Aye, thas' right, the High Elves feckin made the first of us using their poxy magicks!  With a K no less!",
+                        "They bred us durable and stout to work their Mythril mines and d'you know what I think? *leans in* Come here lad *grabs poor orphan* I think those arrogant pricks thought we'd be GRATEFUL!",
+                    ],
+                },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
+                playable: true,
+                allow_variants: false,
+            },
+            outer_dwarves: {
+                label: 'Outer Dwarf',
+                bloodline: 'dwarf',
+                stat_bonuses: {
+                    'wis': 1,
+                    'cha': -1,
+                },
+                bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Outer Dwarves are the farmers and hunters of the dwarven race, these are skilled craftsmen and have a reputation for being hard workers and staunch fighters.",
+                        "They live in the lands outside the Tunnel Dwarves mountains and trade them food for."
+                    ],
+                    flavor: ["",],
+                },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
+                playable: true,
+                allow_variants: false,
             },
             elf: {
                 label: 'Elves',
+                bloodline: 'None',
                 playable: true,
                 descriptions: {
                     main: [
@@ -113,49 +114,50 @@ function import_fantasy_system() {
                     'dex': 1,
                 },
                 allow_variants: true,
-                variants: {
-                    high_elf: {
-                        label: 'High Elf',
-                        stat_bonuses: {
-                            'cha': 1,
-                            'str': -1,
-                        },
-                        bonus_feats: 0,
-                        descriptions: { 
-                            main: [
-                                "High Elves take the concept of nobility and grace to etherial levels.  Masters of charm magic and conjuration",
-                            ],
-                            flavor: [],
-                        },
-                        rules: [
-                            {label: '', text: '', effects: []},
-                        ],
-                        playable: true,
-                        allow_variants: false,
-                    },
-                    wood_elf: {
-                        label: 'Wood Elf',
-                        stat_bonuses: {
-                            'wis': 1,
-                            'str': -1,
-                        },
-                        bonus_feats: 0,
-                        descriptions: { 
-                            main: [
-                                "Wood Elves split from their noble cousins and took to the forests of the world.  They are natural Druids and Rangers",
-                            ],
-                            flavor: [],
-                        },
-                        rules: [
-                            {label: '', text: '', effects: []},
-                        ],
-                        playable: true,
-                        allow_variants: false,
-                    },
+            },
+            high_elf: {
+                label: 'High Elf',
+                bloodline: 'elf',
+                stat_bonuses: {
+                    'cha': 1,
+                    'str': -1,
                 },
+                bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "High Elves take the concept of nobility and grace to etherial levels.  Masters of charm magic and conjuration",
+                    ],
+                    flavor: [],
+                },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
+                playable: true,
+                allow_variants: false,
+            },
+            wood_elf: {
+                label: 'Wood Elf',
+                bloodline: 'elf',
+                stat_bonuses: {
+                    'wis': 1,
+                    'cha': -1,
+                },
+                bonus_feats: 0,
+                descriptions: { 
+                    main: [
+                        "Wood Elves split from their noble cousins and took to the forests of the world.  They are natural Druids and Rangers",
+                    ],
+                    flavor: [],
+                },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
+                playable: true,
+                allow_variants: false,
             },
             half_bloods: {
                 label: 'Half Bloods',
+                bloodline: 'None',
                 playable: true,
                 descriptions: {
                     main: [
@@ -170,6 +172,7 @@ function import_fantasy_system() {
                 variants: {
                     half_elf: {
                         label: 'Half Elf',
+                        bloodline: 'half_bloods',
                         stat_bonuses: {
                             'con': -1,
                             'dex': 1,
@@ -189,6 +192,7 @@ function import_fantasy_system() {
                     },
                     half_orc: {
                         label: 'Half Orc',
+                        bloodline: 'half_bloods',
                         stat_bonuses: {
                             'str': 1,
                             'con': 1,
