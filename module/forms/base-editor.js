@@ -1,6 +1,7 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type) {
         super();
+        console.log('DC : BaseEditor : constructor :', editor_type);
         this.editor_type = editor_type;
         this.uuid        = utils.tools.uuid(4, 4, 4, 4)
     }
