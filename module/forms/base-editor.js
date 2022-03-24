@@ -36,13 +36,20 @@ export default class BaseEditor extends FormApplication {
     }
   
     activateListeners(html) {
-        //Bool Toggles
+        //Bool Toggles & Buttons
+        html.find(".add-line").click(this._on_add_line.bind(this));
         html.find(".bool-change").click(this._on_toggle_value.bind(this));
         //Text Inputs
         html.find(".text-change").on('input', this._on_text_change.bind(this));
         //Numerical Inputs
         html.find(".int-change").change(this._on_int_change.bind(this));
         return super.activateListeners(html);
+    }
+
+    _on_add_line(ev) {
+        ev.preventDefault();
+        let el = ev.currentTarget;
+        utils.tools.set_path(this.race_edits, el.dataset.path, utils.tools.get_path(this.race_edits, el.dataset.path).push(''));
     }
 
     _on_toggle_value(ev) {
