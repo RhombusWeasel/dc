@@ -14,69 +14,59 @@ function import_fantasy_system() {
             playable: false,
         },
         races: {
-            human: {
-                label: 'Human',
-                bloodline: 'None',
-                stat_bonuses: {},
-                bonus_feats: 1,
-                descriptions: { 
+            human: utils.system.race_template({
+                label:          'Human',
+                playable:       true,
+                allow_variants: true,
+                descriptions:   { 
                     main: [
                         "Humans are the youngest amongst the races, they actually evolved from Apes deep in the worlds misty mountains.",
                         "Versitility is their strength, they are moderately competent in most tasks and their ability to learn new skills quickly can be an early advantage."
                     ],
+                    flavor: [''],
                 },
                 rules: [
                     {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                 ],
-                playable: true,
-            },
-            dwarf: {
+            }),
+            dwarf: utils.system.race_template({
                 label: 'Dwarves',
                 playable: true,
-                bloodline: 'None',
+                allow_variants: true,
                 descriptions: {
                     main: [
                         "Dwarfs were created by the Elves thousands of years ago in the time before the rise of Humans.  The Elves had not intended for the Dwarfs to have the use of magic or in fact even free will but it seems that in the case of the latter at least life found a way.",
                         "There are many types of Dwarf but the most common are Tunnel Dwarfs, because of their inability to naturally use magic the Dwarves had to develop Technomancy."
                     ],
-                    flavor: [],
+                    flavor: [''],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
                 stat_bonuses: {
                     'con': 1,
                     'dex': -1,
                 },
-            },
-            tunnel_dwarves: {
-                label: 'Tunnel Dwarf',
-                bloodline: 'dwarf',
+            }),
+            tunnel_dwarves: utils.system.race_template({
+                label:          'Tunnel Dwarf',
+                playable:       true,
+                bloodline:      'dwarf',
+                allow_variants: false,
                 stat_bonuses: {
                     'str': 1,
                     'cha': -1,
                 },
-                bonus_feats: 0,
                 descriptions: { 
                     main: [
                         "Tunnel Dwarves are the miners of the dwarven race, these are hardy folk and have a reputation for being hard workers and staunch fighters.",
                         "They live in socialist micro-collectives and are the hardiest and strongest of the Dwarven races.",
                     ],
-                    flavor: [
-                        "Who you callin' short pal? Talk down to me again and I'll force feed you your feckin' kneecaps ye ken?",
-                        "We dwarves are a proud and passionate people, short in stature and temper. That's right, I can say it, it's you that cannae alright?  We were engineered you know! *Quaffs horn of ale* Aye, thas' right, the High Elves feckin made the first of us using their poxy magicks!  With a K no less!",
-                        "They bred us durable and stout to work their Mythril mines and d'you know what I think? *leans in* Come here lad *grabs poor orphan* I think those arrogant pricks thought we'd be GRATEFUL!",
-                    ],
+                    flavor: [''],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
-                playable: true,
-                allow_variants: false,
-            },
-            outer_dwarves: {
+            }),
+            outer_dwarves: utils.system.race_template({
                 label: 'Outer Dwarf',
                 bloodline: 'dwarf',
+                playable: true,
+                allow_variants: false,
                 stat_bonuses: {
                     'wis': 1,
                     'cha': -1,
@@ -87,15 +77,10 @@ function import_fantasy_system() {
                         "Outer Dwarves are the farmers and hunters of the dwarven race, these are skilled craftsmen and have a reputation for being hard workers and staunch fighters.",
                         "They live in the lands outside the Tunnel Dwarves mountains and trade them food for."
                     ],
-                    flavor: ["",],
+                    flavor: [""],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
-                playable: true,
-                allow_variants: false,
-            },
-            elf: {
+            }),
+            elf: utils.system.race_template({
                 label: 'Elves',
                 bloodline: 'None',
                 playable: true,
@@ -113,16 +98,16 @@ function import_fantasy_system() {
                     'con': -1,
                     'dex': 1,
                 },
-                allow_variants: true,
-            },
-            high_elf: {
+            }),
+            high_elf: utils.system.race_template({
                 label: 'High Elf',
                 bloodline: 'elf',
+                playable: true,
+                allow_variants: false,
                 stat_bonuses: {
                     'cha': 1,
                     'str': -1,
                 },
-                bonus_feats: 0,
                 descriptions: { 
                     main: [
                         "High Elves take the concept of nobility and grace to etherial levels.  Masters of charm magic and conjuration",
@@ -132,88 +117,75 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
-                playable: true,
-                allow_variants: false,
-            },
-            wood_elf: {
+            }),
+            wood_elf: utils.system.race_template({
                 label: 'Wood Elf',
                 bloodline: 'elf',
+                playable: true,
+                allow_variants: false,
                 stat_bonuses: {
                     'wis': 1,
                     'cha': -1,
                 },
-                bonus_feats: 0,
                 descriptions: { 
                     main: [
                         "Wood Elves split from their noble cousins and took to the forests of the world.  They are natural Druids and Rangers",
                     ],
-                    flavor: [],
+                    flavor: [''],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
-                playable: true,
-                allow_variants: false,
-            },
-            half_bloods: {
+            }),
+            half_bloods: utils.system.race_template({
                 label: 'Half Bloods',
                 bloodline: 'None',
+                allow_variants: true,
                 playable: true,
                 descriptions: {
                     main: [
                         "Half Bloods are often outcasts on the fringe of society, never fully accepted and trusted by either community.",
                     ],
-                    flavor: []
+                    flavor: ['']
+                },
+            }),
+            half_orc: utils.system.race_template({
+                label: 'Half Orc',
+                bloodline: 'half_bloods',
+                playable: true,
+                allow_variants: false,
+                stat_bonuses: {
+                    'str': 1,
+                    'con': 1,
+                    'int': -1,
+                    'cha': -1,
+                },
+                descriptions: { 
+                    main: [
+                        "Half man, half Orc.  Total badass."
+                    ],
+                    flavor: [''],
                 },
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
-                allow_variants: true,
-                variants: {
-                    half_elf: {
-                        label: 'Half Elf',
-                        bloodline: 'half_bloods',
-                        stat_bonuses: {
-                            'con': -1,
-                            'dex': 1,
-                        },
-                        bonus_feats: 0,
-                        descriptions: { 
-                            main: [
-                                "Half Elf, half whatever.  Feel the love baby."
-                            ],
-                            flavor: [],
-                        },
-                        rules: [
-                            {label: '', text: '', effects: []},
-                        ],
-                        playable: true,
-                        allow_variants: false,
-                    },
-                    half_orc: {
-                        label: 'Half Orc',
-                        bloodline: 'half_bloods',
-                        stat_bonuses: {
-                            'str': 1,
-                            'con': 1,
-                            'int': -1,
-                            'cha': -1,
-                        },
-                        bonus_feats: 0,
-                        descriptions: { 
-                            main: [
-                                "Half man, half Orc.  Total badass."
-                            ],
-                            flavor: [],
-                        },
-                        rules: [
-                            {label: '', text: '', effects: []},
-                        ],
-                        playable: true,
-                        allow_variants: false,
-                    },
+            }),
+            half_elf: utils.system.race_template({
+                label: 'Half Elf',
+                bloodline: 'half_bloods',
+                playable: true,
+                allow_variants: false,
+                stat_bonuses: {
+                    'con': -1,
+                    'dex': 1,
                 },
-            },
+                descriptions: { 
+                    main: [
+                        "Half Elf, half whatever.  Feel the love baby."
+                    ],
+                    flavor: [''],
+                },
+                rules: [
+                    {label: '', text: '', effects: []},
+                ],
+            }),
         },
         entity_template: {
             race: 'None',
