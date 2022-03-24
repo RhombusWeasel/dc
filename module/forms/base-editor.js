@@ -1,12 +1,13 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type) {
         super();
-        console.log('DC : BaseEditor : constructor :', editor_type);
+        //console.log('DC : BaseEditor : constructor :', editor_type);
         this.editor_type = editor_type;
         this.uuid        = utils.tools.uuid(4, 4, 4, 4)
     }
   
     static get defaultOptions() {
+        console.log('DC : BaseEditor : defaultOptions :', this.editor_type, this.uuid);
         return mergeObject(super.defaultOptions, {
             classes: ['style_doc'],
             popOut: true,
