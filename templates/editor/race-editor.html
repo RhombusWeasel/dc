@@ -24,19 +24,6 @@
                     {{/if}}
                 {{/each}}
                 <tr>
-                    <td class="perc30 center">Flavour</td>
-                {{#each race.descriptions.flavor as |str|}}
-                    {{#if (eq @index 0)}}
-                            <td><input class="text-change" type="text" data-id="descriptions-flavor-0" data-path="descriptions" data-subpath="flavor" data-index="0" value="{{str}}"/></td>
-                        </tr>
-                    {{else}}
-                        <tr>
-                            <td></td>
-                            <td><input class="text-change" type="text" data-id="descriptions-flavor-{{@index}}" data-path="descriptions" data-subpath="flavor" data-index="{{@index}}" value="{{str}}"/></td>
-                        </tr>
-                    {{/if}}
-                {{/each}}
-                <tr>
                     <td class="center">Playable</td>
                     {{#if (eq race.playable true)}}
                     <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-check"></i></a></td>

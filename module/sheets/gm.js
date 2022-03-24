@@ -38,7 +38,7 @@ export default class GMSheet extends HeroSheet {
     _on_create_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-
+        new RaceEditor('New Race', false).render(true);
     }
 
 }

@@ -43,14 +43,16 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
+                stat_bonuses: {
+                    'con': 1,
+                    'dex': -1,
+                },
                 allow_variants: true,
                 variants: {
                     tunnel_dwarves: {
                         label: 'Tunnel Dwarf',
                         stat_bonuses: {
                             'str': 1,
-                            'con': 1,
-                            'dex': -1,
                             'cha': -1,
                         },
                         bonus_feats: 0,
@@ -74,9 +76,7 @@ function import_fantasy_system() {
                     outer_dwarves: {
                         label: 'Outer Dwarf',
                         stat_bonuses: {
-                            'int': 1,
                             'wis': 1,
-                            'dex': -1,
                             'cha': -1,
                         },
                         bonus_feats: 0,
@@ -108,14 +108,16 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
+                stat_bonuses: {
+                    'con': -1,
+                    'dex': 1,
+                },
                 allow_variants: true,
                 variants: {
                     high_elf: {
                         label: 'High Elf',
                         stat_bonuses: {
-                            'dex': 1,
                             'cha': 1,
-                            'con': -1,
                             'str': -1,
                         },
                         bonus_feats: 0,
@@ -134,9 +136,7 @@ function import_fantasy_system() {
                     wood_elf: {
                         label: 'Wood Elf',
                         stat_bonuses: {
-                            'dex': 1,
                             'wis': 1,
-                            'con': -1,
                             'str': -1,
                         },
                         bonus_feats: 0,
