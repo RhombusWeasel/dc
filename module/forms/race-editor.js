@@ -19,7 +19,7 @@ class RaceEditor extends FormApplication {
         }else{
             this.race_edits = utils.system.race_template();
         }
-        console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits, tmp.races);
+        //console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits, tmp.races);
     }
   
     static get defaultOptions() {
@@ -28,7 +28,7 @@ class RaceEditor extends FormApplication {
             popOut: true,
             template: `systems/dc/templates/editor/race-editor.html`,
             id: 'race-editor',
-            title: `${this.header} Editor`,
+            title: `Editor`,
             width: 500,
             resizable: true,
         });
