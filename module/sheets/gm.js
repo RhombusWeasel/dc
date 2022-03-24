@@ -50,4 +50,15 @@ export default class GMSheet extends HeroSheet {
         new RaceEditor('Bloodline', 'new_bloodline', el.dataset.race).render(true);
     }
 
+    _on_edit_race(ev) {
+        ev.preventDefault()
+        let el = ev.currentTarget;
+        new RaceEditor('Race', `races.${el.dataset.race}`, 'None').render(true);
+    }
+
+    _on_edit_bloodline(ev) {
+        ev.preventDefault()
+        let el = ev.currentTarget;
+        new RaceEditor('Race', `races.${el.dataset.race}`, el.dataset.race).render(true);
+    }
 }
