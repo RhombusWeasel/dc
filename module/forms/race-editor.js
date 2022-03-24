@@ -10,7 +10,7 @@ class RaceEditor extends BaseEditor {
     }
   
     getData() {
-        data = super.getData();
+        let data = super.getData();
         data.title = this.header;
         data.race  = this.race_edits;
         data.stats = utils.template.entity_template.stats;

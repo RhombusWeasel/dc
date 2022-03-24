@@ -28,7 +28,7 @@ export default class BaseEditor extends FormApplication {
     }
   
     getData() {
-        data = super.getData();
+        let data = super.getData();
         data.title    = this.header;
         data.uuid     = this.uuid;
         data.template = utils.template;
