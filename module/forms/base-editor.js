@@ -18,6 +18,10 @@ export default class BaseEditor extends FormApplication {
             resizable: true,
         });
     }
+
+    get template() {
+        return `systems/dc/templates/editor/${this.editor_type}-editor.html`;
+    }
   
     getData() {
         // Return data to the template
