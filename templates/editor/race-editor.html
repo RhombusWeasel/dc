@@ -15,7 +15,7 @@
                 {{#each race.descriptions.main as |str|}}
                     {{#if (eq @index 0)}}
                             <td><input class="text-change" type="text" data-path="descriptions.main.0" value="{{str}}"/></td>
-                            <td class="perc5"><a class="add-line" data-path="descriptions.main"></a></td>
+                            <td class="perc5"><a class="add-line" data-path="descriptions.main"><i class="fas fa-plus"/></a></td>
                         </tr>
                     {{else}}
                         <tr>
