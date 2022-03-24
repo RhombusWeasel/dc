@@ -44,7 +44,7 @@ export default class BaseEditor extends FormApplication {
     _on_toggle_value(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.set_path(this.race_edits, el.dataset.path, !utils.tools.get_path(el.dataset.path));
+        utils.tools.set_path(this.race_edits, el.dataset.path, !utils.tools.get_path(this.race_edits, el.dataset.path));
         this.render(true);
     }
 
