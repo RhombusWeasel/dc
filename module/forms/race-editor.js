@@ -10,11 +10,11 @@ class RaceEditor extends BaseEditor {
     }
   
     getData() {
-        return {
-            title:     this.header,
-            race:      this.race_edits,
-            stats:     utils.template.entity_template.stats,
-        };
+        data = super.getData();
+        data.title = this.header;
+        data.race  = this.race_edits;
+        data.stats = utils.template.entity_template.stats;
+        return data;
     }
 
 }
