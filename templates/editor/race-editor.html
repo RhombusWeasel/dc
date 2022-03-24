@@ -31,6 +31,14 @@
                     <td class="center"><a class="toggle-value" data-key="playable"><i class="fas fa-times"></i></a></td>
                     {{/if}}
                 </tr>
+                <tr>
+                    <td class="center">Bloodlines</td>
+                    {{#if (eq race.allow_bloodlines true)}}
+                    <td class="center"><a class="toggle-value" data-key="allow_bloodlines"><i class="fas fa-check"></i></a></td>
+                    {{else}}
+                    <td class="center"><a class="toggle-value" data-key="allow_bloodlines"><i class="fas fa-times"></i></a></td>
+                    {{/if}}
+                </tr>
             </table>
             <h2 class="center">Stat Bonuses</h2>
             <table>
