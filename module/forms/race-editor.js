@@ -2,9 +2,9 @@ import BaseEditor from "./base-editor.js"
 
 class RaceEditor extends BaseEditor {
     constructor(race, variant) {
-        super();
+        super('race');
         this.game_data   = utils.journal.load(game.settings.get('dc', 'system_journal'));
-        this.editor_type = 'race'
+        //this.editor_type = 'race'
         this.race        = race;
         this.variant     = variant;
         this.header      = 'Race';

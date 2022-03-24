@@ -1,7 +1,8 @@
 export default class BaseEditor extends FormApplication {
-    constructor(editor_type, path) {
+    constructor(editor_type) {
         super();
-        this.uuid = utils.tools.uuid(4, 4, 4, 4)
+        this.editor_type = editor_type;
+        this.uuid        = utils.tools.uuid(4, 4, 4, 4)
     }
   
     static get defaultOptions() {
