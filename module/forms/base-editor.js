@@ -15,6 +15,10 @@ export default class BaseEditor extends FormApplication {
         });
     }
 
+    get id() {
+        return `${this.uuid}-${this.editor_type}-editor`
+    }
+
     get title() {
         return `${this.editor_type.charAt(0).toUpperCase() + this.editor_type.slice(1)} Editor`
     }
