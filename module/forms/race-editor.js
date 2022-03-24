@@ -7,7 +7,7 @@ class RaceEditor extends BaseEditor {
         this.header    = header;
         this.race      = header == 'Bloodline' ? this.game_data[race] : false;
         this.bloodline = bloodline;
-        this.edits     = utils.tools.get_path(this.game_data, path) ? utils.tools.get_path(this.game_data, path) : utils.system.race_template();
+        this.edits     = utils.tools.get_path(this.game_data, path) ? utils.tools.get_path(this.game_data, path) : utils.system.templates.race();
     }
   
     getData() {
