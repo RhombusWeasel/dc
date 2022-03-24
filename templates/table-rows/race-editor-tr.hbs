@@ -1,17 +1,17 @@
 <section>
     {{#if (eq race.bloodline 'None')}}
         <tr>
-            <td class="perc10 center create-bloodline" data-path="races.{{@key}}"><a title="Add a new {{race.label}} bloodline."><i class="fas fa-plus"/></a></td>
+            <td class="perc10 center create-race" data-path="new_bloodline" data-bloodline="{{@key}}"><a title="Add a new {{race.label}} bloodline."><i class="fas fa-plus"/></a></td>
             <td class="center"><b>{{race.label}}</b></td>
-            <td class="perc10 center edit-race"   data-path="races.{{@key}}"><a><i class="fas fa-edit"/></a></td>
-            <td class="perc10 center delete-race" data-path="races.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+            <td class="perc10 center edit-race"   data-path="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete-race" data-path="{{@key}}"><a><i class="fas fa-trash"/></a></td>
         </tr>
     {{else}}
         <tr>
             <td class="perc10"></td>
             <td>{{race.label}}</td>
-            <td class="perc10 center edit-race"   data-path="races.{{@key}}"><a><i class="fas fa-edit"/></a></td>
-            <td class="perc10 center delete-race" data-path="races.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+            <td class="perc10 center edit-race"   data-path="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete-race" data-path="{{@key}}"><a><i class="fas fa-trash"/></a></td>
         </tr>
     {{/if}}
 </section>

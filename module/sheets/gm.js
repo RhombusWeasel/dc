@@ -31,9 +31,7 @@ export default class GMSheet extends HeroSheet {
         //Buttons:
         //System Editor
         html.find(".create-race").click(this._on_create_race.bind(this));
-        html.find(".create-bloodline").click(this._on_create_bloodline.bind(this));
         html.find(".edit-race").click(this._on_edit_race.bind(this));
-        html.find(".edit-bloodline").click(this._on_edit_bloodline.bind(this));
         return super.activateListeners(html);
     }
 
@@ -41,24 +39,13 @@ export default class GMSheet extends HeroSheet {
     _on_create_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        new RaceEditor('Race', 'new_race').render(true);
-    }
-
-    _on_create_bloodline(ev) {
-        ev.preventDefault()
-        let el = ev.currentTarget;
-        new RaceEditor('Bloodline', 'new_bloodline', el.dataset.race).render(true);
+        new RaceEditor('Race', 'races', el.dataset.path, el.dataset.bloodline).render(true);
     }
 
     _on_edit_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        new RaceEditor('Race', `races.${el.dataset.race}`, 'None').render(true);
+        new RaceEditor('Race', el.dataset.path).render(true);
     }
 
-    _on_edit_bloodline(ev) {
-        ev.preventDefault()
-        let el = ev.currentTarget;
-        new RaceEditor('Race', `races.${el.dataset.race}`, el.dataset.race).render(true);
-    }
 }
