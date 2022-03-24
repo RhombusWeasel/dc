@@ -1,11 +1,12 @@
 class RaceEditor extends FormApplication {
     constructor(race, variant) {
         super();
-        let tmp = utils.journal.load(game.settings.get('dc', 'system_journal'));
-        this.race = race;
+        let tmp      = utils.journal.load(game.settings.get('dc', 'system_journal'));
+        this.race    = race;
         this.variant = variant;
+        this.title   = 'Race'
+        this.race_data  = tmp.races[race];
         if (race != 'New Race') {
-            this.race_data  = tmp.races[race];
             if (variant) {
                 if (variant != 'New Race') {
                     this.race_edits = tmp.races[race].variants[variant];
@@ -36,8 +37,8 @@ class RaceEditor extends FormApplication {
     getData() {
         // Return data to the template
         return {
-            race:      this.race_edits,
-            bloodline: this.variant != false ? this.
+            race:      this.variant == false ? this.race_edits : this.race_data,
+            bloodline: this.variant == false ? utils.system.race_template() : this.race_edits,
             stats: utils.template.entity_template.stats,
         };
     }
