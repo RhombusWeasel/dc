@@ -25,18 +25,14 @@
                 <tr>
                     <td class="center">Playable</td>
                     {{#if (eq race.playable true)}}
-                        <td class="center"><a class="toggle-value" data-path="playable"><i class="fas fa-check"></i></a></td>
+                        <td class="center"><a class="bool-change" data-path="playable"><i class="fas fa-check"></i></a></td>
                     {{else}}
-                        <td class="center"><a class="toggle-value" data-path="playable"><i class="fas fa-times"></i></a></td>
+                        <td class="center"><a class="bool-change" data-path="playable"><i class="fas fa-times"></i></a></td>
                     {{/if}}
                 </tr>
                 <tr>
-                    <td class="center">Bloodlines</td>
-                    {{#if (eq race.allow_bloodlines true)}}
-                        <td class="center"><a class="toggle-value" data-path="allow_bloodlines"><i class="fas fa-check"></i></a></td>
-                    {{else}}
-                        <td class="center"><a class="toggle-value" data-path="allow_bloodlines"><i class="fas fa-times"></i></a></td>
-                    {{/if}}
+                    <td class="center">Bloodline</td>
+                    <td class="center">{{race.bloodline}}</td>
                 </tr>
             </table>
             <h2 class="center">Stat Bonuses</h2>
@@ -44,7 +40,7 @@
                 {{#each stats as |stat|}}
                     <tr>
                         <td class="perc30 center">{{stat.label}}</td>
-                        <td><input class="stat-modifier" type="number" data-path="stat_bonuses.{{stat.key}}" value="{{lookup ../race.stat_bonuses stat.key}}"/></td>
+                        <td><input class="int-change" type="number" data-path="stat_bonuses.{{stat.key}}" value="{{lookup ../race.stat_bonuses stat.key}}"/></td>
                     </tr>
                 {{/each}}
             </table>

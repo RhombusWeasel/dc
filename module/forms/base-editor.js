@@ -30,20 +30,19 @@ export default class BaseEditor extends FormApplication {
     getData() {
         // Return data to the template
         return {
-            title:     this.header,
-            race:      this.variant == false ? this.race_edits : this.race_data,
-            bloodline: this.variant == false ? utils.system.race_template() : this.race_edits,
-            stats:     utils.template.entity_template.stats,
+            title:    this.header,
+            uuid:     this.uuid,
+            template: utils.template,
         };
     }
   
     activateListeners(html) {
         //Bool Toggles
-        html.find(".toggle-value").click(this._on_toggle_value.bind(this));
+        html.find(".bool-change").click(this._on_toggle_value.bind(this));
         //Text Inputs
         html.find(".text-change").on('input', this._on_text_change.bind(this));
         //Numerical Inputs
-        html.find(".stat-modifier").change(this._on_int_change.bind(this));
+        html.find(".int-change").change(this._on_int_change.bind(this));
         return super.activateListeners(html);
     }
 
@@ -58,7 +57,7 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.set_path(this.race_edits, el.dataset.path, el.value);
-        document.getElementById(el.dataset.path).innerText = el.value;
+        document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
     }
 
     _on_int_change(ev) {
