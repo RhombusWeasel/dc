@@ -8,7 +8,7 @@ class RaceEditor extends BaseEditor {
         this.race        = race;
         this.variant     = variant;
         this.header      = 'Race';
-        this.race_data   = this.template.races[race];
+        this.race_data   = this.game_data.races[race];
         if (race != 'New Race') {
             if (variant) {
                 this.header = 'Bloodline';
