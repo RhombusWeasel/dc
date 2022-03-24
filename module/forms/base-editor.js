@@ -16,7 +16,7 @@ export default class BaseEditor extends FormApplication {
     }
 
     get title() {
-        return `${this.editor_type} Editor`
+        return `${this.editor_type.charAt(0).toUpperCase() + this.editor_type.slice(1)} Editor`
     }
 
     get template() {
