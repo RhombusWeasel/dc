@@ -1,20 +1,24 @@
-class RaceEditor extends FormApplication {
+import BaseEditor from "./base-editor.js"
+
+class RaceEditor extends BaseEditor {
     constructor(race, variant) {
         super();
-        let tmp      = utils.journal.load(game.settings.get('dc', 'system_journal'));
-        this.race    = race;
-        this.variant = variant;
-        this.header  = 'Race';
-        this.race_data  = tmp.races[race];
+        this.template    = utils.journal.load(game.settings.get('dc', 'system_journal'));
+        this.editor_type = 'race'
+        this.race        = race;
+        this.variant     = variant;
+        this.header      = 'Race';
+        this.race_data   = this.template.races[race];
         if (race != 'New Race') {
             if (variant) {
+                this.header = 'Bloodline';
                 if (variant != 'New Race') {
-                    this.race_edits = tmp.races[race].variants[variant];
+                    this.race_edits = this.template.races[race].variants[variant];
                 }else{
                     this.race_edits = utils.system.race_template();
                 }
             }else{
-                this.race_edits = tmp.races[race];
+                this.race_edits = this.template.races[race];
             }
         }else{
             this.race_edits = utils.system.race_template();
@@ -52,31 +56,7 @@ class RaceEditor extends FormApplication {
         html.find(".stat-modifier").change(this._on_int_change.bind(this));
         return super.activateListeners(html);
     }
-  
-    async _updateObject(event, formData) {
-        console.log(formData.exampleInput);
-    }
 
-    _on_toggle_value(ev) {
-        ev.preventDefault();
-        let el = ev.currentTarget;
-        this.race_edits[el.dataset.key] = !this.race_edits[el.dataset.key];
-        this.render(true);
-    }
-
-    _on_text_change(ev) {
-        ev.preventDefault();
-        let el = ev.currentTarget;
-        utils.tools.set_path(this.race_edits, el.dataset.path, el.value);
-        document.getElementById(el.dataset.path).innerText = el.value;
-    }
-
-    _on_int_change(ev) {
-        ev.preventDefault();
-        let el = ev.currentTarget;
-        utils.tools.set_path(this.race_edits, el.dataset.path, parseInt(el.value));
-        this.render(true);
-    }
 }
   
 window.RaceEditor = RaceEditor;
