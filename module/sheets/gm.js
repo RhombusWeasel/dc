@@ -32,6 +32,8 @@ export default class GMSheet extends HeroSheet {
         //System Editor
         html.find(".create-race").click(this._on_create_race.bind(this));
         html.find(".create-bloodline").click(this._on_create_bloodline.bind(this));
+        html.find(".edit-race").click(this._on_edit_race.bind(this));
+        html.find(".edit-bloodline").click(this._on_edit_bloodline.bind(this));
         return super.activateListeners(html);
     }
 
