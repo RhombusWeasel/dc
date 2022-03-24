@@ -1,4 +1,4 @@
-class BaseEditor extends FormApplication {
+export class BaseEditor extends FormApplication {
     constructor(editor_type, path) {
         super();
         this.uuid = utils.tools.uuid(4, 4, 4, 4)
