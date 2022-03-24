@@ -223,7 +223,6 @@ function import_fantasy_system() {
                     value: 2,
                     max: 5
                 },
-                
                 {
                     label: 'Sage',
                     key: 'wis',
