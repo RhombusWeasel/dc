@@ -49,7 +49,9 @@ export default class BaseEditor extends FormApplication {
     _on_add_line(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.set_path(this.race_edits, el.dataset.path, utils.tools.get_path(this.race_edits, el.dataset.path).push(''));
+        let list = utils.tools.get_path(this.race_edits, el.dataset.path);
+        list.push('');
+        utils.tools.set_path(this.race_edits, el.dataset.path, list);
     }
 
     _on_toggle_value(ev) {
