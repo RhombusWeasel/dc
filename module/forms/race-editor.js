@@ -26,7 +26,7 @@ class RaceEditor extends BaseEditor {
         //console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits, tmp.races);
     }
   
-    static get defaultOptions() {
+    static get defaultOptionsOld() {
         return mergeObject(super.defaultOptions, {
             classes: ['style_doc'],
             popOut: true,

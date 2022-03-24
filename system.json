@@ -12,6 +12,7 @@
       "lib/lib.js",
       "lib/socket.js",
       "module/data/generic_fantasy.js",
+      "module/forms/base-editor.js",
       "module/forms/race-editor.js"
     ],
     "packs": [],
