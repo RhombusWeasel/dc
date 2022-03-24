@@ -5,6 +5,7 @@ class RaceEditor extends BaseEditor {
         super('race');
         this.game_data   = utils.journal.load(game.settings.get('dc', 'system_journal'));
         //this.editor_type = 'race'
+
         this.race        = race;
         this.variant     = variant;
         this.header      = 'Race';
@@ -24,18 +25,6 @@ class RaceEditor extends BaseEditor {
             this.race_edits = utils.system.race_template();
         }
         //console.log('DC : Race Editor : constructor :', this.race, this.variant, this.race_edits, tmp.races);
-    }
-  
-    static get defaultOptionsOld() {
-        return mergeObject(super.defaultOptions, {
-            classes: ['style_doc'],
-            popOut: true,
-            template: `systems/dc/templates/editor/race-editor.html`,
-            id: 'race-editor',
-            title: `Editor`,
-            width: 500,
-            resizable: true,
-        });
     }
   
     getData() {
