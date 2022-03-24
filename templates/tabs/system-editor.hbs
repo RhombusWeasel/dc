@@ -19,6 +19,11 @@
             {{#each template.races as |race|}}
                 {{#if (eq race.playable true)}}
                     {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
+                    {{#each races as |variant|}}
+                        {{#if (eq @../key variant.bloodline)}}
+                            {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=variant}}
+                        {{/if}}
+                    {{/each}}
                 {{/if}}
             {{/each}}
             {{#each template.races as |race|}}

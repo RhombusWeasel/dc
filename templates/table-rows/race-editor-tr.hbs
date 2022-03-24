@@ -1,18 +1,17 @@
 <section>
-    <tr>
-        <td class="perc10 center create-bloodline" data-variant="false" data-race="{{@key}}"><a title="Add a new {{race.label}} bloodline."><i class="fas fa-plus"/></a></td>
-        <td class="center"><b>{{race.label}}</b></td>
-        <td class="perc10 center edit-race" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-edit"/></a></td>
-        <td class="perc10 center delete-race" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-trash"/></a></td>
-    </tr>
-    {{#if race.variants}}
-        {{#each race.variants as |variant|}}
-            <tr>
-                <td class="perc10"></td>
-                <td>{{variant.label}}</td>
-                <td class="perc10 center edit-race" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-edit"/></a></td>
-                <td class="perc10 center delete-race" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-trash"/></a></td>
-            </tr>
-        {{/each}}
+    {{#if (eq race.bloodline 'None')}}
+        <tr>
+            <td class="perc10 center create-bloodline" data-variant="false" data-race="{{@key}}"><a title="Add a new {{race.label}} bloodline."><i class="fas fa-plus"/></a></td>
+            <td class="center"><b>{{race.label}}</b></td>
+            <td class="perc10 center edit-race" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete-race" data-variant="false" data-race="{{@key}}"><a><i class="fas fa-trash"/></a></td>
+        </tr>
+    {{else}}
+        <tr>
+            <td class="perc10"></td>
+            <td>{{variant.label}}</td>
+            <td class="perc10 center edit-race" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete-race" data-variant="true" data-race="{{@../key}}" data-bloodline="{{@key}}"><a><i class="fas fa-trash"/></a></td>
+        </tr>
     {{/if}}
 </section>
