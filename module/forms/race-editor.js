@@ -1,10 +1,11 @@
 import BaseEditor from "./base-editor.js"
 
 class RaceEditor extends BaseEditor {
-    constructor(header, path) {
+    constructor(header, path, race) {
         super('race');
         this.game_data   = utils.journal.load(game.settings.get('dc', 'system_journal'));
         this.header      = header;
+        this.race        = header == 'Bloodline' ? this.game_data[race] : false;
         this.race_edits  = utils.tools.get_path(this.game_data, path) ? utils.tools.get_path(this.game_data, path) : utils.system.race_template();
     }
   

@@ -7,14 +7,16 @@ export default class BaseEditor extends FormApplication {
     }
   
     static get defaultOptions() {
-        console.log('DC : BaseEditor : defaultOptions :', this.editor_type, this.uuid);
         return mergeObject(super.defaultOptions, {
             classes: ['style_doc'],
             popOut: true,
-            title: `Editor`,
             width: 500,
             resizable: true,
         });
+    }
+
+    get title() {
+        return `${this.editor_type} Editor`
     }
 
     get template() {
