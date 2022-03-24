@@ -62,16 +62,8 @@ class RaceEditor extends FormApplication {
     _on_value_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        if (el.dataset?.index) {
-            if (el.dataset?.subpath) {
-                this.race_edits[el.dataset.path][el.dataset.subpath][el.dataset.index] = el.value;
-            }else{
-                this.race_edits[el.dataset.path][el.dataset.index] = el.value;
-            }
-        }else{
-            this.race_edits[el.dataset.path] = el.value;
-        }
-        document.getElementById(el.dataset.id).innerText = el.value;
+        utils.tools.modify_path(this.race_edits, el.path, el.value);
+        document.getElementById(el.dataset.path).innerText = el.value;
     }
 
     _on_stat_change(ev) {
