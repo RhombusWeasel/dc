@@ -4,7 +4,7 @@ class RaceEditor extends FormApplication {
         let tmp      = utils.journal.load(game.settings.get('dc', 'system_journal'));
         this.race    = race;
         this.variant = variant;
-        this.title   = 'Race'
+        this.header  = 'Race';
         this.race_data  = tmp.races[race];
         if (race != 'New Race') {
             if (variant) {
@@ -28,7 +28,7 @@ class RaceEditor extends FormApplication {
             popOut: true,
             template: `systems/dc/templates/editor/race-editor.html`,
             id: 'race-editor',
-            title: 'Race Editor',
+            title: `${this.header} Editor`,
             width: 500,
             resizable: true,
         });
@@ -37,9 +37,10 @@ class RaceEditor extends FormApplication {
     getData() {
         // Return data to the template
         return {
+            title:     this.header,
             race:      this.variant == false ? this.race_edits : this.race_data,
             bloodline: this.variant == false ? utils.system.race_template() : this.race_edits,
-            stats: utils.template.entity_template.stats,
+            stats:     utils.template.entity_template.stats,
         };
     }
   
