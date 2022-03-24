@@ -41,6 +41,8 @@ export default class BaseEditor extends FormApplication {
         //Bool Toggles & Buttons
         html.find(".add-line").click(this._on_add_line.bind(this));
         html.find(".bool-change").click(this._on_toggle_value.bind(this));
+
+        html.find(".save-changes").click(this._on_save_changes.bind(this));
         //Text Inputs
         html.find(".text-change").on('input', this._on_text_change.bind(this));
         //Numerical Inputs
@@ -83,6 +85,7 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.set_path(utils.template, this.path, this.edits);
+        this.close();
     }
 }
   
