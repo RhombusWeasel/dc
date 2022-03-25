@@ -1,15 +1,17 @@
 function import_generic_templates() {
+    let max_stat = 5
     return {
         stats: [
-            {mode: 'ensure', path: 'stats.butch', type: 'dict', value: {label: 'Butch', value: 2}},
-            {mode: 'ensure', path: 'stats.spry', type: 'dict', value: {label: 'Spry', value: 2}},
-            {mode: 'ensure', path: 'stats.buff', type: 'dict', value: {label: 'Buff', value: 2}},
-            {mode: 'ensure', path: 'stats.suave', type: 'dict', value: {label: 'Suave', value: 2}},
-            {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {label: 'Brainy', value: 2}},
-            {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {label: 'Savvy', value: 2}},
+            {mode: 'ensure', path: 'stats.butch', type: 'dict', value: {label: 'Butch', value: 2, max: max_stat}},
+            {mode: 'ensure', path: 'stats.spry', type: 'dict', value: {label: 'Spry', value: 2, max: max_stat}},
+            {mode: 'ensure', path: 'stats.buff', type: 'dict', value: {label: 'Buff', value: 2, max: max_stat}},
+            {mode: 'ensure', path: 'stats.suave', type: 'dict', value: {label: 'Suave', value: 2, max: max_stat}},
+            {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {label: 'Brainy', value: 2, max: max_stat}},
+            {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {label: 'Savvy', value: 2, max: max_stat}},
         ],
         pools: [
-            {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 2, max: 5}}
+            {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 2, max: 5}},
+            {mode: 'ensure', path: 'pools.mp', type: 'dict', value: {label: 'MP', min: 0, value: 2, max: 5}},
         ],
         skills: [],
         spells:[],
