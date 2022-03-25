@@ -21,6 +21,7 @@
             <h2 class="center">Variants</h2>
             <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
                 {{#each races as |variant|}}
+                    {{log variant.bloodline @../key}}
                     {{#if (eq variant.bloodline @../key)}}
                         <a data-tab="{{@key}}">{{variant.label}}</a>
                     {{/if}}
