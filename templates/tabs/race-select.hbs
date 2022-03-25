@@ -31,6 +31,11 @@
                 {{#each ../races as |variant|}}
                     {{#if (eq variant.bloodline @../key)}}
                         <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
+                            <h2 class="center">{{race.label}}</h2>
+                            {{#each variant.descriptions.main as |line|}}
+                                <p class="center">{{line}}</p>
+                            {{/each}}
+                            <h2></h2>
                             {{> "systems/dc/templates/shared/race-display.hbs" stats=../../stats race=variant}}
                         </div>
                     {{/if}}
