@@ -66,9 +66,6 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-                rules: [
-                    {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
-                ],
             }),
             al_geberans: utils.system.new.race({
                 label: "Al'Geberans",
@@ -81,12 +78,16 @@ function import_fantasy_system() {
                 },
                 descriptions: {
                     main: [
-                        "Al'Gebera is the jewel of the sands, famed for it's many Universities and Colleges of Magic",
+                        "Al'Gebera is the jewel of the sands, famed for it's many Universities and Colleges of Mathemagic.  It is said their famed sorcerers can unleash infinite power by dividing by the essence of nothing.",
                         "The people of Al'Gebera have thrown themselves into the rigorus persuit of science and are fiercely intelligent.",
                         "This single-minded focus is often mistaken for arrogance and can sometimes lead to them missing the wood for the trees."
                     ],
                     flavor: ['']
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.brainy', value:  1, label: 'Fierce Intellect',   description: `+1 Brains`},
+                    {mode: 'modify', action: 'add', path: 'stats.savvy',  value: -1, label: 'Head in the clouds', description: `-1 Savvy`},
+                ],
             }),
             dwarf: utils.system.new.race({
                 label: 'Dwarf',
@@ -99,20 +100,16 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-                stat_bonuses: {
-                    buff:  1,
-                    spry: -1,
-                },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.buff',  value:  1, label: 'Dwarven Constitution', description: `+1 Buff`},
+                    {mode: 'modify', action: 'add', path: 'stats.spry',  value: -1, label: 'Head in the clouds',   description: `-1 Spry`},
+                ],
             }),
             tunnel_dwarves: utils.system.new.race({
                 label:          'Tunnel Dwarf',
                 playable:       true,
                 bloodline:      'dwarf',
                 allow_variants: false,
-                stat_bonuses: {
-                    butch:  1,
-                    suave: -1,
-                },
                 descriptions: { 
                     main: [
                         "Tunnel Dwarves are the miners of the dwarven race, these are hardy folk and have a reputation for being hard workers and staunch fighters.",
@@ -120,16 +117,16 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.butch',  value:  1, label: '',   description: `+1 Butch`},
+                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                ],
             }),
             outer_dwarves: utils.system.new.race({
                 label: 'Outer Dwarf',
                 bloodline: 'dwarf',
                 playable: true,
                 allow_variants: false,
-                stat_bonuses: {
-                    savvy:  1,
-                    suave: -1,
-                },
                 bonus_feats: 0,
                 descriptions: { 
                     main: [
@@ -138,16 +135,16 @@ function import_fantasy_system() {
                     ],
                     flavor: [""],
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.savvy',  value:  1, label: '',   description: `+1 Savvy`},
+                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                ],
             }),
             elf: utils.system.new.race({
                 label: 'Elf',
                 bloodline: 'None',
                 playable: true,
                 allow_variants: true,
-                stat_bonuses: {
-                    buff: -1,
-                    spry:  1,
-                },
                 descriptions: {
                     main: [
                         "Elves are the oldest of the races, they split philosophically five centuries ago into the noble and proud High Elves and the Wise Wood Elves.",
@@ -155,24 +152,25 @@ function import_fantasy_system() {
                     ],
                     flavor: [],
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.spry',  value:  1, label: '',   description: `+1 Spry`},
+                    {mode: 'modify', action: 'add', path: 'stats.buff',  value: -1, label: '',   description: `-1 Buff`},
+                ],
             }),
             high_elf: utils.system.new.race({
                 label: 'High Elf',
                 bloodline: 'elf',
                 playable: true,
                 allow_variants: false,
-                stat_bonuses: {
-                    suave:  1,
-                    butch: -1,
-                },
                 descriptions: { 
                     main: [
                         "High Elves take the concept of nobility and grace to etherial levels.  Masters of charm magic and conjuration",
                     ],
                     flavor: [],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.suave',  value:  1, label: '',   description: `+1 Suave`},
+                    {mode: 'modify', action: 'add', path: 'stats.butch',  value: -1, label: '',   description: `-1 Butch`},
                 ],
             }),
             wood_elf: utils.system.new.race({
@@ -180,16 +178,16 @@ function import_fantasy_system() {
                 bloodline: 'elf',
                 playable: true,
                 allow_variants: false,
-                stat_bonuses: {
-                    savvy:  1,
-                    suave: -1,
-                },
                 descriptions: { 
                     main: [
                         "Wood Elves split from their noble cousins and took to the forests of the world.  They are natural Druids and Rangers",
                     ],
                     flavor: [''],
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.savvy',  value:  1, label: '',   description: `+1 Savvy`},
+                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                ],
             }),
             half_blood: utils.system.new.race({
                 label: 'Half Blood',
@@ -203,6 +201,7 @@ function import_fantasy_system() {
                     ],
                     flavor: ['']
                 },
+                modifiers: [],
             }),
             half_orc: utils.system.new.race({
                 label: 'Half Orc',
@@ -221,22 +220,28 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.butch',  value:  1, label: '',   description: `+1 Butch`},
+                    {mode: 'modify', action: 'add', path: 'stats.buff',   value:  1, label: '',   description: `+1 Buff`},
+                    {mode: 'modify', action: 'add', path: 'stats.brainy', value: -1, label: '',   description: `-1 Brainy`},
+                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                ],
             }),
             half_elf: utils.system.new.race({
                 label: 'Half Elf',
                 bloodline: 'half_bloods',
                 playable: true,
                 allow_variants: false,
-                stat_bonuses: {
-                    buff: -1,
-                    spry:  1,
-                },
                 descriptions: { 
                     main: [
                         "Half Elf, half whatever.  Feel the love baby."
                     ],
                     flavor: [''],
                 },
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'stats.spry',  value:  1, label: '',   description: `+1 Spry`},
+                    {mode: 'modify', action: 'add', path: 'stats.buff',  value: -1, label: '',   description: `-1 Buff`},
+                ],
             }),
         },
     };

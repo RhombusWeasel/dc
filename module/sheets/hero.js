@@ -34,6 +34,7 @@ export default class HeroSheet extends ActorSheet {
         data.char  = utils.system.new.entity();
         data.stats = data.char.stats;
         if (this.actor.data.data.race == 'None') data.races = utils.game_data.races
+        console.log('DC : hero.js :', this);
         return data;
     }
   

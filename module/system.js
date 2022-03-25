@@ -106,7 +106,7 @@ function load_handlebars_helpers() {
     });
 
     Handlebars.registerHelper('get_pips', function (stat, race, value, max, options) {
-        let race_mod = race.stat_bonuses?.[stat] ? race.stat_bonuses[stat] : 0;
+        let race_mod = race?.stat_bonuses?.[stat] ? race.stat_bonuses[stat] : 0;
         value += race_mod;
         let t = ``;
         for (let i = 0; i < value; i++) {
