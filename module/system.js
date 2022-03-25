@@ -121,7 +121,7 @@ function load_handlebars_helpers() {
 
 function load_system() {
     if (!game.user.isGM) return;
-    utils.templates = utile.journal.load('Templates', import_generic_templates());
+    utils.templates = utils.journal.load('Templates', import_generic_templates());
     utils.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'), import_fantasy_system());
     //utils.journal.save(j_name, utils.game_data);
 }
