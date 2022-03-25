@@ -224,6 +224,8 @@ function import_fantasy_system() {
                     value: 2
                 }},
             ],
+            pools: [],
+            skills: [],
             entity: [
                 {mode: 'ensure', path: 'race', type: 'string', value: 'None'},
                 {mode: 'ensure', path: 'bloodline', type: 'string', value: 'None'},
