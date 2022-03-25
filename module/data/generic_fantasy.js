@@ -14,7 +14,7 @@ function import_fantasy_system() {
             playable: false,
         },
         races: {
-            human: utils.system.race_template({
+            human: utils.system.templates.race({
                 label:          'Human',
                 playable:       true,
                 allow_variants: true,
@@ -29,7 +29,7 @@ function import_fantasy_system() {
                     {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                 ],
             }),
-            al_geberans: utils.system.race_template({
+            al_geberans: utils.system.templates.race({
                 label: "Al'Geberans",
                 playable: true,
                 bloodline: "human",
@@ -47,7 +47,7 @@ function import_fantasy_system() {
                     flavor: ['']
                 },
             }),
-            dwarf: utils.system.race_template({
+            dwarf: utils.system.templates.race({
                 label: 'Dwarf',
                 playable: true,
                 allow_variants: true,
@@ -63,7 +63,7 @@ function import_fantasy_system() {
                     'dex': -1,
                 },
             }),
-            tunnel_dwarves: utils.system.race_template({
+            tunnel_dwarves: utils.system.templates.race({
                 label:          'Tunnel Dwarf',
                 playable:       true,
                 bloodline:      'dwarf',
@@ -80,7 +80,7 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
             }),
-            outer_dwarves: utils.system.race_template({
+            outer_dwarves: utils.system.templates.race({
                 label: 'Outer Dwarf',
                 bloodline: 'dwarf',
                 playable: true,
@@ -98,7 +98,7 @@ function import_fantasy_system() {
                     flavor: [""],
                 },
             }),
-            elf: utils.system.race_template({
+            elf: utils.system.templates.race({
                 label: 'Elf',
                 bloodline: 'None',
                 playable: true,
@@ -118,7 +118,7 @@ function import_fantasy_system() {
                     'dex': 1,
                 },
             }),
-            high_elf: utils.system.race_template({
+            high_elf: utils.system.templates.race({
                 label: 'High Elf',
                 bloodline: 'elf',
                 playable: true,
@@ -137,7 +137,7 @@ function import_fantasy_system() {
                     {label: '', text: '', effects: []},
                 ],
             }),
-            wood_elf: utils.system.race_template({
+            wood_elf: utils.system.templates.race({
                 label: 'Wood Elf',
                 bloodline: 'elf',
                 playable: true,
@@ -153,7 +153,7 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
             }),
-            half_blood: utils.system.race_template({
+            half_blood: utils.system.templates.race({
                 label: 'Half Blood',
                 bloodline: 'None',
                 playable: true,
@@ -165,7 +165,7 @@ function import_fantasy_system() {
                     flavor: ['']
                 },
             }),
-            half_orc: utils.system.race_template({
+            half_orc: utils.system.templates.race({
                 label: 'Half Orc',
                 bloodline: 'half_blood',
                 playable: true,
@@ -183,7 +183,7 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
             }),
-            half_elf: utils.system.race_template({
+            half_elf: utils.system.templates.race({
                 label: 'Half Elf',
                 bloodline: 'half_bloods',
                 playable: true,
