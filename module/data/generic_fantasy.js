@@ -8,8 +8,11 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {label: 'Brainy', value: 2}},
             {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {label: 'Savvy', value: 2}},
         ],
-        pools: [],
+        pools: [
+            {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 2, max: 5}}
+        ],
         skills: [],
+        spells:[],
         entity: [
             {mode: 'ensure', path: 'race', type: 'string', value: 'None'},
             {mode: 'ensure', path: 'bloodline', type: 'string', value: 'None'},
