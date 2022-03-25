@@ -121,15 +121,8 @@ function load_handlebars_helpers() {
 
 function load_system() {
     if (!game.user.isGM) return;
-    let j_name = game.settings.get('dc', 'system_journal');
-    let journal = game.journal.getName(j_name);
-    if (journal) {
-        console.log(`DC : load_system : Loading ${j_name}.`);
-        utils.game_data = utils.journal.load(j_name);
-    }else{
-        console.log('DC : First run : Creating Generic Fantasy System.', utils);
-        utils.game_data = utils.journal.load('Generic Fantasy System', import_fantasy_system());
-    }
+    utils.templates = utile.journal.load('Templates', import_generic_templates());
+    utils.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'), import_fantasy_system());
     //utils.journal.save(j_name, utils.game_data);
 }
 
