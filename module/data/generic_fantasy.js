@@ -68,8 +68,8 @@ function import_fantasy_system() {
                 bloodline: "human",
                 allow_variants: false,
                 stat_bonuses: {
-                    int: 1,
-                    wis: -1
+                    brainy: 1,
+                    savvy: -1
                 },
                 descriptions: {
                     main: [
@@ -92,8 +92,8 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
                 stat_bonuses: {
-                    'con': 1,
-                    'dex': -1,
+                    buff:  1,
+                    spry: -1,
                 },
             }),
             tunnel_dwarves: utils.system.new.race({
@@ -102,8 +102,8 @@ function import_fantasy_system() {
                 bloodline:      'dwarf',
                 allow_variants: false,
                 stat_bonuses: {
-                    'str': 1,
-                    'cha': -1,
+                    butch:  1,
+                    suave: -1,
                 },
                 descriptions: { 
                     main: [
@@ -119,8 +119,8 @@ function import_fantasy_system() {
                 playable: true,
                 allow_variants: false,
                 stat_bonuses: {
-                    'wis': 1,
-                    'cha': -1,
+                    savvy:  1,
+                    suave: -1,
                 },
                 bonus_feats: 0,
                 descriptions: { 
@@ -137,8 +137,8 @@ function import_fantasy_system() {
                 playable: true,
                 allow_variants: true,
                 stat_bonuses: {
-                    'con': -1,
-                    'dex': 1,
+                    buff: -1,
+                    spry:  1,
                 },
                 descriptions: {
                     main: [
@@ -154,8 +154,8 @@ function import_fantasy_system() {
                 playable: true,
                 allow_variants: false,
                 stat_bonuses: {
-                    'cha': 1,
-                    'str': -1,
+                    suave:  1,
+                    butch: -1,
                 },
                 descriptions: { 
                     main: [
@@ -173,8 +173,8 @@ function import_fantasy_system() {
                 playable: true,
                 allow_variants: false,
                 stat_bonuses: {
-                    'wis': 1,
-                    'cha': -1,
+                    savvy:  1,
+                    suave: -1,
                 },
                 descriptions: { 
                     main: [
@@ -188,6 +188,7 @@ function import_fantasy_system() {
                 bloodline: 'None',
                 playable: true,
                 allow_variants: true,
+                stat_bonuses: {},
                 descriptions: {
                     main: [
                         "Half Bloods are often outcasts on the fringe of society, never fully accepted and trusted by either community.",
@@ -201,10 +202,10 @@ function import_fantasy_system() {
                 playable: true,
                 allow_variants: false,
                 stat_bonuses: {
-                    'str': 1,
-                    'con': 1,
-                    'int': -1,
-                    'cha': -1,
+                    butch:   1,
+                    buff:    1,
+                    brainy: -1,
+                    suave:  -1,
                 },
                 descriptions: { 
                     main: [
@@ -219,8 +220,8 @@ function import_fantasy_system() {
                 playable: true,
                 allow_variants: false,
                 stat_bonuses: {
-                    'con': -1,
-                    'dex': 1,
+                    buff: -1,
+                    spry:  1,
                 },
                 descriptions: { 
                     main: [
