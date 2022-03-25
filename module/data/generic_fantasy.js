@@ -1,3 +1,31 @@
+function import_generic_templates() {
+    return {
+        stats: [
+            {mode: 'ensure', path: 'stats.butch', type: 'dict', value: {label: 'Butch', value: 2}},
+            {mode: 'ensure', path: 'stats.spry', type: 'dict', value: {label: 'Spry', value: 2}},
+            {mode: 'ensure', path: 'stats.buff', type: 'dict', value: {label: 'Buff', value: 2}},
+            {mode: 'ensure', path: 'stats.suave', type: 'dict', value: {label: 'Suave', value: 2}},
+            {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {label: 'Brainy', value: 2}},
+            {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {label: 'Savvy', value: 2}},
+        ],
+        pools: [],
+        skills: [],
+        entity: [
+            {mode: 'ensure', path: 'race', type: 'string', value: 'None'},
+            {mode: 'ensure', path: 'bloodline', type: 'string', value: 'None'},
+            {mode: 'ensure', path: 'stat_points', type: 'int', value: 0},
+            {mode: 'ensure', path: 'ability_points', type: 'int', value: 0},
+            {mode: 'ensure', path: 'skill_points', type: 'int', value: 0},
+            {mode: 'ensure', path: 'spell_points', type: 'int', value: 0},
+            {mode: 'ensure', path: 'pools', type: 'dict', value: {}},
+            {mode: 'ensure', path: 'stats', type: 'dict', value: {}},
+            {mode: 'ensure', path: 'equipment', type: 'dict', value: {}},
+            {mode: 'ensure', path: 'inventory', type: 'dict', value: {}},
+            {mode: 'ensure', path: 'skills', type: 'dict', value: {}},
+        ],
+    };
+}
+
 function import_fantasy_system() {
     return {
         race_template: {
@@ -14,7 +42,7 @@ function import_fantasy_system() {
             playable: false,
         },
         races: {
-            human: utils.system.templates.race({
+            human: {
                 label:          'Human',
                 playable:       true,
                 allow_variants: true,
@@ -28,8 +56,8 @@ function import_fantasy_system() {
                 rules: [
                     {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                 ],
-            }),
-            al_geberans: utils.system.templates.race({
+            },
+            al_geberans: {
                 label: "Al'Geberans",
                 playable: true,
                 bloodline: "human",
@@ -46,8 +74,8 @@ function import_fantasy_system() {
                     ],
                     flavor: ['']
                 },
-            }),
-            dwarf: utils.system.templates.race({
+            },
+            dwarf: {
                 label: 'Dwarf',
                 playable: true,
                 allow_variants: true,
@@ -62,8 +90,8 @@ function import_fantasy_system() {
                     'con': 1,
                     'dex': -1,
                 },
-            }),
-            tunnel_dwarves: utils.system.templates.race({
+            },
+            tunnel_dwarves: {
                 label:          'Tunnel Dwarf',
                 playable:       true,
                 bloodline:      'dwarf',
@@ -79,8 +107,8 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-            }),
-            outer_dwarves: utils.system.templates.race({
+            },
+            outer_dwarves: {
                 label: 'Outer Dwarf',
                 bloodline: 'dwarf',
                 playable: true,
@@ -97,8 +125,8 @@ function import_fantasy_system() {
                     ],
                     flavor: [""],
                 },
-            }),
-            elf: utils.system.templates.race({
+            },
+            elf: {
                 label: 'Elf',
                 bloodline: 'None',
                 playable: true,
@@ -114,8 +142,8 @@ function import_fantasy_system() {
                     ],
                     flavor: [],
                 },
-            }),
-            high_elf: utils.system.templates.race({
+            },
+            high_elf: {
                 label: 'High Elf',
                 bloodline: 'elf',
                 playable: true,
@@ -133,8 +161,8 @@ function import_fantasy_system() {
                 rules: [
                     {label: '', text: '', effects: []},
                 ],
-            }),
-            wood_elf: utils.system.templates.race({
+            },
+            wood_elf: {
                 label: 'Wood Elf',
                 bloodline: 'elf',
                 playable: true,
@@ -149,8 +177,8 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-            }),
-            half_blood: utils.system.templates.race({
+            },
+            half_blood: {
                 label: 'Half Blood',
                 bloodline: 'None',
                 playable: true,
@@ -161,8 +189,8 @@ function import_fantasy_system() {
                     ],
                     flavor: ['']
                 },
-            }),
-            half_orc: utils.system.templates.race({
+            },
+            half_orc: {
                 label: 'Half Orc',
                 bloodline: 'half_blood',
                 playable: true,
@@ -179,8 +207,8 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-            }),
-            half_elf: utils.system.templates.race({
+            },
+            half_elf: {
                 label: 'Half Elf',
                 bloodline: 'half_bloods',
                 playable: true,
@@ -195,34 +223,16 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-            }),
+            },
         },
         templates: {
             stats: [
-                {mode: 'ensure', path: 'stats.butch', type: 'dict', value: {
-                    label: 'Butch',
-                    value: 2
-                }},
-                {mode: 'ensure', path: 'stats.spry', type: 'dict', value: {
-                    label: 'Spry',
-                    value: 2
-                }},
-                {mode: 'ensure', path: 'stats.buff', type: 'dict', value: {
-                    label: 'Buff',
-                    value: 2
-                }},
-                {mode: 'ensure', path: 'stats.suave', type: 'dict', value: {
-                    label: 'Suave',
-                    value: 2
-                }},
-                {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {
-                    label: 'Brainy',
-                    value: 2
-                }},
-                {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {
-                    label: 'Savvy',
-                    value: 2
-                }},
+                {mode: 'ensure', path: 'stats.butch', type: 'dict', value: {label: 'Butch', value: 2}},
+                {mode: 'ensure', path: 'stats.spry', type: 'dict', value: {label: 'Spry', value: 2}},
+                {mode: 'ensure', path: 'stats.buff', type: 'dict', value: {label: 'Buff', value: 2}},
+                {mode: 'ensure', path: 'stats.suave', type: 'dict', value: {label: 'Suave', value: 2}},
+                {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {label: 'Brainy', value: 2}},
+                {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {label: 'Savvy', value: 2}},
             ],
             pools: [],
             skills: [],
