@@ -127,7 +127,7 @@ function load_system() {
         console.log(`DC : load_system : Loading ${j_name}.`);
         utils.game_data = utils.journal.load(j_name);
     }else{
-        console.log('DC : First run : Creating Generic Fantasy System.');
+        console.log('DC : First run : Creating Generic Fantasy System.', utils);
         utils.game_data = utils.journal.load('Generic Fantasy System', import_fantasy_system());
     }
     //utils.journal.save(j_name, utils.game_data);
