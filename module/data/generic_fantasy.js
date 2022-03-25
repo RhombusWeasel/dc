@@ -29,8 +29,26 @@ function import_fantasy_system() {
                     {label: 'Bonus Feat', text: 'Humans start the game with a feat available to them.'}
                 ],
             }),
+            al_geberans: utils.system.race_template({
+                label: "Al'Geberans",
+                playable: true,
+                bloodline: "human",
+                allow_variants: false,
+                stat_bonuses: {
+                    int: 1,
+                    wis: -1
+                },
+                descriptions: {
+                    main: [
+                        "Al'Gebera is the jewel of the sands, famed for it's many Universities and Colleges of Magic",
+                        "The people of Al'Gebera have thrown themselves into the rigorus persuit of science and are fiercely intelligent.",
+                        "This single-minded focus is often mistaken for arrogance and can sometimes lead to them missing the wood for the trees."
+                    ],
+                    flavor: ['']
+                },
+            }),
             dwarf: utils.system.race_template({
-                label: 'Dwarves',
+                label: 'Dwarf',
                 playable: true,
                 allow_variants: true,
                 descriptions: {
@@ -81,9 +99,10 @@ function import_fantasy_system() {
                 },
             }),
             elf: utils.system.race_template({
-                label: 'Elves',
+                label: 'Elf',
                 bloodline: 'None',
                 playable: true,
+                allow_variants: true,
                 descriptions: {
                     main: [
                         "Elves are the oldest of the races, they split philosophically five centuries ago into the noble and proud High Elves and the Wise Wood Elves.",
@@ -134,11 +153,11 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
             }),
-            half_bloods: utils.system.race_template({
-                label: 'Half Bloods',
+            half_blood: utils.system.race_template({
+                label: 'Half Blood',
                 bloodline: 'None',
-                allow_variants: true,
                 playable: true,
+                allow_variants: true,
                 descriptions: {
                     main: [
                         "Half Bloods are often outcasts on the fringe of society, never fully accepted and trusted by either community.",
@@ -148,7 +167,7 @@ function import_fantasy_system() {
             }),
             half_orc: utils.system.race_template({
                 label: 'Half Orc',
-                bloodline: 'half_bloods',
+                bloodline: 'half_blood',
                 playable: true,
                 allow_variants: false,
                 stat_bonuses: {
@@ -163,9 +182,6 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
             }),
             half_elf: utils.system.race_template({
                 label: 'Half Elf',
@@ -182,9 +198,6 @@ function import_fantasy_system() {
                     ],
                     flavor: [''],
                 },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
             }),
         },
         entity_template: {
