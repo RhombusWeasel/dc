@@ -13,7 +13,7 @@ class RaceEditor extends BaseEditor {
         let data   = super.getData();
         data.title = this.header;
         data.race  = this.edits;
-        data.stats = utils.game_data.entity_template.stats;
+        data.stats = utils.system.new.stats();
         return data;
     }
 
