@@ -125,12 +125,12 @@ function load_system() {
     let journal = game.journal.getName(j_name);
     if (journal) {
         console.log(`DC : load_system : Loading ${j_name}.`);
-        utils.template = utils.journal.load(j_name);
+        utils.game_data = utils.journal.load(j_name);
     }else{
         console.log('DC : First run : Creating Generic Fantasy System.');
-        utils.template = utils.journal.load('Generic Fantasy System', import_fantasy_system());
+        utils.game_data = utils.journal.load('Generic Fantasy System', import_fantasy_system());
     }
-    //utils.journal.save(j_name, utils.template);
+    //utils.journal.save(j_name, utils.game_data);
 }
 
 Hooks.once("init", function () {

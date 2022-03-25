@@ -23,7 +23,7 @@ export default class GMSheet extends HeroSheet {
     /** @override */
     getData() {
         const data = super.getData();
-        data.template = utils.template;
+        data.template = utils.game_data;
         return data;
     }
   
@@ -51,7 +51,7 @@ export default class GMSheet extends HeroSheet {
     _on_delete(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        utils.tools.path.delete(utils.template, el.dataset.path);
+        utils.tools.path.delete(utils.game_data, el.dataset.path);
     }
 
 }

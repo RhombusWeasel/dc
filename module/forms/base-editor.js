@@ -31,7 +31,7 @@ export default class BaseEditor extends FormApplication {
         let data = super.getData();
         data.title    = this.header;
         data.uuid     = this.uuid;
-        data.template = utils.template;
+        data.template = utils.game_data;
         return data;
     }
   
@@ -82,11 +82,11 @@ export default class BaseEditor extends FormApplication {
     _on_save_changes(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(utils.template, `${this.addr.root}.${this.addr.key}`, this.edits);
+        utils.tools.path.set(utils.game_data, `${this.addr.root}.${this.addr.key}`, this.edits);
         utils.gm.save_system();
         this.close();
     }
-    
+
 }
   
 window.BaseEditor = BaseEditor;

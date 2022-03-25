@@ -2,7 +2,7 @@ export default class HeroSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
-      let races = utils.template.races;
+      let races = utils.game_data.races;
       let tabs = [
         {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},
         {navSelector: ".race-tabs", contentSelector: ".race-body", initial: "human"},
@@ -31,8 +31,8 @@ export default class HeroSheet extends ActorSheet {
     /** @override */
     getData() {
         const data = super.getData();
-        data.stats = utils.template.entity_template.stats;
-        if (this.actor.data.data.race == 'None') data.races = utils.template.races
+        data.stats = utils.game_data.entity_template.stats;
+        if (this.actor.data.data.race == 'None') data.races = utils.game_data.races
         return data;
     }
   
