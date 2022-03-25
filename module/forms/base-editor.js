@@ -85,6 +85,7 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.set_path(utils.template, this.path, this.edits);
+        utils.gm.save_system();
         this.close();
     }
 }
