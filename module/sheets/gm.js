@@ -4,7 +4,7 @@ export default class GMSheet extends HeroSheet {
 
     constructor() {
         super();
-        this.editors = {
+        this.editor_list = {
             race: function() {
                 
             },
