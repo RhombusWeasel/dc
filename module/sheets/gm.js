@@ -2,6 +2,15 @@ import HeroSheet from "./hero.js"
 
 export default class GMSheet extends HeroSheet {
 
+    constructor() {
+        super();
+        this.editors = {
+            race: function() {
+                
+            },
+        };
+    }
+
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
@@ -9,8 +18,8 @@ export default class GMSheet extends HeroSheet {
             width: 400,
             height: 800,
             tabs: [
-            {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "system"},
-            {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
+                {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "system"},
+                {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
             ]
         });
     }
@@ -46,6 +55,12 @@ export default class GMSheet extends HeroSheet {
         ev.preventDefault()
         let el = ev.currentTarget;
         new RaceEditor('Race', el.dataset.path).render(true);
+    }
+
+    _on_delete(ev) {
+        ev.preventDefault()
+        let el = ev.currentTarget;
+        utils.tools.path.delete(utils.template, el.dataset.path);
     }
 
 }

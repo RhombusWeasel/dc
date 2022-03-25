@@ -103,19 +103,16 @@ function import_fantasy_system() {
                 bloodline: 'None',
                 playable: true,
                 allow_variants: true,
+                stat_bonuses: {
+                    'con': -1,
+                    'dex': 1,
+                },
                 descriptions: {
                     main: [
                         "Elves are the oldest of the races, they split philosophically five centuries ago into the noble and proud High Elves and the Wise Wood Elves.",
                         "Very skilled with magic all Elves start with additional Mana points.",
                     ],
                     flavor: [],
-                },
-                rules: [
-                    {label: '', text: '', effects: []},
-                ],
-                stat_bonuses: {
-                    'con': -1,
-                    'dex': 1,
                 },
             }),
             high_elf: utils.system.templates.race({

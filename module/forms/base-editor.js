@@ -1,11 +1,9 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type, path, key) {
         super();
-        //console.log('DC : BaseEditor : constructor :', editor_type);
+        this.addr        = utils.tools.path.split(path);
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
         this.editor_type = editor_type;
-        this.root_path   = path;
-        this.path        = `${path}.${key}`;
     }
   
     static get defaultOptions() {
@@ -53,41 +51,42 @@ export default class BaseEditor extends FormApplication {
     _on_add_line(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        let list = utils.tools.get_path(this.edits, el.dataset.path);
+        let list = utils.tools.path.get(this.edits, el.dataset.path);
         list.push('');
-        utils.tools.set_path(this.edits, el.dataset.path, list);
+        utils.tools.path.set(this.edits, el.dataset.path, list);
         this.render(true);
     }
 
     _on_toggle_value(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.set_path(this.edits, el.dataset.path, !utils.tools.get_path(this.edits, el.dataset.path));
+        utils.tools.path.set(this.edits, el.dataset.path, !utils.tools.path.get(this.edits, el.dataset.path));
         this.render(true);
     }
 
     _on_text_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.set_path(this.edits, el.dataset.path, el.value);
-        if (el.dataset.path == 'label') this.path = `${this.root_path}.${utils.tools.safe_key(el.value)}`;
+        utils.tools.path.set(this.edits, el.dataset.path, el.value);
+        if (el.dataset.path == 'label') this.addr.key = utils.tools.safe_key(el.value);
         document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
     }
 
     _on_int_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.set_path(this.edits, el.dataset.path, parseInt(el.value));
+        utils.tools.path.set(this.edits, el.dataset.path, parseInt(el.value));
         this.render(true);
     }
 
     _on_save_changes(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.set_path(utils.template, this.path, this.edits);
+        utils.tools.path.set(utils.template, `${this.addr.root}.${this.addr.key}`, this.edits);
         utils.gm.save_system();
         this.close();
     }
+    
 }
   
 window.BaseEditor = BaseEditor;
