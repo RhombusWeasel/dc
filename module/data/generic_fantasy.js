@@ -229,7 +229,7 @@ function import_fantasy_system() {
             }),
             half_elf: utils.system.new.race({
                 label: 'Half Elf',
-                bloodline: 'half_bloods',
+                bloodline: 'half_blood',
                 playable: true,
                 allow_variants: false,
                 descriptions: { 
