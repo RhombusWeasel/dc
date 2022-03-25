@@ -197,6 +197,47 @@ function import_fantasy_system() {
                 },
             }),
         },
+        templates: {
+            stats: [
+                {mode: 'ensure', path: 'stats.butch', type: 'dict', value: {
+                    label: 'Butch',
+                    value: 2
+                }},
+                {mode: 'ensure', path: 'stats.spry', type: 'dict', value: {
+                    label: 'Spry',
+                    value: 2
+                }},
+                {mode: 'ensure', path: 'stats.buff', type: 'dict', value: {
+                    label: 'Buff',
+                    value: 2
+                }},
+                {mode: 'ensure', path: 'stats.suave', type: 'dict', value: {
+                    label: 'Suave',
+                    value: 2
+                }},
+                {mode: 'ensure', path: 'stats.brainy', type: 'dict', value: {
+                    label: 'Brainy',
+                    value: 2
+                }},
+                {mode: 'ensure', path: 'stats.savvy', type: 'dict', value: {
+                    label: 'Savvy',
+                    value: 2
+                }},
+            ],
+            entity: [
+                {mode: 'ensure', path: 'race', type: 'string', value: 'None'},
+                {mode: 'ensure', path: 'bloodline', type: 'string', value: 'None'},
+                {mode: 'ensure', path: 'stat_points', type: 'int', value: 0},
+                {mode: 'ensure', path: 'ability_points', type: 'int', value: 0},
+                {mode: 'ensure', path: 'skill_points', type: 'int', value: 0},
+                {mode: 'ensure', path: 'spell_points', type: 'int', value: 0},
+                {mode: 'ensure', path: 'pools', type: 'dict', value: {}},
+                {mode: 'ensure', path: 'stats', type: 'dict', value: {}},
+                {mode: 'ensure', path: 'equipment', type: 'dict', value: {}},
+                {mode: 'ensure', path: 'inventory', type: 'dict', value: {}},
+                {mode: 'ensure', path: 'skills', type: 'dict', value: {}},
+            ],
+        },
         entity_template: {
             race: 'None',
             stat_points: 5,
