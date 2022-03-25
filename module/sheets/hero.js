@@ -31,7 +31,8 @@ export default class HeroSheet extends ActorSheet {
     /** @override */
     getData() {
         const data = super.getData();
-        data.stats = utils.system.new.stats().stats;
+        data.char  = utils.system.new.entity();
+        data.stats = data.char.stats;
         if (this.actor.data.data.race == 'None') data.races = utils.game_data.races
         return data;
     }
