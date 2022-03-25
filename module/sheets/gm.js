@@ -2,15 +2,6 @@ import HeroSheet from "./hero.js"
 
 export default class GMSheet extends HeroSheet {
 
-    constructor() {
-        super();
-        this.editor_list = {
-            race: function() {
-                
-            },
-        };
-    }
-
     /** @override */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
