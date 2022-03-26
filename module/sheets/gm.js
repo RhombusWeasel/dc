@@ -46,6 +46,7 @@ export default class GMSheet extends ActorSheet {
     _on_edit_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
+        console.log(el.dataset.path);
         new RaceEditor('Race', el.dataset.path).render(true);
     }
 
