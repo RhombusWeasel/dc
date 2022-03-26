@@ -6,7 +6,8 @@ export default class HeroSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["style_doc"],
       width: 400,
-      height: 800
+      height: 800,
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},],
     });
   }
 
