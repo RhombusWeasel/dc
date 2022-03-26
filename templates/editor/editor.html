@@ -20,6 +20,17 @@
                 <td><input class="text-change" type="number" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
             </tr>
         {{/if}}
+        {{#if (eq value.type 'bool')}}
+            <tr>
+                <td class="center">{{pretty_print value.path}}</td>
+                {{#if (eq (lookup ../edits value.path) true)}}
+                    <td class="center"><a class="bool-change" data-path="playable"><i class="fas fa-check"></i></a></td>
+                {{else}}
+                    <td class="center"><a class="bool-change" data-path="playable"><i class="fas fa-times"></i></a></td>
+                {{/if}}
+                <td class="perc5"></td>
+            </tr>
+        {{/if}}
     {{/each}}
     </table>
 </form>
