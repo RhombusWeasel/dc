@@ -44,6 +44,7 @@ export default class BaseEditor extends FormApplication {
         html.find(".save-changes").click(this._on_save_changes.bind(this));
         //Text Inputs
         html.find(".text-change").on('input', this._on_text_change.bind(this));
+        html.find(".key-change").on('input', this._on_key_change.bind(this));
         //Numerical Inputs
         html.find(".int-change").change(this._on_int_change.bind(this));
         return super.activateListeners(html);
@@ -66,6 +67,13 @@ export default class BaseEditor extends FormApplication {
     }
 
     _on_text_change(ev) {
+        ev.preventDefault();
+        let el = ev.currentTarget;
+        utils.tools.path.set(this.edits, el.dataset.path, el.value);
+        document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
+    }
+
+    _on_key_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.path.set(this.edits, el.dataset.path, el.value);
