@@ -15,13 +15,6 @@ export default class GMSheet extends ActorSheet {
         });
     }
 
-    get tabs() {
-        return [
-            {navSelector: ".gm-tabs",     contentSelector: ".gm-body",     initial: "system"},
-            {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
-        ]
-    }
-
     /** @override */
     get template() {
         return `systems/dc/templates/${this.actor.data.type}-sheet.html`;
