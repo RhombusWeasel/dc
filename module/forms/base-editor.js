@@ -29,7 +29,7 @@ export default class BaseEditor extends FormApplication {
     }
   
     getData() {
-        let data = super.getData();
+        let data      = super.getData();
         data.title    = this.header;
         data.uuid     = this.uuid;
         data.template = utils.game_data;
