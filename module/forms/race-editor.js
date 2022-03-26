@@ -6,7 +6,7 @@ class RaceEditor extends BaseEditor {
         super('race', 'races', path);
         this.game_data       = utils.journal.load(game.settings.get('dc', 'system_journal'));
         this.header          = header;
-        this.edits           = utils.tools.path.get(this.game_data, `${path}`) ? utils.tools.path.get(this.game_data, `${path}`) : utils.system.templates.race({bloodline: bloodline});
+        this.edits           = utils.tools.path.get(this.game_data, `${path}`) ? utils.tools.path.get(this.game_data, `${path}`) : utils.system.new.race({bloodline: bloodline});
     }
   
     getData() {
