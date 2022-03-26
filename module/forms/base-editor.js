@@ -2,6 +2,7 @@ export default class BaseEditor extends FormApplication {
     constructor(editor_type, path) {
         super();
         this.addr        = utils.tools.path.split(path);
+        this.dict_key    = this.addr.key;
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
         this.editor_type = editor_type;
         this.data_format = utils.templates[editor_type];
@@ -75,16 +76,13 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.path.set(this.edits, el.dataset.path, el.value);
-        console.log('DC : base-editor._on_text_change : ', el.dataset.path);
-        document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
     }
 
     _on_key_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.path.set(this.edits, el.dataset.path, el.value);
-        if (el.dataset.path == 'label') this.addr.key = utils.tools.safe_key(el.value);
-        document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
+        this.dict_key = utils.tools.safe_key(el.value);
     }
 
     _on_int_change(ev) {

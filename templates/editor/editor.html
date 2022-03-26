@@ -40,7 +40,7 @@
             {{#each ../edits.descriptions.main as |str|}}
                 {{#if (eq @index 0)}}
                         <td class="center"><textarea class="text-change" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
-                        <td class="center perc10"><a class="add-line" data-path="descriptions.main"><i class="fas fa-plus"/></a></td>
+                        <td class="center perc10"><a class="add-line" data-path="descriptions.main" title="Add new paragraph."><i class="fas fa-plus"/></a></td>
                     </tr>
                 {{else}}
                     <tr>
@@ -53,4 +53,13 @@
         {{/if}}
     {{/each}}
     </table>
+    <h2>Modifiers</h2>
+    <div class="center flexrow">
+        <select class="modifier-select">
+            {{#each modifier_templates as |mod|}}
+                <option value="@index">{{pretty_print mod.label}}</option>
+            {{each}}
+        </select>
+        <a class="add-modifier">Add modifier</a>
+    </div>
 </form>
