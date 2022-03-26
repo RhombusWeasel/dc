@@ -4,7 +4,7 @@ export default class BaseEditor extends FormApplication {
         this.addr        = utils.tools.path.split(path);
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
         this.editor_type = editor_type;
-        this.template    = utils.templates[editor_type];
+        this.data_format = utils.templates[editor_type];
         this.edits       = utils.system.new[editor_type]();
     }
   
@@ -36,7 +36,7 @@ export default class BaseEditor extends FormApplication {
         data.title       = this.header;
         data.uuid        = this.uuid;
         data.template    = utils.game_data;
-        data.data_format = this.template;
+        data.data_format = this.data_format;
         data.edits       = this.edits;
         return data;
     }
