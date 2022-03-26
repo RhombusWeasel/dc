@@ -37,7 +37,7 @@
         {{#if (eq value.path 'descriptions')}}
             <tr>
                 <td class="perc30 center">Description</td>
-            {{#each (lookup ../edits 'descriptions.main') as |str|}}
+            {{#each ../edits.descriptions.main as |str|}}
                 {{#if (eq @index 0)}}
                         <td class="center"><textarea class="text-change" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
                         <td class="center perc10"><a class="add-line" data-path="descriptions.main"><i class="fas fa-plus"/></a></td>
