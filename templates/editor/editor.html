@@ -5,9 +5,9 @@
         <select class="modifier-select">
             {{#each mod_templates as |mod|}}
                 {{#if (eq ../mod_index @index)}}
-                    <option value="@index" selected>{{pretty_print mod.label}}</option>
+                    <option value="{{@index}}" selected>{{pretty_print mod.label}}</option>
                 {{else}}
-                    <option value="@index">{{pretty_print mod.label}}</option>
+                    <option value="{{@index}}">{{pretty_print mod.label}}</option>
                 {{/if}}
             {{/each}}
         </select>
