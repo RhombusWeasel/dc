@@ -4,6 +4,7 @@ export default class BaseEditor extends FormApplication {
         this.addr        = utils.tools.path.split(path);
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
         this.editor_type = editor_type;
+        this.template    = utils.templates[editor_type];
     }
   
     static get defaultOptions() {
@@ -25,14 +26,16 @@ export default class BaseEditor extends FormApplication {
     }
 
     get template() {
-        return `systems/dc/templates/editor/${this.editor_type}-editor.html`;
+        //return `systems/dc/templates/editor/${this.editor_type}-editor.html`;
+        return `systems/dc/templates/editor/editor.html`;
     }
   
     getData() {
-        let data      = super.getData();
-        data.title    = this.header;
-        data.uuid     = this.uuid;
-        data.template = utils.game_data;
+        let data         = super.getData();
+        data.title       = this.header;
+        data.uuid        = this.uuid;
+        data.template    = utils.game_data;
+        data.data_format = this.template;
         return data;
     }
   

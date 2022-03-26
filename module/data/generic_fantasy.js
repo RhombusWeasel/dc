@@ -14,8 +14,6 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 5, max: 5}},
             {mode: 'ensure', path: 'pools.mp', type: 'dict', value: {label: 'MP', min: 0, value: 5, max: 5}},
         ],
-        skills: [],
-        spells:[],
         entity: [
             {mode: 'ensure', path: 'race',           type: 'string', value: 'None'},
             {mode: 'ensure', path: 'bloodline',      type: 'string', value: 'None'},
@@ -37,8 +35,33 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'descriptions',   type: 'dict',   value: {main: [''], flavor: ['']}},
             {mode: 'ensure', path: 'modifiers',      type: 'array',  value: []},
         ],
+        class: [
+            {mode: 'ensure', path: 'label',          type: 'string', value: 'New Class'},
+            {mode: 'ensure', path: 'descriptions',   type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'requirements',   type: 'array',  value: []},
+            {mode: 'ensure', path: 'modifiers',      type: 'array',  value: []},
+        ],
+        ability: [
+            {mode: 'ensure', path: 'label',          type: 'string', value: 'New Ability'},
+            {mode: 'ensure', path: 'descriptions',   type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'ap_cost',        type: 'int',    value: 1},
+            {mode: 'ensure', path: 'use_cost',       type: 'dict',   value: {path: 'pools.ap.value', amount: 0}},
+            {mode: 'ensure', path: 'active_when',    type: 'string', value: 'always'},
+            {mode: 'ensure', path: 'expire_when',    type: 'string', value: 'never'},
+            {mode: 'ensure', path: 'expired',        type: 'bool',   value: false},
+            {mode: 'ensure', path: 'requirements',   type: 'array',  value: []},
+            {mode: 'ensure', path: 'modifiers',      type: 'array',  value: []},
+        ],
+        skill: [
+            {mode: 'ensure', path: 'label',          type: 'string', value: 'New Skill'},
+            {mode: 'ensure', path: 'descriptions',   type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'stat' ,          type: 'string', value: 'butch'},
+            {mode: 'ensure', path: 'level',          type: 'int',    value: 0},
+        ],
         modifiers: [
-            {label: 'Stat Modifier', template: {mode: 'modify', action: 'add', path: 'tmp', value: 0, label: '', description: ''}}
+            {label: 'Stat Modifier',  template: {mode: 'modify', action: 'add', path: 'stats.tmp',  value: 0, label: '', description: ''}},
+            {label: 'Skill Modifier', template: {mode: 'modify', action: 'add', path: 'skills.tmp', value: 0, label: '', description: ''}},
+            {label: 'Create Pool',    template: {mode: 'ensure', path: 'pools.tmp', type: 'dict', value: {label: 'New Pool', min: 0, value: 5, max: 5}},},
         ],
     };
 }
