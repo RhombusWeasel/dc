@@ -3,15 +3,6 @@ export default class HeroSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     let races = utils.game_data.races;
-    return mergeObject(super.defaultOptions, {
-      classes: ["style_doc"],
-      width: 400,
-      height: 800,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},],
-    });
-  }
-
-  get tabs() {
     let tabs = [
       {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},
       {navSelector: ".race-tabs",  contentSelector: ".race-body",  initial: "human"},
@@ -24,7 +15,12 @@ export default class HeroSheet extends ActorSheet {
         }
       }
     }
-    return tabs;
+    return mergeObject(super.defaultOptions, {
+      classes: ["style_doc"],
+      width: 400,
+      height: 800,
+      tabs: tabs
+    });
   }
 
   /** @override */

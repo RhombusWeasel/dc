@@ -1,6 +1,6 @@
 import HeroSheet from "./hero.js"
 
-export default class GMSheet extends HeroSheet {
+export default class GMSheet extends ActorSheet {
 
     /** @override */
     static get defaultOptions() {
