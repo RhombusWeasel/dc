@@ -34,6 +34,23 @@
                 <td class="perc10"></td>
             </tr>
         {{/if}}
+        {{#if (eq value.path 'descriptions')}}
+            <tr>
+                <td class="perc30 center">Description</td>
+            {{#each race.descriptions.main as |str|}}
+                {{#if (eq @index 0)}}
+                        <td class="center"><textarea class="text-change" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                        <td class="perc10"><a class="add-line" data-path="descriptions.main"><i class="fas fa-plus"/></a></td>
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td></td>
+                        <td><textarea class="text-change" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                        <td class="perc10"></td>
+                    </tr>
+                {{/if}}
+            {{/each}}
+        {{/if}}
     {{/each}}
     </table>
 </form>
