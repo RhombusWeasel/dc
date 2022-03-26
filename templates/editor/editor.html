@@ -4,31 +4,34 @@
         {{#if (eq value.type 'string')}}
             {{#if (eq value.path 'label')}}
                 <tr>
-                    <td>{{pretty_print value.path}}</td>
-                    <td><input class="key-change" type="text" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="center">{{pretty_print value.path}}</td>
+                    <td class="center"><input class="key-change" type="text" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="perc10"></td>
                 </tr>
             {{else}}
                 <tr>
-                    <td>{{pretty_print value.path}}</td>
-                    <td><input class="text-change" type="text" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="center">{{pretty_print value.path}}</td>
+                    <td class="center"><input class="text-change" type="text" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="perc10"></td>
                 </tr>
             {{/if}}
         {{/if}}
         {{#if (eq value.type 'int')}}
             <tr>
-                <td>{{pretty_print value.path}}</td>
-                <td><input class="text-change" type="number" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                <td class="center">{{pretty_print value.path}}</td>
+                <td class="center"><input class="text-change" type="number" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                <td class="perc10"></td>
             </tr>
         {{/if}}
         {{#if (eq value.type 'bool')}}
             <tr>
                 <td class="center">{{pretty_print value.path}}</td>
                 {{#if (eq (lookup ../edits value.path) true)}}
-                    <td class="center"><a class="bool-change" data-path="playable"><i class="fas fa-check"></i></a></td>
+                    <td class="center"><a class="bool-change" data-path="{{value.path}}"><i class="fas fa-check"></i></a></td>
                 {{else}}
-                    <td class="center"><a class="bool-change" data-path="playable"><i class="fas fa-times"></i></a></td>
+                    <td class="center"><a class="bool-change" data-path="{{value.path}}"><i class="fas fa-times"></i></a></td>
                 {{/if}}
-                <td class="perc5"></td>
+                <td class="perc10"></td>
             </tr>
         {{/if}}
     {{/each}}
