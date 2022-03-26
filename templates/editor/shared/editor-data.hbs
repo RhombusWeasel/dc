@@ -1,0 +1,56 @@
+<section>
+    <table>
+    {{#each data_format as |value|}}
+        {{#if (eq value.type 'string')}}
+            {{#if (eq value.path 'label')}}
+                <tr>
+                    <td class="center">{{pretty_print value.path}}</td>
+                    <td class="center"><input class="key-change" type="text" data-path="{{../root_path}}{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="perc10"></td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td class="center">{{pretty_print value.path}}</td>
+                    <td class="center"><input class="text-change" type="text" data-path="{{../root_path}}{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="perc10"></td>
+                </tr>
+            {{/if}}
+        {{/if}}
+        {{#if (eq value.type 'int')}}
+            <tr>
+                <td class="center">{{pretty_print value.path}}</td>
+                <td class="center"><input class="text-change" type="number" data-path="{{../root_path}}{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                <td class="perc10"></td>
+            </tr>
+        {{/if}}
+        {{#if (eq value.type 'bool')}}
+            <tr>
+                <td class="center">{{pretty_print value.path}}</td>
+                {{#if (eq (lookup ../edits value.path) true)}}
+                    <td class="center"><a class="bool-change" data-path="{{../root_path}}{{value.path}}"><i class="fas fa-check"></i></a></td>
+                {{else}}
+                    <td class="center"><a class="bool-change" data-path="{{../root_path}}{{value.path}}"><i class="fas fa-times"></i></a></td>
+                {{/if}}
+                <td class="perc10"></td>
+            </tr>
+        {{/if}}
+        {{#if (eq value.path 'descriptions')}}
+            <tr>
+                <td class="perc30 center">Description</td>
+            {{#each ../edits.descriptions.main as |str|}}
+                {{#if (eq @index 0)}}
+                        <td class="center"><textarea class="text-change" data-path="{{../root_path}}descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                        <td class="center perc10"><a class="add-line" data-path="{{../root_path}}descriptions.main" title="Add new paragraph."><i class="fas fa-plus"/></a></td>
+                    </tr>
+                {{else}}
+                    <tr>
+                        <td></td>
+                        <td><textarea class="text-change" data-path="{{../root_path}}descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                        <td class="perc10"></td>
+                    </tr>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+    {{/each}}
+    </table>
+</section>
