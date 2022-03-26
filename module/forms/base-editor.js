@@ -1,5 +1,5 @@
 export default class BaseEditor extends FormApplication {
-    constructor(editor_type, path, key) {
+    constructor(editor_type, path) {
         super();
         this.addr        = utils.tools.path.split(path);
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
@@ -82,6 +82,7 @@ export default class BaseEditor extends FormApplication {
     _on_save_changes(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
+        console.log('DC : base-editor._on_save_changes : ', this.addr);
         utils.tools.path.set(utils.game_data, `${this.addr.root}.${this.addr.key}`, this.edits);
         utils.gm.save_system();
         this.close();
