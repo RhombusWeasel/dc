@@ -70,6 +70,7 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.path.set(this.edits, el.dataset.path, el.value);
+        console.log('DC : base-editor._on_text_change : ', el.dataset.path);
         document.getElementById(`${this.uuid}-${el.dataset.path}`).innerText = el.value;
     }
 
