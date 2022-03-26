@@ -21,14 +21,14 @@
                     {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
                     {{#each ../template.races as |variant|}}
                         {{#if (eq @../key variant.bloodline)}}
-                            {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=variant key=@key}}
+                            {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=variant}}
                         {{/if}}
                     {{/each}}
                 {{/ifCond}}
             {{/each}}
             {{#each template.races as |race|}}
                 {{#if (eq race.playable false)}}
-                    {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race key=@key}}
+                    {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
                 {{/if}}
             {{/each}}
             </table>
