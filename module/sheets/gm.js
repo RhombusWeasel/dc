@@ -9,7 +9,7 @@ export default class GMSheet extends HeroSheet {
             width: 400,
             height: 800,
             tabs: [
-                {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "system"},
+                {navSelector: ".sheet-tabs",  contentSelector: ".sheet-body",  initial: "system"},
                 {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
             ]
         });

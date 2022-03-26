@@ -5,7 +5,7 @@ export default class HeroSheet extends ActorSheet {
     let races = utils.game_data.races;
     let tabs = [
       {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},
-      {navSelector: ".race-tabs", contentSelector: ".race-body", initial: "human"},
+      {navSelector: ".race-tabs",  contentSelector: ".race-body",  initial: "human"},
     ];
     for (const key in races) {
       if (Object.hasOwnProperty.call(races, key)) {
