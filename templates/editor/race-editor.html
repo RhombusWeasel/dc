@@ -14,13 +14,13 @@
                     <td class="perc30 center">Description</td>
                 {{#each race.descriptions.main as |str|}}
                     {{#if (eq @index 0)}}
-                            <td><textarea class="text-change" data-path="descriptions.main.{{@index}}" value="{{str}}" cols="30" rows="3"/></td>
+                            <td><textarea class="text-change" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
                             <td class="perc5"><a class="add-line" data-path="descriptions.main"><i class="fas fa-plus"/></a></td>
                         </tr>
                     {{else}}
                         <tr>
                             <td></td>
-                            <td><textarea class="text-change" data-path="descriptions.main.{{@index}}" value="{{str}}" cols="30" rows="3"/></td>
+                            <td><textarea class="text-change" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
                             <td class="perc5"></td>
                         </tr>
                     {{/if}}
