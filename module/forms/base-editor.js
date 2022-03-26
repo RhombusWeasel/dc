@@ -1,12 +1,14 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type, path) {
         super();
-        this.addr        = utils.tools.path.split(path);
-        this.dict_key    = this.addr.key;
-        this.uuid        = utils.tools.uuid(4, 4, 4, 4);
-        this.editor_type = editor_type;
-        this.data_format = utils.templates[editor_type];
-        this.edits       = utils.system.new[editor_type]();
+        this.addr          = utils.tools.path.split(path);
+        this.dict_key      = this.addr.key;
+        this.uuid          = utils.tools.uuid(4, 4, 4, 4);
+        this.editor_type   = editor_type;
+        this.data_format   = utils.templates[editor_type];
+        this.mod_templates = utils.templates.modifiers;
+        this.edits         = utils.system.new[editor_type]();
+        this.mod_index     = 0;
     }
   
     static get defaultOptions() {
@@ -33,12 +35,14 @@ export default class BaseEditor extends FormApplication {
     }
   
     getData() {
-        let data         = super.getData();
-        data.title       = this.header;
-        data.uuid        = this.uuid;
-        data.template    = utils.game_data;
-        data.data_format = this.data_format;
-        data.edits       = this.edits;
+        let data           = super.getData();
+        data.title         = this.header;
+        data.uuid          = this.uuid;
+        data.template      = utils.game_data;
+        data.data_format   = this.data_format;
+        data.edits         = this.edits;
+        data.mod_templates = utils.templates.modifiers;
+        data.mod_index     = this.mod_index;
         return data;
     }
   
@@ -53,6 +57,8 @@ export default class BaseEditor extends FormApplication {
         html.find(".key-change").on('input', this._on_key_change.bind(this));
         //Numerical Inputs
         html.find(".int-change").change(this._on_int_change.bind(this));
+        //Selectors
+        html.find(".modifier-select").change(this._on_mod_select.bind(this));
         return super.activateListeners(html);
     }
 
@@ -98,6 +104,13 @@ export default class BaseEditor extends FormApplication {
         utils.tools.path.set(utils.game_data, `${this.addr.root}.${this.addr.key}`, this.edits);
         utils.gm.save_system();
         this.close();
+    }
+
+    _on_mod_select(ev) {
+        ev.preventDefault();
+        let el = ev.currentTarget;
+        this.mod_index = parseInt(el.value);
+        this.update();
     }
 
 }

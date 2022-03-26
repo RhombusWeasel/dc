@@ -56,9 +56,13 @@
     <h2>Modifiers</h2>
     <div class="center flexrow">
         <select class="modifier-select">
-            {{#each modifier_templates as |mod|}}
-                <option value="@index">{{pretty_print mod.label}}</option>
-            {{each}}
+            {{#each mod_templates as |mod|}}
+                {{#if (eq ../mod_index @index)}}
+                    <option value="@index" selected>{{pretty_print mod.label}}</option>
+                {{else}}
+                    <option value="@index">{{pretty_print mod.label}}</option>
+                {{/if}}
+            {{/each}}
         </select>
         <a class="add-modifier">Add modifier</a>
     </div>
