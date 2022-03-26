@@ -8,6 +8,10 @@ export default class GMSheet extends ActorSheet {
             classes: ["style_doc"],
             width: 400,
             height: 800,
+            tabs: [
+                {navSelector: ".gm-tabs",     contentSelector: ".gm-body",     initial: "system"},
+                {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
+            ],
         });
     }
 
