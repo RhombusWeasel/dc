@@ -13,7 +13,7 @@ export default class GMSheet extends HeroSheet {
 
     get tabs() {
         return [
-            {navSelector: ".sheet-tabs",  contentSelector: ".sheet-body",  initial: "system"},
+            {navSelector: ".gm-tabs",     contentSelector: ".gm-body",     initial: "system"},
             {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
         ]
     }
