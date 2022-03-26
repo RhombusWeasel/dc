@@ -1,5 +1,5 @@
 <form>
-    <h1 class="center">GM Screen</h1>
+    <h2 class="center">GM Screen</h2>
     <nav class="sheet-tabs tabs" data-group="GM">
         <a data-tab="system">System</a>
         <a data-tab="notes">Notes</a>
@@ -7,7 +7,7 @@
     <h2></h2>
     <section class="sheet-body">
         <div class="tab system" data-group="GM" data-tab="system">
-            {{> "systems/dc/templates/tabs/system-editor.hbs" this}}
+            {{> "systems/dc/templates/tabs/gm/system-editor.hbs" this}}
         </div>
         <div class="tab notes" data-group="GM" data-tab="notes">
             <textarea class="textbox" name="data.notes" id="notes" cols="30" rows="30">{{data.data.notes}}</textarea>

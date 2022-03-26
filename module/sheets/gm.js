@@ -22,7 +22,7 @@ export default class GMSheet extends HeroSheet {
   
     /** @override */
     getData() {
-        const data = super.getData();
+        const data    = super.getData();
         data.template = utils.game_data;
         return data;
     }

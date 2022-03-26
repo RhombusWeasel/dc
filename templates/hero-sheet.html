@@ -1,7 +1,7 @@
 <form>
     <!-- Show race select page for new characters -->
     {{#if (eq data.data.race 'None')}}
-        {{> "systems/dc/templates/tabs/race-select.hbs" this}}
+        {{> "systems/dc/templates/tabs/hero/race-select.hbs" this}}
     {{else}}
     <!-- Show class select for new characters -->
         {{#if (eq data.data.class 'None')}}
@@ -15,7 +15,7 @@
     <h2></h2>
     <section class="sheet-body scroller trait_scroller border">
         <div class="tab core" data-group="primary" data-tab="core">
-            {{> "systems/dc/templates/tabs/core.hbs"}}
+            {{> "systems/dc/templates/tabs/hero/core.hbs"}}
         </div>
         <div class="tab notes" data-group="primary" data-tab="notes">
             <textarea class="textbox" name="data.notes" id="notes" cols="30" rows="30">{{data.data.notes}}</textarea>

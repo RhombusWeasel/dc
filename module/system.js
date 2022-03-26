@@ -43,13 +43,14 @@ function register_settings() {
 
 async function preload_handlebars_templates() {
     const template_paths = [
-        //Entity Sheets
+        //Entity Sheets - Shared
         'systems/dc/templates/shared/race-display.hbs',
         'systems/dc/templates/shared/stat-block.hbs',
-        'systems/dc/templates/tabs/core.hbs',
-        'systems/dc/templates/tabs/race-select.hbs',
+        //Entity Sheets - Tabs
+        'systems/dc/templates/tabs/hero/core.hbs',
+        'systems/dc/templates/tabs/hero/race-select.hbs',
         //GM Sheet
-        'systems/dc/templates/tabs/system-editor.hbs',
+        'systems/dc/templates/tabs/gm/system-editor.hbs',
         //Editor Table Rows
         'systems/dc/templates/table-rows/race-editor-tr.hbs',
     ];
