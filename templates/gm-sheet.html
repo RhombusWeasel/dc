@@ -6,12 +6,17 @@
     </nav>
     <h2></h2>
     <section class="sheet-body">
-        <h2>System Editor</h2>
         <div class="tab system" data-group="GM" data-tab="system">
+
+            <h2 class="center">System Editor</h2>
             {{> "systems/dc/templates/tabs/gm/system-editor.hbs" this}}
+            
         </div>
         <div class="tab notes" data-group="GM" data-tab="notes">
+
+            <h2 class="center">Notes</h2>
             <textarea class="textbox" name="data.notes" id="notes" cols="30" rows="30">{{data.data.notes}}</textarea>
+            
         </div>
     </section>
 </form>

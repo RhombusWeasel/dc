@@ -8,13 +8,16 @@ export default class GMSheet extends HeroSheet {
             classes: ["style_doc"],
             width: 400,
             height: 800,
-            tabs: [
-                {navSelector: ".sheet-tabs",  contentSelector: ".sheet-body",  initial: "system"},
-                {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
-            ]
         });
     }
-  
+
+    get tabs() {
+        return [
+            {navSelector: ".sheet-tabs",  contentSelector: ".sheet-body",  initial: "system"},
+            {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
+        ]
+    }
+
     /** @override */
     get template() {
         return `systems/dc/templates/${this.actor.data.type}-sheet.html`;
