@@ -44,7 +44,10 @@
             <table>
                 {{#each race.modifiers as |mod|}}
                     <tr>
-                        <td class="perc30 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
+                        <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
+                        <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description" value="{{mod.label}}"/></td>
+                        <td class="perc10 center edit-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-edit"/></a></td>
+                        <td class="perc10 center delete-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-trash"/></a></td>
                     </tr>
                 {{/each}}
             </table>

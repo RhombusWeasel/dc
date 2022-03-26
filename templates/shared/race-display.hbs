@@ -14,8 +14,8 @@
         <table>
         {{#each race.modifiers as |mod|}}
             <tr>
-                <td class="perc30 center" id="{{uuid}}-modifiers.{{@index}}.label">{{mod.label}}</td>
-                <td class="perc30 center" id="{{uuid}}-modifiers.{{@index}}.description">{{mod.description}}</td>
+                <td class="perc30 center" id="{{uuid}}-modifiers.{{@index}}.label"><p>{{mod.label}}</p></td>
+                <td class="perc30 center" id="{{uuid}}-modifiers.{{@index}}.description"><p>{{mod.description}}</p></td>
             </tr>
         {{/each}}
         </table>
