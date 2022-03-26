@@ -38,7 +38,7 @@ export default class BaseEditor extends FormApplication {
         let data           = super.getData();
         data.title         = this.header;
         data.uuid          = this.uuid;
-        data.template      = utils.game_data;
+        data.game_data     = utils.game_data;
         data.data_format   = this.data_format;
         data.edits         = this.edits;
         data.mod_templates = utils.templates.modifiers;
