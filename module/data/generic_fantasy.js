@@ -10,8 +10,9 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'stats.savvy',  type: 'dict', value: {label: 'Savvy',  value: 2, max: max_stat}},
         ],
         pools: [
-            {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 2, max: 5}},
-            {mode: 'ensure', path: 'pools.mp', type: 'dict', value: {label: 'MP', min: 0, value: 2, max: 5}},
+            {mode: 'ensure', path: 'pools.xp', type: 'dict', value: {label: 'XP', min: 0, value: 0, max: 100}},
+            {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 5, max: 5}},
+            {mode: 'ensure', path: 'pools.mp', type: 'dict', value: {label: 'MP', min: 0, value: 5, max: 5}},
         ],
         skills: [],
         spells:[],
@@ -35,6 +36,9 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'allow_variants', type: 'bool',   value: false},
             {mode: 'ensure', path: 'descriptions',   type: 'dict',   value: {main: [''], flavor: ['']}},
             {mode: 'ensure', path: 'modifiers',      type: 'array',  value: []},
+        ],
+        modifiers: [
+            {label: 'Stat Modifier', template: {mode: 'modify', action: 'add', path: 'tmp', value: 0, label: '', description: ''}}
         ],
     };
 }
@@ -102,7 +106,7 @@ function import_fantasy_system() {
                 },
                 modifiers: [
                     {mode: 'modify', action: 'add', path: 'stats.buff',  value:  1, label: 'Dwarven Constitution', description: `+1 Buff`},
-                    {mode: 'modify', action: 'add', path: 'stats.spry',  value: -1, label: 'Head in the clouds',   description: `-1 Spry`},
+                    {mode: 'modify', action: 'add', path: 'stats.spry',  value: -1, label: 'Stout Frame',          description: `-1 Spry`},
                 ],
             }),
             tunnel_dwarves: utils.system.new.race({

@@ -2,7 +2,6 @@ export default class BaseEditor extends FormApplication {
     constructor(editor_type, path) {
         super();
         this.addr        = utils.tools.path.split(path);
-        console.log('DC : base-editor.constructor : ', path, this.addr);
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
         this.editor_type = editor_type;
     }
@@ -11,7 +10,8 @@ export default class BaseEditor extends FormApplication {
         return mergeObject(super.defaultOptions, {
             classes: ['style_doc'],
             popOut: true,
-            width: 500,
+            width: 800,
+            height: 600,
             resizable: true,
         });
     }
@@ -83,7 +83,6 @@ export default class BaseEditor extends FormApplication {
     _on_save_changes(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        console.log('DC : base-editor._on_save_changes : ', this.addr);
         utils.tools.path.set(utils.game_data, `${this.addr.root}.${this.addr.key}`, this.edits);
         utils.gm.save_system();
         this.close();
