@@ -5,6 +5,7 @@ export default class BaseEditor extends FormApplication {
         this.uuid        = utils.tools.uuid(4, 4, 4, 4);
         this.editor_type = editor_type;
         this.template    = utils.templates[editor_type];
+        this.edits       = utils.system.new[editor_type]();
     }
   
     static get defaultOptions() {
@@ -36,6 +37,7 @@ export default class BaseEditor extends FormApplication {
         data.uuid        = this.uuid;
         data.template    = utils.game_data;
         data.data_format = this.template;
+        data.edits       = this.edits;
         return data;
     }
   

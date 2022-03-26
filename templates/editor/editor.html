@@ -1,0 +1,25 @@
+<form>
+    <table>
+    {{#each data_format as |value|}}
+        {{#if (eq value.type 'string')}}
+            {{#if (eq value.path 'label')}}
+                <tr>
+                    <td>{{pretty_print value.path}}</td>
+                    <td><input class="key-change" type="text" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td>{{pretty_print value.path}}</td>
+                    <td><input class="text-change" type="text" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                </tr>
+            {{/if}}
+        {{/if}}
+        {{#if (eq value.type 'int')}}
+            <tr>
+                <td>{{pretty_print value.path}}</td>
+                <td><input class="text-change" type="number" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+            </tr>
+        {{/if}}
+    {{/each}}
+    </table>
+</form>

@@ -106,6 +106,10 @@ function load_handlebars_helpers() {
         }
     });
 
+    Handlebars.registerHelper('pretty_print', function (str, options) {
+        return new Handlebars.SafeString(utils.tools.key_to_label(str));
+    });
+
     Handlebars.registerHelper('get_pips', function (stat, race, value, max, options) {
         let race_mod = race?.stat_bonuses?.[stat] ? race.stat_bonuses[stat] : 0;
         value += race_mod;
