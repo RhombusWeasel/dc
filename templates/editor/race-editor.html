@@ -40,12 +40,11 @@
                     <td class="perc5"></td>
                 </tr>
             </table>
-            <h2 class="center">Stat Bonuses</h2>
+            <h2 class="center">Racial Bonuses</h2>
             <table>
-                {{#each stats as |stat|}}
+                {{#each race.modifiers as |mod|}}
                     <tr>
-                        <td class="perc30 center">{{stat.label}}</td>
-                        <td><input class="int-change" type="number" data-path="stat_bonuses.{{@key}}" value="{{lookup ../race.stat_bonuses @key}}"/></td>
+                        <td class="perc30 center">{{mod.label}}</td>
                     </tr>
                 {{/each}}
             </table>
