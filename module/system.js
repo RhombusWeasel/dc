@@ -51,6 +51,8 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/tabs/hero/race-select.hbs',
         //GM Sheet
         'systems/dc/templates/tabs/gm/system-editor.hbs',
+        //Editor
+        'systems/dc/templates/editor/shared/editor-data.hbs',
         //Editor Table Rows
         'systems/dc/templates/table-rows/race-editor-tr.hbs',
     ];

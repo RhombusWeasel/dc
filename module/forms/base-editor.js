@@ -43,6 +43,7 @@ export default class BaseEditor extends FormApplication {
         data.edits         = this.edits;
         data.mod_templates = utils.templates.modifiers;
         data.mod_index     = this.mod_index;
+        data.mod_template  = utils.templates.modifiers[this.mod_index].template;
         return data;
     }
   
