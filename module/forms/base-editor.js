@@ -111,8 +111,6 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         this.mod_index = parseInt(el.value);
-        console.log(el.value);
-        console.log(this.mod_index);
         this.getData();
     }
 
