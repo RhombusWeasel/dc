@@ -9,7 +9,7 @@ export default class BaseEditor extends FormApplication {
             editor_type   : editor_type,
             data_format   : utils.templates[editor_type],
             mod_templates : utils.templates.modifiers,
-            edits         : utils.system.new[editor_type](),
+            edits         : utils.system.new[editor_type]({}),
             mod_index     : 0,
             tmp_mod       : utils.system.new.modifier(0, {}),
         };
@@ -47,7 +47,7 @@ export default class BaseEditor extends FormApplication {
         data.edits         = this.dc.edits;
         data.mod_templates = utils.templates.modifiers;
         data.mod_index     = this.dc.mod_index;
-        data.mod_template  = utils.templates.modifiers[this.dc.mod_index].template;
+        data.mod_format    = utils.templates.modifiers[this.dc.mod_index].template;
         data.tmp_mod       = this.dc.tmp_mod;
         return data;
     }
