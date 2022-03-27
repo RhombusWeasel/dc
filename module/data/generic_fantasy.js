@@ -18,6 +18,8 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'pools.hp', type: 'dict', value: {label: 'HP', min: 0, value: 5, max: 5}},
             {mode: 'ensure', path: 'pools.mp', type: 'dict', value: {label: 'MP', min: 0, value: 5, max: 5}},
         ],
+        skills: [],
+        spells: [],
         entity: [
             {mode: 'ensure', path: 'race',              type: 'string', value: 'None'},
             {mode: 'ensure', path: 'bloodline',         type: 'string', value: 'None'},
