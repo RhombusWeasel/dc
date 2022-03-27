@@ -1,9 +1,10 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type, path) {
         super();
+        let addr = utils.tools.path.split(path);
         this.dc = {
-            addr          : utils.tools.path.split(path),
-            dict_key      : this.addr.key,
+            addr          : addr,
+            dict_key      : addr.key,
             uuid          : utils.tools.uuid(4, 4, 4, 4),
             editor_type   : editor_type,
             data_format   : utils.templates[editor_type],
