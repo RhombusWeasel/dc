@@ -95,19 +95,6 @@ function import_generic_templates() {
 
 function import_fantasy_system() {
     return {
-        race_template: {
-            label: '',
-            stat_bonuses: {},
-            bonus_feats: 0,
-            descriptions: {
-                main: [],
-                flavor: [],
-            },
-            rules: [
-                {label: '', text: '', effects: []},
-            ],
-            playable: false,
-        },
         races: {
             human: utils.system.new.race({
                 label:          'Human',
@@ -298,5 +285,8 @@ function import_fantasy_system() {
                 ],
             }),
         },
+        classes: {},
+        skills: {},
+        spells: {},
     };
 }
