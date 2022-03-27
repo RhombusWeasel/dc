@@ -1,3 +1,7 @@
+function basic_data() {
+
+}
+
 function import_generic_templates() {
     let max_stat = 5
     return {
@@ -15,17 +19,18 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'pools.mp', type: 'dict', value: {label: 'MP', min: 0, value: 5, max: 5}},
         ],
         entity: [
-            {mode: 'ensure', path: 'race',           type: 'string', value: 'None'},
-            {mode: 'ensure', path: 'bloodline',      type: 'string', value: 'None'},
-            {mode: 'ensure', path: 'stat_points',    type: 'int',    value: 0},
-            {mode: 'ensure', path: 'ability_points', type: 'int',    value: 0},
-            {mode: 'ensure', path: 'skill_points',   type: 'int',    value: 0},
-            {mode: 'ensure', path: 'spell_points',   type: 'int',    value: 0},
-            {mode: 'ensure', path: 'pools',          type: 'dict',   value: {}},
-            {mode: 'ensure', path: 'stats',          type: 'dict',   value: {}},
-            {mode: 'ensure', path: 'equipment',      type: 'dict',   value: {}},
-            {mode: 'ensure', path: 'inventory',      type: 'dict',   value: {}},
-            {mode: 'ensure', path: 'skills',         type: 'dict',   value: {}},
+            {mode: 'ensure', path: 'race',              type: 'string', value: 'None'},
+            {mode: 'ensure', path: 'bloodline',         type: 'string', value: 'None'},
+            {mode: 'ensure', path: 'stat_points',       type: 'int',    value: 0},
+            {mode: 'ensure', path: 'ability_points',    type: 'int',    value: 0},
+            {mode: 'ensure', path: 'skill_points',      type: 'int',    value: 0},
+            {mode: 'ensure', path: 'spell_points',      type: 'int',    value: 0},
+            {mode: 'ensure', path: 'attacks_per_round', type: 'int',    value: 0},
+            {mode: 'ensure', path: 'pools',             type: 'dict',   value: {}},
+            {mode: 'ensure', path: 'stats',             type: 'dict',   value: {}},
+            {mode: 'ensure', path: 'equipment',         type: 'dict',   value: {}},
+            {mode: 'ensure', path: 'inventory',         type: 'dict',   value: {}},
+            {mode: 'ensure', path: 'skills',            type: 'dict',   value: {}},
         ],
         race: [
             {mode: 'ensure', path: 'label',          type: 'string', value: 'New Race'},
@@ -59,9 +64,31 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'level',          type: 'int',    value: 0},
         ],
         modifiers: [
-            {label: 'Stat Modifier',  template: {mode: 'modify', action: 'add', path: 'stats.tmp',  value: 0, label: '', description: ''}},
-            {label: 'Skill Modifier', template: {mode: 'modify', action: 'add', path: 'skills.tmp', value: 0, label: '', description: ''}},
-            {label: 'Create Pool',    template: {mode: 'ensure', path: 'pools.tmp', type: 'dict', value: {label: 'New Pool', min: 0, value: 5, max: 5}},},
+            {label: 'Stat Modifier',  template: [
+                {mode: 'ensure', path: 'mode',         type: 'string', value: 'modify', lock: true},
+                {mode: 'ensure', path: 'action',       type: 'string', value: 'add'},
+                {mode: 'ensure', path: 'path',         type: 'string', value: 'stats.butch'},
+                {mode: 'ensure', path: 'label',        type: 'string', value: 'New Stat Mod'},
+                {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+                {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
+            ]},
+            {label: 'Skill Modifier', template: [
+                {mode: 'ensure', path: 'mode',         type: 'string', value: 'modify', lock: true},
+                {mode: 'ensure', path: 'action',       type: 'string', value: 'add'},
+                {mode: 'ensure', path: 'path',         type: 'string', value: 'skills.observation'},
+                {mode: 'ensure', path: 'label',        type: 'string', value: 'New Skill Mod'},
+                {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+                {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
+            ]},
+            {label: 'Create Pool',    template: [
+                {mode: 'ensure', path: 'mode',         type: 'string', value: 'ensure', lock: true},
+                {mode: 'ensure', path: 'path',         type: 'string', value: 'skills.observation'},
+                {mode: 'ensure', path: 'label',        type: 'string', value: 'New Resource Pool'},
+                {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+                {mode: 'ensure', path: 'min',          type: 'int',    value: 0},
+                {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
+                {mode: 'ensure', path: 'max',          type: 'int',    value: 0},
+            ]},
         ],
     };
 }
