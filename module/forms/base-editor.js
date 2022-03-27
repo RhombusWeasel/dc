@@ -1,7 +1,7 @@
 export default class BaseEditor extends FormApplication {
-    constructor(editor_type, path) {
+    constructor(editor_type, data) {
         super();
-        let addr = utils.tools.path.split(path);
+        let addr = utils.tools.path.split(data.path);
         this.dc = {
             addr          : addr,
             dict_key      : addr.key,
@@ -9,10 +9,13 @@ export default class BaseEditor extends FormApplication {
             editor_type   : editor_type,
             data_format   : utils.templates[editor_type],
             mod_templates : utils.templates.modifiers,
-            edits         : utils.system.new[editor_type]({}),
+            edits         : utils.system.new[editor_type](),
             mod_index     : 0,
             tmp_mod       : utils.system.new.modifier(0, {}),
         };
+        for (const key in data) {
+            this.dc[key] = data[key];
+        }
     }
   
     static get defaultOptions() {
