@@ -13,10 +13,10 @@
         </select>
         <a class="add-modifier">Add modifier</a>
     </div>
-    {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path="tmp_mod." data_format=mod_template}}
+    {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path="tmp_mod." data_format=mod_template edits=tmp_mod}}
     <h2 class="center">Modifiers</h2>
     <table>
-        {{#each race.modifiers as |mod|}}
+        {{#each modifiers as |mod|}}
             <tr>
                 <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
                 <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description" value="{{mod.description}}"/></td>

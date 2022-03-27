@@ -9,6 +9,7 @@ export default class BaseEditor extends FormApplication {
         this.mod_templates = utils.templates.modifiers;
         this.edits         = utils.system.new[editor_type]();
         this.mod_index     = 0;
+        this.tmp_mod       = utils.system.new.modifier(0, {});
     }
   
     static get defaultOptions() {
@@ -44,6 +45,7 @@ export default class BaseEditor extends FormApplication {
         data.mod_templates = utils.templates.modifiers;
         data.mod_index     = this.mod_index;
         data.mod_template  = utils.templates.modifiers[this.mod_index].template;
+        data.tmp_mod       = this.tmp_mod;
         return data;
     }
   
@@ -109,9 +111,11 @@ export default class BaseEditor extends FormApplication {
 
     _on_mod_select(ev) {
         ev.preventDefault();
-        let el = ev.currentTarget;
+        let el         = ev.currentTarget;
         this.mod_index = parseInt(el.value);
+        this.tmp_mod   = utils.system.new.modifier(0, {});
         this.getData();
+        this.render(true);
     }
 
 }
