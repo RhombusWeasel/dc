@@ -47,7 +47,7 @@ export default class GMSheet extends ActorSheet {
         ev.preventDefault()
         let el = ev.currentTarget;
         console.log(el.dataset.path);
-        new BaseEditor('Race', {path: el.dataset.path, bloodline: el.dataset.bloodline}).render(true);
+        new BaseEditor('race', {path: el.dataset.path, bloodline: el.dataset.bloodline}).render(true);
     }
 
     _on_delete(ev) {
