@@ -1,15 +1,17 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type, path) {
         super();
-        this.addr          = utils.tools.path.split(path);
-        this.dict_key      = this.addr.key;
-        this.uuid          = utils.tools.uuid(4, 4, 4, 4);
-        this.editor_type   = editor_type;
-        this.data_format   = utils.templates[editor_type];
-        this.mod_templates = utils.templates.modifiers;
-        this.edits         = utils.system.new[editor_type]();
-        this.mod_index     = 0;
-        this.tmp_mod       = utils.system.new.modifier(0, {});
+        this.dc = {
+            addr          : utils.tools.path.split(path),
+            dict_key      : this.addr.key,
+            uuid          : utils.tools.uuid(4, 4, 4, 4),
+            editor_type   : editor_type,
+            data_format   : utils.templates[editor_type],
+            mod_templates : utils.templates.modifiers,
+            edits         : utils.system.new[editor_type](),
+            mod_index     : 0,
+            tmp_mod       : utils.system.new.modifier(0, {}),
+        };
     }
   
     static get defaultOptions() {
@@ -37,15 +39,15 @@ export default class BaseEditor extends FormApplication {
   
     getData() {
         let data           = super.getData();
-        data.title         = this.header;
-        data.uuid          = this.uuid;
+        data.title         = this.dc.header;
+        data.uuid          = this.dc.uuid;
         data.game_data     = utils.game_data;
-        data.data_format   = this.data_format;
-        data.edits         = this.edits;
+        data.data_format   = this.dc.data_format;
+        data.edits         = this.dc.edits;
         data.mod_templates = utils.templates.modifiers;
-        data.mod_index     = this.mod_index;
-        data.mod_template  = utils.templates.modifiers[this.mod_index].template;
-        data.tmp_mod       = this.tmp_mod;
+        data.mod_index     = this.dc.mod_index;
+        data.mod_template  = utils.templates.modifiers[this.dc.mod_index].template;
+        data.tmp_mod       = this.dc.tmp_mod;
         return data;
     }
   
@@ -68,43 +70,43 @@ export default class BaseEditor extends FormApplication {
     _on_add_line(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        let list = utils.tools.path.get(this.edits, el.dataset.path);
+        let list = utils.tools.path.get(this.dc.edits, el.dataset.path);
         list.push('');
-        utils.tools.path.set(this.edits, el.dataset.path, list);
+        utils.tools.path.set(this.dc.edits, el.dataset.path, list);
         this.render(true);
     }
 
     _on_toggle_value(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(this.edits, el.dataset.path, !utils.tools.path.get(this.edits, el.dataset.path));
+        utils.tools.path.set(this.dc.edits, el.dataset.path, !utils.tools.path.get(this.dc.edits, el.dataset.path));
         this.render(true);
     }
 
     _on_text_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(this.edits, el.dataset.path, el.value);
+        utils.tools.path.set(this.dc.edits, el.dataset.path, el.value);
     }
 
     _on_key_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(this.edits, el.dataset.path, el.value);
+        utils.tools.path.set(this.dc.edits, el.dataset.path, el.value);
         this.dict_key = utils.tools.safe_key(el.value);
     }
 
     _on_int_change(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(this.edits, el.dataset.path, parseInt(el.value));
+        utils.tools.path.set(this.dc.edits, el.dataset.path, parseInt(el.value));
         this.render(true);
     }
 
     _on_save_changes(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(utils.game_data, `${this.addr.root}.${this.addr.key}`, this.edits);
+        utils.tools.path.set(utils.game_data, `${this.dc.addr.root}.${this.dc.addr.key}`, this.dc.edits);
         utils.gm.save_system();
         this.close();
     }
@@ -112,8 +114,8 @@ export default class BaseEditor extends FormApplication {
     _on_mod_select(ev) {
         ev.preventDefault();
         let el         = ev.currentTarget;
-        this.mod_index = parseInt(el.value);
-        this.tmp_mod   = utils.system.new.modifier(0, {});
+        this.dc.mod_index = parseInt(el.value);
+        this.dc.tmp_mod   = utils.system.new.modifier(0, {});
         this.getData();
         this.render(true);
     }
