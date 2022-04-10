@@ -58,6 +58,7 @@ export default class BaseEditor extends FormApplication {
         //Bool Toggles & Buttons
         html.find(".add-line").click(this._on_add_line.bind(this));
         html.find(".bool-change").click(this._on_toggle_value.bind(this));
+        html.find(".add-modifier").click(this._on_add_modifier.bind(this));
 
         html.find(".save-changes").click(this._on_save_changes.bind(this));
         //Text Inputs
@@ -121,6 +122,12 @@ export default class BaseEditor extends FormApplication {
         this.dc.tmp_mod   = utils.system.new.modifier(this.dc.mod_index, {});
         this.getData();
         this.render(true);
+    }
+
+    _on_add_modifier(ev) {
+        ev.preventDefault();
+        let el = ev.currentTarget;
+        console.log('base_editor.js : _on_add_modifier : ', this.dc.tmp_mod);
     }
 
 }
