@@ -21,24 +21,19 @@
             <h2 class="center">Variants</h2>
             <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
                 {{#each ../races as |variant|}}
-                    {{#if (eq variant.bloodline @../key)}}
+                    {{#ifCond (eq variant.bloodline @../key) '&&' (eq variant.allow_variants false)}}
                         <a data-tab="{{@key}}">{{variant.label}}</a>
-                    {{/if}}
+                    {{/ifCond}}
                 {{/each}}
             </nav>
             <h2></h2>
             <section class="{{@key}}-body">
                 {{#each ../races as |variant|}}
-                    {{#if (eq variant.bloodline @../key)}}
+                    {{#ifCond (eq variant.bloodline @../key) '&&' (eq variant.allow_variants false)}}
                         <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
-                            <h2 class="center">{{race.label}}</h2>
-                            {{#each variant.descriptions.main as |line|}}
-                                <p class="center">{{line}}</p>
-                            {{/each}}
-                            <h2></h2>
                             {{> "systems/dc/templates/shared/race-display.hbs" stats=../../stats race=variant}}
                         </div>
-                    {{/if}}
+                    {{/ifCond}}
                 {{/each}}
             </section>
             {{else}}

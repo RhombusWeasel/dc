@@ -1,5 +1,16 @@
 <form>
     {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path='' data_format=data_format edits=edits}}
+    <h2 class="center">Modifiers</h2>
+    <table>
+        {{#each edits.modifiers as |mod|}}
+            <tr>
+                <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
+                <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description" value="{{mod.description}}"/></td>
+                <td class="perc10 center edit-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-edit"/></a></td>
+                <td class="perc10 center delete-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-trash"/></a></td>
+            </tr>
+        {{/each}}
+    </table>
     <h2 class="center">Modifier Editor</h2>
     <div class="center flexrow">
         <select class="modifier-select">
@@ -14,15 +25,4 @@
         <a class="add-modifier">Add modifier</a>
     </div>
     {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path="tmp_mod." data_format=mod_format edits=tmp_mod}}
-    <h2 class="center">Modifiers</h2>
-    <table>
-        {{#each modifiers as |mod|}}
-            <tr>
-                <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
-                <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description" value="{{mod.description}}"/></td>
-                <td class="perc10 center edit-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-edit"/></a></td>
-                <td class="perc10 center delete-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-trash"/></a></td>
-            </tr>
-        {{/each}}
-    </table>
 </form>

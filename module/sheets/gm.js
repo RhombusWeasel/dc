@@ -40,14 +40,14 @@ export default class GMSheet extends ActorSheet {
     _on_create_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        new RaceEditor(el.dataset.header, el.dataset.path, el.dataset.bloodline).render(true);
+        new BaseEditor('race', {path: el.dataset.path, template_data: {bloodline: el.dataset.bloodline}}).render(true);
     }
 
     _on_edit_race(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
         console.log(el.dataset.path);
-        new BaseEditor('race', {path: el.dataset.path, bloodline: el.dataset.bloodline}).render(true);
+        new BaseEditor('race', {path: el.dataset.path, template_data: {bloodline: el.dataset.bloodline}}).render(true);
     }
 
     _on_delete(ev) {

@@ -1,7 +1,8 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type, data) {
         super();
-        let addr = utils.tools.path.split(data.path);
+        let addr       = utils.tools.path.split(data.path);
+        this.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'));
         this.dc = {
             addr          : addr,
             dict_key      : addr.key,
@@ -9,13 +10,10 @@ export default class BaseEditor extends FormApplication {
             editor_type   : editor_type,
             data_format   : utils.templates[editor_type],
             mod_templates : utils.templates.modifiers,
-            edits         : utils.system.new[editor_type](),
+            edits         : utils.tools.path.get(this.game_data, data.path) ? utils.tools.path.get(this.game_data, data.path) : utils.system.new.template(editor_type, data.template_data),
             mod_index     : 0,
             tmp_mod       : utils.system.new.modifier(0, {}),
         };
-        for (const key in data) {
-            this.dc[key] = data[key];
-        }
     }
   
     static get defaultOptions() {
@@ -46,6 +44,7 @@ export default class BaseEditor extends FormApplication {
         data.title         = this.dc.header;
         data.uuid          = this.dc.uuid;
         data.game_data     = utils.game_data;
+        data.template_data = utils.templates;
         data.data_format   = this.dc.data_format;
         data.edits         = this.dc.edits;
         data.mod_templates = utils.templates.modifiers;
@@ -117,9 +116,9 @@ export default class BaseEditor extends FormApplication {
 
     _on_mod_select(ev) {
         ev.preventDefault();
-        let el         = ev.currentTarget;
+        let el            = ev.currentTarget;
         this.dc.mod_index = parseInt(el.value);
-        this.dc.tmp_mod   = utils.system.new.modifier(0, {});
+        this.dc.tmp_mod   = utils.system.new.modifier(this.dc.mod_index, {});
         this.getData();
         this.render(true);
     }
