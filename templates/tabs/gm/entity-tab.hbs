@@ -1,0 +1,75 @@
+<section>
+    <nav class="entity-tabs tabs" data-group="entity-main">
+        <a data-tab="stats">Stats</a>
+        <a data-tab="pools">Pools</a>
+        <a data-tab="skills">Skills</a>
+    </nav>
+    <h1></h1>
+    <section class="entity-body">
+        <div class="tab stats"  data-group="entity-main" data-tab="stats">
+            <h2 class="center">Stats</h2>
+            <table>
+                <tr>
+                    <th class="center">Name</th>
+                    <th class="center">Value</th>
+                    <th class="center">Max</th>
+                    <th class="center">Edit</th>
+                    <th class="center">Delete</th>
+                </tr>
+                {{#each template.stats as |stat|}}
+                <tr>
+                    <td class="center">{{stat.label}}</td>
+                    <td class="center">{{stat.value}}</td>
+                    <td class="center">{{stat.max}}</td>
+                    <td class="perc10 center edit"   data-path="stats.{{@key}}" data-type="stat" data-hide_modifiers="true"><a><i class="fas fa-edit"/></a></td>
+                    <td class="perc10 center delete" data-path="stats.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="tab pools"  data-group="entity-main" data-tab="pools">
+            <h2 class="center">Pools</h2>
+            <table>
+                <tr>
+                    <th class="center">Name</th>
+                    <th class="center">Value</th>
+                    <th class="center">Max</th>
+                    <th class="center">Edit</th>
+                    <th class="center">Delete</th>
+                </tr>
+                {{#each template.pools as |pool|}}
+                <tr>
+                    <td class="center">{{pool.label}}</td>
+                    <td class="center">{{pool.value}}</td>
+                    <td class="center">{{pool.max}}</td>
+                    <td class="perc10 center edit"   data-path="pools.{{@key}}" data-type="pool"><a><i class="fas fa-edit"/></a></td>
+                    <td class="perc10 center delete" data-path="pools.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="tab skills" data-group="entity-main" data-tab="skills">
+            <h2 class="center">Skills</h2>
+            <table>
+                <tr>
+                    <th class="center">Name</th>
+                    <th class="center">Trait</th>
+                    <th class="center">Value</th>
+                    <th class="center">Max</th>
+                    <th class="center">Edit</th>
+                    <th class="center">Delete</th>
+                </tr>
+                {{#each template.skills as |skill|}}
+                <tr>
+                    <td class="center">{{skill.label}}</td>
+                    <td class="center">{{skill.stat}}</td>
+                    <td class="center">{{skill.value}}</td>
+                    <td class="center">{{skill.max}}</td>
+                    <td class="perc10 center edit"   data-path="skills.{{@key}}" data-type="skill" data-hide_modifiers="true"><a><i class="fas fa-edit"/></a></td>
+                    <td class="perc10 center delete" data-path="skills.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,37 @@
+<section>
+    <div class="center"><a class="create" data-path="races.tmp_data" data-type="race">Add New Race</a></div>
+    <h2></h2>
+    <h3 class="center">Playable Races</h3>
+    <table>
+        <tr>
+            <th class="center">Add</th>
+            <th class="center">Race/Bloodline</th>
+            <th class="center">Edit</th>
+            <th class="center">Delete</th>
+        </tr>
+    {{#each template.races as |race|}}
+        {{#ifCond (eq race.playable true) '&&' (eq race.bloodline 'None')}}
+            {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
+            {{#each ../template.races as |variant|}}
+                {{#ifCond (eq @../key variant.bloodline) '&&' (eq variant.playable true)}}
+                    {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=variant}}
+                {{/ifCond}}
+            {{/each}}
+        {{/ifCond}}
+    {{/each}}
+    </table>
+    <h3 class="center">Monster Races</h3>
+    <table>
+        <tr>
+            <th class="center">Add</th>
+            <th class="center">Race/Bloodline</th>
+            <th class="center">Edit</th>
+            <th class="center">Delete</th>
+        </tr>
+    {{#each template.races as |race|}}
+        {{#if (eq race.playable false)}}
+            {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
+        {{/if}}
+    {{/each}}
+    </table>
+</section>

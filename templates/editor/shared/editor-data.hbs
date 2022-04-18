@@ -5,21 +5,24 @@
             {{#if (eq value.path 'label')}}
                 <tr>
                     <td class="center">{{pretty_print value.path}}</td>
-                    <td class="center"><input class="key-change" type="text" data-path="{{../root_path}}{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="center"><input class="key-change" type="text" data-target="{{../root_path}}" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
                     <td class="perc10"></td>
                 </tr>
             {{else}}
+                {{#if (eq value.path 'type')}}
+                {{else}}
                 <tr>
                     <td class="center">{{pretty_print value.path}}</td>
-                    <td class="center"><input class="text-change" type="text" data-path="{{../root_path}}{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                    <td class="center"><input class="text-change" type="text" data-target="{{../root_path}}" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
                     <td class="perc10"></td>
                 </tr>
+                {{/if}}
             {{/if}}
         {{/if}}
         {{#if (eq value.type 'int')}}
             <tr>
                 <td class="center">{{pretty_print value.path}}</td>
-                <td class="center"><input class="text-change" type="number" data-path="{{../root_path}}{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
+                <td class="center"><input class="text-change" type="number" data-target="{{../root_path}}" data-path="{{value.path}}" value="{{lookup ../edits value.path}}"/></td>
                 <td class="perc10"></td>
             </tr>
         {{/if}}
@@ -27,9 +30,9 @@
             <tr>
                 <td class="center">{{pretty_print value.path}}</td>
                 {{#if (eq (lookup ../edits value.path) true)}}
-                    <td class="center"><a class="bool-change" data-path="{{../root_path}}{{value.path}}"><i class="fas fa-check"></i></a></td>
+                    <td class="center"><a class="bool-change" data-target="{{../root_path}}" data-path="{{value.path}}"><i class="fas fa-check"></i></a></td>
                 {{else}}
-                    <td class="center"><a class="bool-change" data-path="{{../root_path}}{{value.path}}"><i class="fas fa-times"></i></a></td>
+                    <td class="center"><a class="bool-change" data-target="{{../root_path}}" data-path="{{value.path}}"><i class="fas fa-times"></i></a></td>
                 {{/if}}
                 <td class="perc10"></td>
             </tr>
@@ -39,23 +42,23 @@
                 <td class="perc30 center">Description</td>
             {{#each ../edits.descriptions.main as |str|}}
                 {{#if (eq @index 0)}}
-                        <td class="center"><textarea class="text-change" data-path="{{../root_path}}descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
-                        <td class="center perc10"><a class="add-line" data-path="{{../root_path}}descriptions.main" title="Add new paragraph."><i class="fas fa-plus"/></a></td>
+                        <td class="center"><textarea class="text-change" data-target="{{../../root_path}}" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                        <td class="center perc10"><a class="add-line" data-target="{{../../root_path}}" data-path="descriptions.main" title="Add new paragraph."><i class="fas fa-plus"/></a></td>
                     </tr>
                 {{else}}
                     <tr>
                         <td></td>
-                        <td><textarea class="text-change" data-path="{{../root_path}}descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
-                        <td class="perc10"></td>
+                        <td><textarea class="text-change" data-target="{{../../root_path}}" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                        <td class="center perc10"><a class="remove-line" data-index="{{@index}}" data-target="{{../../root_path}}" data-path="descriptions.main" title="Remove paragraph."><i class="fas fa-trash"/></a></td>
                     </tr>
                 {{/if}}
             {{/each}}
         {{/if}}
         {{#if (eq value.type 'select')}}
             <tr>
-                <td class="center">Select Resource</td>
+                <td class="center">{{pretty_print value.path}}</td>
                 <td>
-                    <select class="dropdown-change" data-path="{{../root_path}}{{value.path}}">
+                    <select class="dropdown-change" data-target="{{../root_path}}" data-path="{{value.path}}">
                     {{#each (lookup ../game_data value.select) as |entry|}}
                         <option value="{{value.select}}.{{@key}}">{{entry.label}}</option>
                     {{/each}}

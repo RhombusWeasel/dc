@@ -10,8 +10,9 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
             {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
             {mode: 'ensure', path: 'use_cost',     type: 'dict',   value: {path: 'pools.ap.value', amount: 0}},
-            {mode: 'ensure', path: 'trigger',      type: 'string', value: 'always'},
-            {mode: 'ensure', path: 'expire_when',  type: 'string', value: 'never'},
+            {mode: 'ensure', path: 'target',       type: 'select', value: 'targets.self',    select: 'targets',  action: 'add'},
+            {mode: 'ensure', path: 'trigger',      type: 'select', value: 'triggers.always', select: 'triggers', action: 'add'},
+            {mode: 'ensure', path: 'expire_when',  type: 'select', value: 'triggers.never',  select: 'triggers', action: 'add'},
             {mode: 'ensure', path: 'expired',      type: 'bool',   value: false},
             {mode: 'ensure', path: 'requirements', type: 'array',  value: []},
             {mode: 'ensure', path: 'modifiers',    type: 'array',  value: []},
@@ -19,17 +20,22 @@ function import_generic_templates() {
         class: [
             {mode: 'ensure', path: 'label',          type: 'string', value: 'New Class'},
             {mode: 'ensure', path: 'image',          type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'sub_field',      type: 'string', value: 'None'},
             {mode: 'ensure', path: 'descriptions',   type: 'dict',   value: {main: [''], flavor: ['']}},
             {mode: 'ensure', path: 'level',          type: 'int',    value: 0},
+            {mode: 'ensure', path: 'playable',       type: 'bool',   value: true},
+            {mode: 'ensure', path: 'allow_variants', type: 'bool',   value: false},
             {mode: 'ensure', path: 'requirements',   type: 'array',  value: []},
             {mode: 'ensure', path: 'modifiers',      type: 'array',  value: []},
         ],
         pool: [
-            {mode: 'ensure', path: 'label', type: 'string', value: 'New Pool'},
-            {mode: 'ensure', path: 'image', type: 'string', value: 'icons/svg/cowled.svg'},
-            {mode: 'ensure', path: 'min',   type: 'int',    value: 0},
-            {mode: 'ensure', path: 'value', type: 'int',    value: 0},
-            {mode: 'ensure', path: 'max',   type: 'int',    value: max_stat},
+            {mode: 'ensure', path: 'label',        type: 'string', value: 'New Pool'},
+            {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'min',          type: 'int',    value: 0},
+            {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
+            {mode: 'ensure', path: 'max',          type: 'int',    value: max_stat},
+            {mode: 'ensure', path: 'requirements', type: 'array',  value: []},
+            {mode: 'ensure', path: 'modifiers',    type: 'array',  value: []},
         ],
         race: [
             {mode: 'ensure', path: 'label',          type: 'string', value: 'New Race'},
@@ -57,27 +63,28 @@ function import_generic_templates() {
             {mode: 'ensure', path: 'max',   type: 'int',    value: max_stat},
         ],
         triggers: [
-            {mode: 'ensure', path: 'triggers.always',            type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.combat_start',      type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.combat_end',        type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.round_start',       type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.round_end',         type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.turn_start',        type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.turn_end',          type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_attack',         type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_attack_hit',     type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_attack_miss',    type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_defend',         type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_defend_success', type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_defend_fail',    type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_cast',           type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_deal_damage',    type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_take_damage',    type: 'array', value: []},
-            {mode: 'ensure', path: 'triggers.on_avoid_damage',   type: 'array', value: []},
+            {mode: 'ensure', path: 'triggers.always',            type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.never',             type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.combat_start',      type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.combat_end',        type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.round_start',       type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.round_end',         type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.turn_start',        type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.turn_end',          type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_attack',         type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_attack_hit',     type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_attack_miss',    type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_defend',         type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_defend_success', type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_defend_fail',    type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_cast',           type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_deal_damage',    type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_take_damage',    type: 'array', value: {}},
+            {mode: 'ensure', path: 'triggers.on_avoid_damage',   type: 'array', value: {}},
         ],
     };
     utils.templates.abilities = [
-        {mode: 'modify',  action: 'insert', path: 'triggers.on_take_damage',  type: 'dict', value: {label: 'Anger Management', requirements: [{mode: 'check', action: '>=', path: 'classes.barbarian.level', value: 1}], modifiers: [{mode: 'modify', action: 'add', path: 'pools.rage', value: 1}], image: ''}}
+        {mode: 'ensure',  path: 'triggers.on_take_damage',  type: 'dict', value: {label: 'Anger Management', requirements: [{mode: 'check', action: '>=', path: 'classes.barbarian.level', value: 1}], modifiers: [{mode: 'modify', action: 'add', path: 'pools.rage', value: 1, trigger: 'triggers.on_take_damage'}], image: ''}}
     ];
     utils.templates.pools = [
         {mode: 'ensure', path: 'pools.xp',   type: 'dict', value: utils.system.new.template('pool', {label: 'XP',   value:  0, max: 100})},
@@ -89,6 +96,12 @@ function import_generic_templates() {
     utils.templates.skills = [
         {mode: 'ensure', path: 'skills.animal_ken',  type: 'dict', value: utils.system.new.template('skill', {label: 'Animal Ken',  stat: 'savvy',  descriptions: {flavor: [''], main: ['Your ability to train or calm an animal']}})},
         {mode: 'ensure', path: 'skills.arcane_lore', type: 'dict', value: utils.system.new.template('skill', {label: 'Arcane Lore', stat: 'brainy', descriptions: {flavor: [''], main: [`How much you know about the arcane elements of the world you're in.`]}})},
+        {mode: 'ensure', path: 'skills.fitness',     type: 'dict', value: utils.system.new.template('skill', {label: 'Fitness',     stat: 'butch',  descriptions: {flavor: [''], main: ['Your ability to swim or do Track and Field type shit.']}})},
+        {mode: 'ensure', path: 'skills.intuition',   type: 'dict', value: utils.system.new.template('skill', {label: 'Intuition',   stat: 'savvy',  descriptions: {flavor: [''], main: ['Your ability to intuit the motives of another.']}})},
+        {mode: 'ensure', path: 'skills.lying',       type: 'dict', value: utils.system.new.template('skill', {label: 'Lying',       stat: 'suave',  descriptions: {flavor: [''], main: ['Your ability to hide information from another.']}})},
+        {mode: 'ensure', path: 'skills.observation', type: 'dict', value: utils.system.new.template('skill', {label: 'Observation', stat: 'savvy',  descriptions: {flavor: [''], main: ['Want to spot the things that go bump in the night before they spot you?  This is the skill for you.']}})},
+        {mode: 'ensure', path: 'skills.tumbling',    type: 'dict', value: utils.system.new.template('skill', {label: 'Tumbling',    stat: 'butch',  descriptions: {flavor: [''], main: ['Your ability to do sweet backflips and other Ninja type shit.']}})},
+        {mode: 'ensure', path: 'skills.world_lore',  type: 'dict', value: utils.system.new.template('skill', {label: 'World Lore',  stat: 'brainy', descriptions: {flavor: [''], main: [`How much you know about the history of the world you're in.`]}})},
     ];
     utils.templates.spells = [];
     utils.templates.stats = [
@@ -116,21 +129,47 @@ function import_generic_templates() {
     ];
     utils.templates.modifiers = [
         {label: 'Stat Modifier',  template: [
-            {mode: 'modify', path: 'choice',  type: 'select', value: 'stats.butch',     select: 'stats',    action: 'add'},
-            {mode: 'modify', path: 'trigger', type: 'select', value: 'triggers.always', select: 'triggers', action: 'add'},
-            {mode: 'ensure', path: 'value',   type: 'int',    value: 0},
+            {mode: 'ensure', path: 'type',         type: 'string', value: 'stat'},
+            {mode: 'ensure', path: 'label',        type: 'string', value: 'New Stat Modifier'},
+            {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'path',         type: 'select', value: 'stats.butch',     select: 'stats',    action: 'add'},
+            {mode: 'ensure', path: 'trigger',      type: 'select', value: 'triggers.always', select: 'triggers', action: 'add'},
+            {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
         ]},
         {label: 'Skill Modifier', template: [
-            {mode: 'modify', path: 'choice', type: 'select', value: 'skills.animal_ken', select: 'skills', action: 'add'},
-            {mode: 'ensure', path: 'value',  type: 'int',    value: 0},
+            {mode: 'ensure', path: 'type',         type: 'string', value: 'skill'},
+            {mode: 'ensure', path: 'label',        type: 'string', value: 'New Skill Modifier'},
+            {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'path',         type: 'select', value: 'skills.animal_ken', select: 'skills',   action: 'add'},
+            {mode: 'ensure', path: 'trigger',      type: 'select', value: 'triggers.always',   select: 'triggers', action: 'add'},
+            {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
+        ]},
+        {label: 'Modify Pool',    template: [
+            {mode: 'ensure', path: 'type',         type: 'string', value: 'modify_pool'},
+            {mode: 'ensure', path: 'label',        type: 'string', value: 'Edit Resource Pool'},
+            {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'path',         type: 'select', value: 'pools.xp', select: 'pools', action: 'add'},
+            {mode: 'ensure', path: 'trigger',      type: 'select', value: 'triggers.always',   select: 'triggers', action: 'add'},
+            {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
         ]},
         {label: 'Add Pool',    template: [
-            {mode: 'modify', path: 'choice', type: 'select', value: 'pools.hp', select: 'pools', action: 'add'},
-            {mode: 'ensure', path: 'value',  type: 'int',    value: 0},
-            {mode: 'ensure', path: 'max',    type: 'int',    value: 0},
+            {mode: 'ensure', path: 'type',         type: 'string', value: 'pool'},
+            {mode: 'ensure', path: 'label',        type: 'string', value: 'New Resource Pool'},
+            {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'path',         type: 'select', value: 'pools.hp', select: 'pools', action: 'add'},
+            {mode: 'ensure', path: 'value',        type: 'int',    value: 0},
+            {mode: 'ensure', path: 'max',          type: 'int',    value: 0},
         ]},
         {label: 'Add Ability', template: [
-            {mode: 'modify', path: 'choice', type: 'select', value: 'anger_management', select: 'abilities', action: 'add'},
+            {mode: 'ensure', path: 'type',         type: 'string', value: 'ability'},
+            {mode: 'ensure', path: 'label',        type: 'string', value: 'New Ability'},
+            {mode: 'ensure', path: 'image',        type: 'string', value: 'icons/svg/cowled.svg'},
+            {mode: 'ensure', path: 'descriptions', type: 'dict',   value: {main: [''], flavor: ['']}},
+            {mode: 'ensure', path: 'path',         type: 'select', value: 'anger_management', select: 'abilities', action: 'add'},
         ]},
     ];
     return utils.templates;
@@ -138,7 +177,22 @@ function import_generic_templates() {
 
 function import_fantasy_system() {
     return {
-        abilities: utils.tools.templates.iterate({}, utils.templates.abilities),
+        abilities:{
+            anger_management: utils.system.new.template('ability', {
+                label: 'Anger Management',
+                descriptions: {
+                    main:   ['A Barbarian can channel their inner rage and gains a RAGE pool to track this.', 'RAGE points can be spent on Barbarian class abilities, at level 1 you gain 1 RAGE every time you take damage.'],
+                    flavor: [''],
+                },
+                requirements: [
+                    {mode: 'check', action: '>=', path: 'classes.barbarian.level', value: 1}
+                ],
+                modifiers: [
+                    {mode: 'modify', action: 'add', path: 'pools.rage', value: 1, trigger: 'triggers.on_take_damage'}
+                ],
+                image: ''
+            }),
+        },
         races: {
             human: utils.system.new.template('race', {
                 label:          'Human',
@@ -166,8 +220,8 @@ function import_fantasy_system() {
                     flavor: ['']
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.brainy', value:  1, label: 'Fierce Intellect',   description: `+1 Brains`},
-                    {mode: 'modify', action: 'add', path: 'stats.savvy',  value: -1, label: 'Head in the clouds', description: `-1 Savvy`},
+                    {mode: 'modify', action: 'add', path: 'stats.brainy.value', value:  1, label: 'Fierce Intellect',   descriptions: {main: [`+1 Brains`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.savvy.value',  value: -1, label: 'Head in the clouds', descriptions: {main: [`-1 Savvy`],  flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             dwarf: utils.system.new.template('race', {
@@ -182,8 +236,8 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.buff',  value:  1, label: 'Dwarven Constitution', description: `+1 Buff`},
-                    {mode: 'modify', action: 'add', path: 'stats.spry',  value: -1, label: 'Stout Frame',          description: `-1 Spry`},
+                    {mode: 'modify', action: 'add', path: 'stats.buff.value',  value:  1, label: 'Dwarven Constitution', descriptions: {main: [`+1 Buff`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.spry.value',  value: -1, label: 'Stout Frame',          descriptions: {main: [`-1 Spry`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             tunnel_dwarves: utils.system.new.template('race', {
@@ -199,8 +253,8 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.butch',  value:  1, label: '',   description: `+1 Butch`},
-                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                    {mode: 'modify', action: 'add', path: 'stats.butch.value',  value:  1, label: '',   descriptions: {main: [`+1 Butch`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.suave.value',  value: -1, label: '',   descriptions: {main: [`-1 Suave`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             outer_dwarves: utils.system.new.template('race', {
@@ -217,8 +271,8 @@ function import_fantasy_system() {
                     flavor: [""],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.savvy',  value:  1, label: '',   description: `+1 Savvy`},
-                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                    {mode: 'modify', action: 'add', path: 'stats.savvy.value',  value:  1, label: '',   descriptions: {main: [`+1 Savvy`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.suave.value',  value: -1, label: '',   descriptions: {main: [`-1 Suave`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             elf: utils.system.new.template('race', {
@@ -234,8 +288,8 @@ function import_fantasy_system() {
                     flavor: [],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.spry',  value:  1, label: '',   description: `+1 Spry`},
-                    {mode: 'modify', action: 'add', path: 'stats.buff',  value: -1, label: '',   description: `-1 Buff`},
+                    {mode: 'modify', action: 'add', path: 'stats.spry.value',  value:  1, label: '',   descriptions: {main: [`+1 Spry`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.buff.value',  value: -1, label: '',   descriptions: {main: [`-1 Buff`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             high_elf: utils.system.new.template('race', {
@@ -250,8 +304,8 @@ function import_fantasy_system() {
                     flavor: [],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.suave',  value:  1, label: '',   description: `+1 Suave`},
-                    {mode: 'modify', action: 'add', path: 'stats.butch',  value: -1, label: '',   description: `-1 Butch`},
+                    {mode: 'modify', action: 'add', path: 'stats.suave.value',  value:  1, label: '',   descriptions: {main: [`+1 Suave`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.butch.value',  value: -1, label: '',   descriptions: {main: [`-1 Butch`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             wood_elf: utils.system.new.template('race', {
@@ -266,8 +320,8 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.savvy',  value:  1, label: '',   description: `+1 Savvy`},
-                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                    {mode: 'modify', action: 'add', path: 'stats.savvy.value',  value:  1, label: '',   descriptions: {main: [`+1 Savvy`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.suave.value',  value: -1, label: '',   descriptions: {main: [`-1 Suave`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             half_blood: utils.system.new.template('race', {
@@ -289,12 +343,6 @@ function import_fantasy_system() {
                 bloodline: 'half_blood',
                 playable: true,
                 allow_variants: false,
-                stat_bonuses: {
-                    butch:   1,
-                    buff:    1,
-                    brainy: -1,
-                    suave:  -1,
-                },
                 descriptions: { 
                     main: [
                         "Half man, half Orc.  Total badass."
@@ -302,10 +350,10 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.butch',  value:  1, label: '',   description: `+1 Butch`},
-                    {mode: 'modify', action: 'add', path: 'stats.buff',   value:  1, label: '',   description: `+1 Buff`},
-                    {mode: 'modify', action: 'add', path: 'stats.brainy', value: -1, label: '',   description: `-1 Brainy`},
-                    {mode: 'modify', action: 'add', path: 'stats.suave',  value: -1, label: '',   description: `-1 Suave`},
+                    {mode: 'modify', action: 'add', path: 'stats.butch.value',  value:  1, label: '',   descriptions: {main: [`+1 Butch`],  flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.buff.value',   value:  1, label: '',   descriptions: {main: [`+1 Buff`],   flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.brainy.value', value: -1, label: '',   descriptions: {main: [`-1 Brainy`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.suave.value',  value: -1, label: '',   descriptions: {main: [`-1 Suave`],  flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
             half_elf: utils.system.new.template('race', {
@@ -320,29 +368,33 @@ function import_fantasy_system() {
                     flavor: [''],
                 },
                 modifiers: [
-                    {mode: 'modify', action: 'add', path: 'stats.spry',  value:  1, label: '',   description: `+1 Spry`},
-                    {mode: 'modify', action: 'add', path: 'stats.buff',  value: -1, label: '',   description: `-1 Buff`},
+                    {mode: 'modify', action: 'add', path: 'stats.spry.value',  value:  1, label: '',   descriptions: {main: [`+1 Spry`], flavor: ['']}, trigger: 'triggers.always'},
+                    {mode: 'modify', action: 'add', path: 'stats.buff.value',  value: -1, label: '',   descriptions: {main: [`-1 Buff`], flavor: ['']}, trigger: 'triggers.always'},
                 ],
             }),
         },
         classes: {
             barbarian: utils.system.new.template('class', {
-                label: 'Barbarian',
-                descriptions: {
-                    main: [''],
+                label          : 'Barbarian',
+                playable       : true,
+                allow_variants : true,
+                descriptions   : {
+                    main  : [''],
                     flavor: [''],
                 },
-                requirements: [],
-                modifiers: [],
+                requirements   : [],
+                modifiers      : [],
             }),
-            cleric: utils.system.new.template('class', {
-                label: 'Cleric',
-                descriptions: {
+            paladin: utils.system.new.template('class', {
+                label          : 'Paladin',
+                playable       : true,
+                allow_variants : true,
+                descriptions   : {
                     main: [''],
                     flavor: [''],
                 },
-                requirements: [],
-                modifiers: [],
+                requirements   : [],
+                modifiers      : [],
             }),
         },
         pools: {
@@ -373,6 +425,7 @@ function import_fantasy_system() {
         },
         triggers: {
             always:          {label: 'Always',         path: 'triggers.always'},
+            never:           {label: 'Never',          path: 'triggers.never'},
             combat_start:    {label: 'Combat Start',   path: 'triggers.combat_start'},
             combat_end:      {label: 'Combat End',     path: 'triggers.combat_end'},
             round_start:     {label: 'Round Start',    path: 'triggers.round_start'},
@@ -382,6 +435,7 @@ function import_fantasy_system() {
             on_attack:       {label: 'Attack',         path: 'triggers.on_attack'},
             on_attack_hit:   {label: 'Attack Hit',     path: 'triggers.on_attack_hit'},
             on_attack_miss:  {label: 'Attack Miss',    path: 'triggers.on_attack_miss'},
+            on_kill:         {label: 'Kill Opponent',  path: 'triggers.on_kill'},
             on_defend:       {label: 'Defend',         path: 'triggers.on_defend'},
             on_defend_win:   {label: 'Defend Success', path: 'triggers.on_defend_win'},
             on_defend_lose:  {label: 'Defend Failure', path: 'triggers.on_defend_lose'},
@@ -389,6 +443,12 @@ function import_fantasy_system() {
             on_deal_damage:  {label: 'Deal Damage',    path: 'triggers.on_deal_damage'},
             on_take_damage:  {label: 'Take Damage',    path: 'triggers.on_take_damage'},
             on_avoid_damage: {label: 'Avoid Damage',   path: 'triggers.on_avoid_damage'},
+        },
+        targets: {
+            self  : {label: 'Self'},
+            ally  : {label: 'Ally'},
+            enemy : {label: 'Enemy'},
+            area  : {label: 'AoE'},
         },
     };
 }

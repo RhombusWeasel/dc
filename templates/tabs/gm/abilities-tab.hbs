@@ -1,0 +1,17 @@
+<section>
+    <div class="center"><a class="create" data-path="abilities.tmp_data" data-type="ability">Add New Ability</a></div>
+    <table>
+        <tr>
+            <th class="center">Ability</th>
+            <th class="center">Edit</th>
+            <th class="center">Delete</th>
+        </tr>
+    {{#each template.abilities as |ability|}}
+        <tr>
+            <td>{{ability.label}}</td>
+            <td class="perc10 center edit"   data-path="abilities.{{@key}}" data-type="ability"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete" data-path="abilities.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+        </tr>
+    {{/each}}
+    </table>
+</section>

@@ -1,0 +1,17 @@
+<section>
+    {{#if (eq entry.sub_field 'None')}}
+        <tr>
+            <td class="perc10 center create" data-path="{{path}}.tmp_data" data-type="{{type}}" data-sub_field="{{@key}}"><a><i class="fas fa-plus"/></a></td>
+            <td class="center"><b>{{entry.label}}</b></td>
+            <td class="perc10 center edit"   data-path="{{path}}.{{@key}}" data-type="{{type}}"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete" data-path="{{path}}.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+        </tr>
+    {{else}}
+        <tr>
+            <td class="perc10"></td>
+            <td>{{entry.label}}</td>
+            <td class="perc10 center edit"   data-path="{{path}}.{{@key}}" data-type="{{type}}"><a><i class="fas fa-edit"/></a></td>
+            <td class="perc10 center delete" data-path="{{path}}.{{@key}}"><a><i class="fas fa-trash"/></a></td>
+        </tr>
+    {{/if}}
+</section>

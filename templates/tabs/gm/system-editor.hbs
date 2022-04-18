@@ -1,5 +1,6 @@
 <section>
     <nav class="system-tabs tabs" data-group="system-main">
+        <a data-tab="entity">Entity</a>
         <a data-tab="races">Races</a>
         <a data-tab="classes">Classes</a>
         <a data-tab="abilities">Abilities</a>
@@ -7,31 +8,17 @@
     </nav>
     <h1></h1>
     <section class="system-body">
-        <div class="tab races" data-group="system-main" data-tab="races">
-            <div class="center"><a class="create-race" data-path="new_race">Add New Race</a></div>
-            <table>
-                <tr>
-                    <th class="center">Add</th>
-                    <th class="center">Race/Bloodline</th>
-                    <th class="center">Edit</th>
-                    <th class="center">Delete</th>
-                </tr>
-            {{#each template.races as |race|}}
-                {{#ifCond (eq race.playable true) '&&' (eq race.bloodline 'None')}}
-                    {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
-                    {{#each ../template.races as |variant|}}
-                        {{#if (eq @../key variant.bloodline)}}
-                            {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=variant}}
-                        {{/if}}
-                    {{/each}}
-                {{/ifCond}}
-            {{/each}}
-            {{#each template.races as |race|}}
-                {{#if (eq race.playable false)}}
-                    {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
-                {{/if}}
-            {{/each}}
-            </table>
+        <div class="tab entity" data-group="system-main" data-tab="entity">
+            {{> "systems/dc/templates/tabs/gm/entity-tab.hbs"}}
+        </div>
+        <div class="tab race" data-group="system-main" data-tab="races">
+            {{> "systems/dc/templates/tabs/gm/race-tab.hbs"}}
+        </div>
+        <div class="tab classes" data-group="system-main" data-tab="classes">
+            {{> "systems/dc/templates/tabs/gm/class-tab.hbs"}}
+        </div>
+        <div class="tab abilities" data-group="system-main" data-tab="abilities">
+            {{> "systems/dc/templates/tabs/gm/abilities-tab.hbs"}}
         </div>
     </section>
 </section>

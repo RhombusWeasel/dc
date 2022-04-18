@@ -51,6 +51,11 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/tabs/hero/race-select.hbs',
         //GM Sheet
         'systems/dc/templates/tabs/gm/system-editor.hbs',
+        'systems/dc/templates/tabs/gm/gm-table-row.hbs',
+        'systems/dc/templates/tabs/gm/abilities-tab.hbs',
+        'systems/dc/templates/tabs/gm/entity-tab.hbs',
+        'systems/dc/templates/tabs/gm/race-tab.hbs',
+        'systems/dc/templates/tabs/gm/class-tab.hbs',
         //Editor
         'systems/dc/templates/editor/shared/editor-data.hbs',
         //Editor Table Rows
@@ -130,7 +135,6 @@ function load_system() {
     if (!game.user.isGM) return;
     utils.templates = utils.journal.load('Templates', import_generic_templates());
     utils.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'), import_fantasy_system());
-    //utils.journal.save(j_name, utils.game_data);
 }
 
 Hooks.once("init", function () {
