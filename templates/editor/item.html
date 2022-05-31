@@ -1,0 +1,49 @@
+<form>
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <h1 class="center">{{pretty_print data.type}}</h1>
+    <table>
+        {{#each data.data as |value|}}
+            <tr>
+                <!-- Numeric Values: -->
+                {{#ifInt value}}
+                    <td class="center">{{pretty_print @key}}</td>
+                    <td class="center"><input type="number" name="data.{{@key}}" value="{{value}}"></td>
+                {{else}}
+                <!-- Descriptions -->
+                    {{#if (eq @key 'descriptions')}}
+                    <td class="perc30 center">Description</td>
+                        {{#each value.main as |str|}}
+                            {{#if (eq @index 0)}}
+                                <td class="center"><textarea class="text-change" cols="30" rows="3">{{str}}</textarea></td>
+                                <td class="center perc10"><a class="add-line" data-path="descriptions.main" title="Add new paragraph."><i class="fas fa-plus"/></a></td>
+                            </tr>
+                            {{else}}
+                            <tr>
+                                <td></td>
+                                <td><textarea class="text-change" data-target="{{../../root_path}}" data-path="descriptions.main.{{@index}}" cols="30" rows="3">{{str}}</textarea></td>
+                                <td class="center perc10"><a class="remove-line" data-index="{{@index}}" data-path="descriptions.main" title="Remove paragraph."><i class="fas fa-trash"/></a></td>
+                            {{/if}}
+                        {{/each}}
+                    {{else}}
+                <!-- Booleans -->
+                        {{#ifCond (eq value true) '||' (eq value false)}}
+                            <td class="center">{{pretty_print @key}}</td>
+                            {{#if (eq value true)}}
+                                <td class="center"><a class="bool-change" data-path="{{@key}}"><i class="fas fa-check"></i></a></td>
+                            {{else}}
+                                <td class="center"><a class="bool-change" data-path="{{@key}}"><i class="fas fa-times"></i></a></td>
+                            {{/if}}
+                        {{else}}
+                <!-- String Fallback -->
+                            <td class="center">{{pretty_print @key}}</td>
+                            <td class="center"><input type="text" name="data.{{@key}}" value="{{value}}"></td>
+                        {{/ifCond}}
+                    {{/if}}
+                {{/ifInt}}
+            </tr>
+        {{/each}}
+    </table>
+</form>

@@ -11,6 +11,7 @@ export default class GMSheet extends ActorSheet {
             tabs: [
                 {navSelector: ".gm-tabs",     contentSelector: ".gm-body",     initial: "system"},
                 {navSelector: ".system-tabs", contentSelector: ".system-body", initial: "races"},
+                {navSelector: ".entity-tabs", contentSelector: ".entity-body", initial: "stats"},
             ],
         });
     }
@@ -24,36 +25,53 @@ export default class GMSheet extends ActorSheet {
     getData() {
         const data    = super.getData();
         data.template = utils.game_data;
-        console.log(this);
+        //console.log(this);
         return data;
     }
   
     activateListeners(html) {
         //Buttons:
         //System Editor
-        html.find(".create-race").click(this._on_create_race.bind(this));
-        html.find(".edit-race").click(this._on_edit_race.bind(this));
+        html.find(".create").click(this._on_create.bind(this));
+        html.find(".edit").click(this._on_edit.bind(this));
+        html.find(".delete").click(this._on_delete.bind(this));
         return super.activateListeners(html);
     }
 
     //System Editor Functions:
-    _on_create_race(ev) {
+    _on_create(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        new BaseEditor('race', {path: el.dataset.path, template_data: {bloodline: el.dataset.bloodline}}).render(true);
+        let changes = {};
+        for (const key in el.dataset) {
+            if (Object.hasOwnProperty.call(el.dataset, key)) {
+                console.log('converting ', el.dataset[key], utils.tools.convert_type(el.dataset[key]));
+                changes[key] = utils.tools.convert_type(el.dataset[key]);
+            }
+        }
+        console.log('converted ', changes);
+        new BaseEditor(el.dataset.type, {path: el.dataset.path, template_data: changes}).render(true);
     }
 
-    _on_edit_race(ev) {
+    _on_edit(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
-        console.log(el.dataset.path);
-        new BaseEditor('race', {path: el.dataset.path, template_data: {bloodline: el.dataset.bloodline}}).render(true);
+        let changes = {};
+        for (const key in el.dataset) {
+            if (Object.hasOwnProperty.call(el.dataset, key)) {
+                console.log('converting ', el.dataset[key], utils.tools.convert_type(el.dataset[key]));
+                changes[key] = utils.tools.convert_type(el.dataset[key]);
+            }
+        }
+        console.log('converted ', changes);
+        new BaseEditor(el.dataset.type, {path: el.dataset.path, template_data: changes}).render(true);
     }
 
     _on_delete(ev) {
         ev.preventDefault()
         let el = ev.currentTarget;
         utils.tools.path.delete(utils.game_data, el.dataset.path);
+        utils.gm.save_system();
     }
 
 }

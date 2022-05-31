@@ -10,14 +10,15 @@
         <p class="center" id="{{../uuid}}-descriptions.main.{{@index}}">{{line}}</p>
     {{/each}}
         <h2></h2>
-        <h2 class="center">Modifiers</h2>
         <table>
-        {{#each race.modifiers as |mod|}}
+    {{#each race.modifiers as |mod|}}
             <tr>
-                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.label">{{mod.label}}</p></td>
-                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.description">{{mod.description}}</p></td>
+                <td class="perc30 center">{{mod.label}}</td>
+                <td class="perc30 center">{{lookup mod.descriptions.main 0}}</td>
             </tr>
-        {{/each}}
+    {{/each}}
         </table>
+        <h2></h2>
+        <button class="select-option" data-target="races" data-main_field="{{@key}}" data-main_target="race" data-sub_field="{{race.sub_field}}" data-sub_target="bloodline">Choose {{race.label}}</button>
     </div>
 </section>

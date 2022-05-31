@@ -1,0 +1,31 @@
+<section>
+    <div class="center"><a class="create" data-path="classes.tmp_data" data-type="class">Add New Class</a></div>
+    <table>
+        <tr>
+            <th class="center">Add</th>
+            <th class="center">Class/Subclass</th>
+            <th class="center">Edit</th>
+            <th class="center">Delete</th>
+        </tr>
+    {{#each template.classes as |class|}}
+        {{#ifCond (eq class.playable true) '&&' (eq class.sub_field 'None')}}
+            {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=class type='class' path='classes'}}
+            {{#each ../template.classes as |variant|}}
+                {{#ifCond (eq @../key variant.sub_field) '&&' (eq variant.playable true)}}
+                    {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=variant type='class' path='classes'}}
+                {{/ifCond}}
+            {{/each}}
+        {{/ifCond}}
+    {{/each}}
+    {{#each template.classes as |class|}}
+        {{#if (eq class.playable false)}}
+            {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=class type='class' path='classes'}}
+            {{#each ../template.classes as |variant|}}
+                {{#ifCond (eq @../key variant.sub_field) '&&' (eq variant.playable false)}}
+                    {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=variant type='class' path='classes'}}
+                {{/ifCond}}
+            {{/each}}
+        {{/if}}
+    {{/each}}
+    </table>
+</section>

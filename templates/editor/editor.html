@@ -1,28 +1,32 @@
 <form>
-    {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path='' data_format=data_format edits=edits}}
-    <h2 class="center">Modifiers</h2>
-    <table>
-        {{#each edits.modifiers as |mod|}}
-            <tr>
-                <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
-                <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description" value="{{mod.description}}"/></td>
-                <td class="perc10 center edit-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-edit"/></a></td>
-                <td class="perc10 center delete-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-trash"/></a></td>
-            </tr>
-        {{/each}}
-    </table>
-    <h2 class="center">Modifier Editor</h2>
-    <div class="center flexrow">
-        <select class="modifier-select">
-            {{#each mod_templates as |mod|}}
-                {{#if (eq ../mod_index @index)}}
-                    <option value="{{@index}}" selected>{{pretty_print mod.label}}</option>
-                {{else}}
-                    <option value="{{@index}}">{{pretty_print mod.label}}</option>
-                {{/if}}
+    {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path='edits' data_format=data_format edits=edits}}
+    {{#if hide_modifiers}}
+    {{else}}
+        <h2 class="center">Modifiers</h2>
+        <table>
+            {{#each edits.modifiers as |mod|}}
+                <tr>
+                    <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
+                    <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description.main.0" value="{{lookup mod.descriptions.main 0}}"/></td>
+                    <td class="perc10 center edit-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-edit"/></a></td>
+                    <td class="perc10 center"><a class="remove-line" data-index="{{@index}}" data-target="edits" data-path="modifiers" title="Remove modifier."><i class="fas fa-trash"/></a></td>
+                </tr>
             {{/each}}
-        </select>
-        <a class="add-modifier">Add modifier</a>
-    </div>
-    {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path="tmp_mod." data_format=mod_format edits=tmp_mod}}
+        </table>
+        <h2 class="center">Modifier Editor</h2>
+        <div class="center flexrow">
+            <select class="modifier-select">
+                {{#each mod_templates as |mod|}}
+                    {{#if (eq ../mod_index @index)}}
+                        <option value="{{@index}}" selected>{{pretty_print mod.label}}</option>
+                    {{else}}
+                        <option value="{{@index}}">{{pretty_print mod.label}}</option>
+                    {{/if}}
+                {{/each}}
+            </select>
+            <a class="add-modifier">Add modifier</a>
+        </div>
+        {{> 'systems/dc/templates/editor/shared/editor-data.hbs' root_path="tmp_mod" data_format=mod_format edits=tmp_mod}}
+    {{/if}}
+    <button class="save-changes">Save Changes</button>
 </form>

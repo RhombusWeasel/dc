@@ -1,0 +1,40 @@
+<section>
+    <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}">
+        {{#if race.allow_variants}}
+            <h2 class="center">{{race.label}}</h2>
+            {{#each race.descriptions.main as |line|}}
+                <p class="center">{{line}}</p>
+            {{/each}}
+        <h2></h2>
+        <h2 class="center">Modifiers</h2>
+        <table>
+        {{#each race.modifiers as |mod|}}
+            <tr>
+                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.label">{{mod.label}}</p></td>
+                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.descriptions.main.0">{{lookup mod.descriptions.main 0}}</p></td>
+            </tr>
+        {{/each}}
+        </table>
+        <h2 class="center">Variants</h2>
+        <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
+            {{#each ../races as |variant|}}
+                {{#ifCond (eq variant.sub_field @../key) '&&' (eq variant.playable true)}}
+                    <a data-tab="{{@key}}">{{variant.label}}</a>
+                {{/ifCond}}
+            {{/each}}
+        </nav>
+        <h2></h2>
+        <section class="{{@key}}-body">
+            {{#each ../races as |variant|}}
+                {{#ifCond (eq variant.sub_field @../key) '&&' (eq variant.allow_variants false)}}
+                    <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
+                        {{> "systems/dc/templates/shared/race-display.hbs" race=variant}}
+                    </div>
+                {{/ifCond}}
+            {{/each}}
+        </section>
+        {{else}}
+            {{> "systems/dc/templates/shared/race-display.hbs" race=race}}
+        {{/if}}
+    </div>
+</section>

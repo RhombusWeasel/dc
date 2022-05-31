@@ -1,0 +1,46 @@
+<section>
+    <h1 class="center">Select your Class</h1>
+    <nav class="class-tabs tabs" data-group="class">
+    {{#each classes as |class|}}
+        {{#ifCond (eq class.playable true) '&&' (eq class.sub_field 'None')}}
+            <a data-tab="{{@key}}">{{class.label}}</a>
+        {{/ifCond}}
+    {{/each}}
+    </nav>
+    <h2></h2>
+    <section class="class-body">
+    {{#each classes as |class|}}
+        {{#if (eq class.playable ../player)}}
+        <div class="tab {{@key}}" data-group="class" data-tab="{{@key}}">
+            {{#if class.allow_variants}}
+                <h2 class="center">{{class.label}}</h2>
+                {{#each class.descriptions.main as |line|}}
+                    <p class="center">{{line}}</p>
+                {{/each}}
+            <h2></h2>
+            <h2 class="center">Variants</h2>
+            <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
+                {{#each ../classes as |variant|}}
+                    {{#ifCond (eq variant.sub_field @../key) '&&' (eq variant.allow_variants false)}}
+                        <a data-tab="{{@key}}">{{variant.label}}</a>
+                    {{/ifCond}}
+                {{/each}}
+            </nav>
+            <h2></h2>
+            <section class="{{@key}}-body">
+                {{#each ../classes as |variant|}}
+                    {{#ifCond (eq variant.sub_field @../key) '&&' (eq variant.allow_variants false)}}
+                        <div class="tab {{@key}}" data-group="{{@../key}}-variants" data-tab="{{@key}}">
+                            {{> "systems/dc/templates/shared/class-display.hbs" stats=../../stats class=variant}}
+                        </div>
+                    {{/ifCond}}
+                {{/each}}
+            </section>
+            {{else}}
+                {{> "systems/dc/templates/shared/class-display.hbs" stats=../stats class=class}}
+            {{/if}}
+        </div>
+        {{/if}}
+    {{/each}}
+    </section>
+</section>

@@ -1,25 +1,31 @@
 <form>
     <!-- Show race select page for new characters -->
     {{#if (eq data.data.race 'None')}}
-        {{> "systems/dc/templates/tabs/hero/race-select.hbs" this}}
+        {{> "systems/dc/templates/tabs/hero/race-select.hbs" player=true}}
     {{else}}
     <!-- Show class select for new characters -->
         {{#if (eq data.data.class 'None')}}
-
+            {{> "systems/dc/templates/tabs/hero/class-select.hbs" player=true}}
         {{else}}
-    <h2 class="center">{{actor.name}}</h2>
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a data-tab="core">Core</a>
-        <a data-tab="notes">Notes</a>
-    </nav>
+    <div class="name-grid">
+        <img class="center player-image" name="img" src="{{actor.img}}" data-edit="img"/>
+        <div class="player-name">
+            <h1 class="center">{{actor.name}}</h1>
+            <h2 class="center">{{pretty_print data.data.race}} {{pretty_print data.data.class}}</h2>
+            <nav class="sheet-tabs tabs" data-group="primary">
+                <a data-tab="core">Core</a>
+            <!-- <a data-tab="notes">Notes</a> -->
+            </nav>
+        </div>
+    </div>
     <h2></h2>
     <section class="sheet-body scroller trait_scroller border">
         <div class="tab core" data-group="primary" data-tab="core">
             {{> "systems/dc/templates/tabs/hero/core.hbs"}}
         </div>
-        <div class="tab notes" data-group="primary" data-tab="notes">
-            <textarea class="textbox" name="data.notes" id="notes" cols="30" rows="30">{{data.data.notes}}</textarea>
-        </div>
+        <!-- <div class="tab notes" data-group="primary" data-tab="notes">
+            <textarea class="text-change" data-path="data.notes" cols="30" rows="30">{{actor.data.data.notes}}</textarea>
+        </div> -->
     </section>
         {{/if}}
     {{/if}}
