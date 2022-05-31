@@ -1,7 +1,7 @@
 <section>
-    {{#if (eq race.bloodline 'None')}}
+    {{#if (eq race.sub_field 'None')}}
         <tr>
-            <td class="perc10 center create" data-path="races.tmp_bloodline" data-type="race" data-bloodline="{{@key}}"><a title="Add a new {{race.label}} bloodline."><i class="fas fa-plus"/></a></td>
+            <td class="perc10 center create" data-path="races.tmp_sub_field" data-type="race" data-sub_field="{{@key}}"><a title="Add a new {{race.label}} bloodline."><i class="fas fa-plus"/></a></td>
             <td class="center"><b>{{race.label}}</b></td>
             <td class="perc10 center edit"   data-path="races.{{@key}}" data-type="race"><a><i class="fas fa-edit"/></a></td>
             <td class="perc10 center delete" data-path="races.{{@key}}"><a><i class="fas fa-trash"/></a></td>

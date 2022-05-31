@@ -1,48 +1,79 @@
+.container {
+    width: fit-content;
+    height: fit-content;
+}
+.small-input {
+    width: calc(30% - 2px) !important;
+    display: block;
+}
 .center {
     text-align: center;
 }
+.pad {
+    padding: 5px;
+}
+.player-image {
+    max-width: 128px;
+    max-height: 128px;
+    grid-area: cp;
+}
+.player-name {
+    grid-area: cn;
+}
+.name-grid {
+    display: grid;
+    grid:
+    'cp cp cn cn cn cn cn cn cn cn'
+    'cp cp cn cn cn cn cn cn cn cn'
+    ;
+}
+.textbox {
+    /* white-space: pre-line !important; */
+    max-height: 100%;
+    max-width: 100%;
+}
 .flexrow {
-flex-direction: row;
+    flex-direction: row;
 }
 .perc90 {
-width: 90%
+    width: 90%
 }
 .perc80 {
-width: 80%
+    width: 80%
 }
 .perc70 {
-width: 70%
+    width: 70%
 }
 .perc60 {
-width: 60%
+    width: 60%
 }
 .perc50 {
-width: 50%
+    width: 50%
 }
 .perc45 {
-width: 45%
+    width: 45%
 }
 .perc40 {
-width: 40%
+    width: 40%
 }
 .perc30 {
-width: 30%
+    width: 30%
 }
 .perc25 {
-width: 25%
+    width: 25%
 }
 .perc20 {
-width: 20%
+    width: 20%
 }
 .perc15 {
-width: 15%
+    width: 15%
 }
 .perc12 {
-width: 12%
+    width: 12%
 }
 .perc10 {
-width: 10%
+    width: 10%
 }
 .perc5 {
-width: 5%
+    width: 5%
 }

@@ -1,9 +1,10 @@
 <section>
+    <h2 class="center">Stats</h2>
     <table>
-    {{#each stats as |stat|}}
+    {{#each actor.data.data.stats as |stat|}}
         <tr>
             <th class="center">{{stat.label}}</th>
-            <td class="center">{{get_pips stat.key ../race stat.value stat.max}}</td>
+            <td class="center">{{get_pips stat.value stat.max}}</td>
         </tr>
     {{/each}}
     </table>

@@ -21,7 +21,6 @@
         {{#if (eq class.playable false)}}
             {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=class type='class' path='classes'}}
             {{#each ../template.classes as |variant|}}
-                {{log @../key variant.sub_field}}
                 {{#ifCond (eq @../key variant.sub_field) '&&' (eq variant.playable false)}}
                     {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=variant type='class' path='classes'}}
                 {{/ifCond}}

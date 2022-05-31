@@ -13,16 +13,24 @@
                 "class": "None",
                 "level": 0,
                 "max_level": 0,
-                "hp": {
-                    "min": 0,
-                    "max": 10,
-                    "value": 10
+                "pools": {
+                    "xp": {
+                        "min": 0,
+                        "max": 8,
+                        "value": 0
+                    },
+                    "hp": {
+                        "min": 0,
+                        "max": 10,
+                        "value": 10
+                    },
+                    "ap": {
+                        "min": 0,
+                        "max": 10,
+                        "value": 10
+                    }
                 },
-                "mp": {
-                    "min": 0,
-                    "max": 10,
-                    "value": 10
-                }
+                "notes": ""
             }
         },
         "hero": {
@@ -44,7 +52,12 @@
         ],
         "templates": {
             "core": {
-                "description": ""
+                "descriptions": {
+                    "main": [""],
+                    "flavor": [""]
+                },
+                "requirements": [],
+                "modifiers": []
             }
         },
         "item": {

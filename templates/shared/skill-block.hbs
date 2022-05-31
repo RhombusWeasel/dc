@@ -1,0 +1,21 @@
+<section>
+    <h2 class="center">Skills</h2>
+    {{#ifCond data.data.skill_points '>' 0}}
+    <h3 class="center">Skill Points: {{data.data.skill_points}}</h3>
+    {{/ifCond}}
+    <table>
+    {{#each data.data.skills as |stat|}}
+        <tr title="{{lookup stat.descriptions.main 0}}">
+            <td class="center">{{stat.label}}</td>
+            <td class="center">{{pretty_print stat.stat}}</td>
+            <td class="center">{{get_pips stat.value stat.max}}</td>
+            {{#ifCond ../data.data.skill_points '>' stat.value}}
+            <td class="center"><a class="skill-buff" data-path="skills.{{@key}}.value" data-skill="{{@key}}"><i class="fa fa-plus"></i></a></td>
+            {{else}}
+            <td></td>
+            {{/ifCond}}
+            <td class="center"><a class="skill-roll" data-path="{{@key}}"><i class="fa fa-dice" /></a></td>
+        </tr>
+    {{/each}}
+    </table>
+</section>

@@ -2,15 +2,14 @@
     <h1 class="center">Select your Race</h1>
     <nav class="race-tabs tabs" data-group="race">
     {{#each races as |race|}}
-        {{#ifCond (eq race.playable true) '&&' (eq race.sub_field 'None')}}
+        {{#if (eq race.sub_field 'None')}}
             <a data-tab="{{@key}}"><b>{{race.label}}</b></a>
-        {{/ifCond}}
+        {{/if}}
     {{/each}}
     </nav>
     <h2></h2>
     <section class="race-body">
     {{#each races as |race|}}
-        {{#if (eq race.playable ../player)}}
         <div class="tab {{@key}}" data-group="race" data-tab="{{@key}}">
             {{#if race.allow_variants}}
             <h2 class="center">{{race.label}}</h2>
@@ -18,6 +17,7 @@
                 <p class="center">{{line}}</p>
             {{/each}}
             <h2></h2>
+            <h2 class="center">Modifiers</h2>
             <table>
                 {{#each race.modifiers as |mod|}}
                 <tr>
@@ -26,13 +26,12 @@
                 </tr>
                 {{/each}}
             </table>
-            <h2></h2>
             <h2 class="center">Variants</h2>
             <nav class="{{@key}}-tabs tabs" data-group="{{@key}}-variants">
                 {{#each ../races as |variant|}}
-                    {{#ifCond (eq variant.sub_field @../key) '&&' (eq variant.playable true)}}
-                        <a data-tab="{{@key}}"><b>{{variant.label}}</b></a>
-                    {{/ifCond}}
+                    {{#if (eq variant.sub_field @../key)}}
+                        <a data-tab="{{@key}}">{{variant.label}}</a>
+                    {{/if}}
                 {{/each}}
             </nav>
             <h2></h2>
@@ -49,7 +48,6 @@
                 {{> "systems/dc/templates/shared/race-display.hbs" race=race}}
             {{/if}}
         </div>
-        {{/if}}
     {{/each}}
     </section>
 </section>

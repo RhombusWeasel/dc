@@ -8,10 +8,10 @@ let SYSTEM_NAME = 'dc'
 
 function register_sheets() {
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet(SYSTEM_NAME, hero_sheet, {makeDefault: true});
-    Actors.registerSheet(SYSTEM_NAME, npc_sheet, {makeDefault: false});
+    Actors.registerSheet(SYSTEM_NAME, hero_sheet,  {makeDefault: true});
+    Actors.registerSheet(SYSTEM_NAME, npc_sheet,   {makeDefault: false});
     Actors.registerSheet(SYSTEM_NAME, enemy_sheet, {makeDefault: false});
-    Actors.registerSheet(SYSTEM_NAME, gm_sheet, {makeDefault: false});
+    Actors.registerSheet(SYSTEM_NAME, gm_sheet,    {makeDefault: false});
     console.log("DC: Actor sheets registered.");
 }
 
@@ -44,11 +44,17 @@ function register_settings() {
 async function preload_handlebars_templates() {
     const template_paths = [
         //Entity Sheets - Shared
+        'systems/dc/templates/shared/option-display.hbs',
         'systems/dc/templates/shared/race-display.hbs',
+        'systems/dc/templates/shared/class-display.hbs',
         'systems/dc/templates/shared/stat-block.hbs',
+        'systems/dc/templates/shared/skill-block.hbs',
         //Entity Sheets - Tabs
         'systems/dc/templates/tabs/hero/core.hbs',
         'systems/dc/templates/tabs/hero/race-select.hbs',
+        'systems/dc/templates/tabs/hero/class-select.hbs',
+        'systems/dc/templates/tabs/enemy/race-select.hbs',
+        'systems/dc/templates/tabs/enemy/class-select.hbs',
         //GM Sheet
         'systems/dc/templates/tabs/gm/system-editor.hbs',
         'systems/dc/templates/tabs/gm/gm-table-row.hbs',
@@ -113,13 +119,16 @@ function load_handlebars_helpers() {
         }
     });
 
+    Handlebars.registerHelper('ifInt', function (value, options) {
+        if (parseInt(value) || value == '0' && !(value == true || value == false)) return options.fn(this);
+        return options.inverse(this);
+    });
+
     Handlebars.registerHelper('pretty_print', function (str, options) {
         return new Handlebars.SafeString(utils.tools.key_to_label(str));
     });
 
-    Handlebars.registerHelper('get_pips', function (stat, race, value, max, options) {
-        let race_mod = race?.stat_bonuses?.[stat] ? race.stat_bonuses[stat] : 0;
-        value += race_mod;
+    Handlebars.registerHelper('get_pips', function (value, max, opt) {
         let t = ``;
         for (let i = 0; i < value; i++) {
             t += `<i class="fas fa-circle"/>`;
@@ -132,9 +141,16 @@ function load_handlebars_helpers() {
 }
 
 function load_system() {
-    if (!game.user.isGM) return;
-    utils.templates = utils.journal.load('Templates', import_generic_templates());
-    utils.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'), import_fantasy_system());
+    if (!game.user.isGM) {
+        utils.socket.emit('request_system', 'GM');
+    }else{
+        utils.templates = utils.journal.load('Templates', import_generic_templates());
+        utils.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'), import_fantasy_system());
+    }
+}
+
+function load_hooks() {
+    
 }
 
 Hooks.once("init", function () {
@@ -147,4 +163,5 @@ Hooks.once("init", function () {
 
 Hooks.on("ready", function() {
     load_system();
+    load_hooks();
 });

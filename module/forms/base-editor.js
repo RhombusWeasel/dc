@@ -1,7 +1,6 @@
 export default class BaseEditor extends FormApplication {
     constructor(editor_type, data) {
         super();
-        console.log('base-editor', data);
         let addr       = utils.tools.path.split(data.path);
         this.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'));
         this.dc = {
@@ -16,7 +15,6 @@ export default class BaseEditor extends FormApplication {
             tmp_mod        : utils.system.new.modifier(0, {}),
             hide_modifiers : data.template_data?.hide_modifiers ? true : false,
         };
-        console.log('base-editor', this.dc.hide_modifiers);
     }
   
     static get defaultOptions() {
@@ -78,7 +76,6 @@ export default class BaseEditor extends FormApplication {
     _on_add_list_element(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        console.log(el.dataset);
         let list = utils.tools.path.get(this.dc[el.dataset.target], el.dataset.path);
         list.push('');
         utils.tools.path.set(this.dc[el.dataset.target], el.dataset.path, list);
@@ -88,7 +85,6 @@ export default class BaseEditor extends FormApplication {
     _on_remove_list_element(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        console.log(el.dataset);
         let list = utils.tools.path.get(this.dc[el.dataset.target], el.dataset.path);
         list.splice(parseInt(el.dataset.index), 1);
         utils.tools.path.set(this.dc[el.dataset.target], el.dataset.path, list);

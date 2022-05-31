@@ -25,7 +25,7 @@ export default class GMSheet extends ActorSheet {
     getData() {
         const data    = super.getData();
         data.template = utils.game_data;
-        console.log(this);
+        //console.log(this);
         return data;
     }
   

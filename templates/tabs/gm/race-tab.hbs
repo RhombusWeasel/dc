@@ -10,10 +10,10 @@
             <th class="center">Delete</th>
         </tr>
     {{#each template.races as |race|}}
-        {{#ifCond (eq race.playable true) '&&' (eq race.bloodline 'None')}}
+        {{#ifCond (eq race.playable true) '&&' (eq race.sub_field 'None')}}
             {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=race}}
             {{#each ../template.races as |variant|}}
-                {{#ifCond (eq @../key variant.bloodline) '&&' (eq variant.playable true)}}
+                {{#ifCond (eq @../key variant.sub_field) '&&' (eq variant.playable true)}}
                     {{> "systems/dc/templates/table-rows/race-editor-tr.hbs" race=variant}}
                 {{/ifCond}}
             {{/each}}

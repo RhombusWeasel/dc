@@ -1,0 +1,24 @@
+{{!-- 
+    @param: {DICT} stats : The stats for the loaded system
+    @param: {DICT} class : The data object for the class to be displayed.
+    @param: {STR}  key   : The key for the current stat.
+ --}}
+<section>
+    <div>
+        <h2 class="center" id="{{uuid}}-label">{{class.label}}</h2>
+    {{#each class.descriptions.main as |line|}}
+        <p class="center" id="{{../uuid}}-descriptions.main.{{@index}}">{{line}}</p>
+    {{/each}}
+        <h2></h2>
+        <h2 class="center">Modifiers</h2>
+        <table>
+    {{#each class.modifiers as |mod|}}
+            <tr>
+                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.label">{{mod.label}}</p></td>
+                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.description">{{mod.description}}</p></td>
+            </tr>
+    {{/each}}
+        </table>
+        <button class="select-option" data-target="classes" data-main_field="{{@key}}" data-main_target="class" data-sub_field="{{class.sub_field}}" data-sub_target="subclass">Choose {{class.label}}</button>
+    </div>
+</section>
