@@ -15,7 +15,7 @@
     {{#each class.modifiers as |mod|}}
             <tr>
                 <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.label">{{mod.label}}</p></td>
-                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.description">{{mod.description}}</p></td>
+                <td class="perc30 center"><p id="{{../uuid}}-modifiers.{{@index}}.description">{{lookup mod.descriptions.main 0}}</p></td>
             </tr>
     {{/each}}
         </table>

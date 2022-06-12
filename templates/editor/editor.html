@@ -7,7 +7,9 @@
             {{#each edits.modifiers as |mod|}}
                 <tr>
                     <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.label" value="{{mod.label}}"/></td>
-                    <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.description.main.0" value="{{lookup mod.descriptions.main 0}}"/></td>
+                    {{#with mod.descriptions as |desc|}}
+                    <td class="perc40 center"><input class="text-change" type="text" data-path="modifiers.{{@index}}.descriptions.main.0" value="{{lookup mod.descriptions.main 0}}"/></td>
+                    {{/with}}
                     <td class="perc10 center edit-modifier" data-path="modifiers.{{@index}}"><a><i class="fas fa-edit"/></a></td>
                     <td class="perc10 center"><a class="remove-line" data-index="{{@index}}" data-target="edits" data-path="modifiers" title="Remove modifier."><i class="fas fa-trash"/></a></td>
                 </tr>
@@ -17,10 +19,10 @@
         <div class="center flexrow">
             <select class="modifier-select">
                 {{#each mod_templates as |mod|}}
-                    {{#if (eq ../mod_index @index)}}
-                        <option value="{{@index}}" selected>{{pretty_print mod.label}}</option>
+                    {{#if (eq ../mod_index @key)}}
+                        <option value="{{@key}}" selected>{{pretty_print mod.label}}</option>
                     {{else}}
-                        <option value="{{@index}}">{{pretty_print mod.label}}</option>
+                        <option value="{{@key}}">{{pretty_print mod.label}}</option>
                     {{/if}}
                 {{/each}}
             </select>

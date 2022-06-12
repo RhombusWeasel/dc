@@ -1,0 +1,28 @@
+<section>
+  <h3 class="pad center">Player Characters</h3>
+  {{#ifCond data.data.show_offline_players '==' true}}
+    <div class="pad center"><a class="bool-change" data-path="show_offline_players">Hide Offline</a></div>
+  {{else}}
+    <div class="pad center"><a class="bool-change" data-path="show_offline_players">Show Offline</a></div>
+  {{/ifCond}}
+  <table>
+    {{#ifCond data.data.show_offline_players '==' true}}
+      {{#each characters as |act|}}
+        {{> 'systems/dc/templates/tabs/gm/player-table-row.hbs' act=act}}
+      {{/each}}
+    {{else}}
+      {{#each online as |act|}}
+        {{> 'systems/dc/templates/tabs/gm/player-table-row.hbs' act=act}}
+      {{/each}}
+    {{/ifCond}}
+  </table>
+  <h3 class="pad center">Mobs</h3>
+  <table>
+    {{#each enemies as |mob|}}
+      <tr>
+        <td>{{mob.name}}</td>
+        <td><i class="fa fa-heart" title="HP"></i>{{mob.document.actor.data.data.pools.hp.value}}</td>
+      </tr>
+    {{/each}}
+  </table>
+</section>

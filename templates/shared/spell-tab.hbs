@@ -1,0 +1,36 @@
+<section>
+  <h2 class="center pad">Spells</h2>
+  {{#each data.data.spells as |school|}}
+    <h3 class="center pad">{{pretty_print @key}}</h3>
+    <table>
+      <tr>
+        <th class="center pad">Name</th>
+        <th class="center pad">Effect</th>
+        <th class="center pad perc5">MP</th>
+        <th class="center pad perc5"></th>
+      </tr>
+      {{#each school as |spell|}}
+        {{#if (eq spell.active true)}}
+          <tr>
+            <td class="pad">{{spell.label}}</td>
+            <td class="pad">{{lookup spell.descriptions.main 0}}</td>
+            <td class="center pad perc5">{{spell.mp_cost}}</td>
+            {{#ifCond ../../actor.data.data.pools.mana.value '>=' spell.mp_cost}}
+              {{#ifCond ../../actor.data.data.pools.ap.value '>=' 3}}
+                <td class="center pad perc5">
+                  <a class="cast-spell" data-school="{{@../key}}" data-spell="{{@key}}" title="Cast {{spell.label}}">
+                    <i class="fa fa-bahai"></i>
+                  </a>
+                </td>
+              {{else}}
+                <td>-</td>
+              {{/ifCond}}
+            {{else}}
+              <td>-</td>
+            {{/ifCond}}
+          </tr>
+        {{/if}}
+      {{/each}}
+    </table>
+  {{/each}}
+</section>

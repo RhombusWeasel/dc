@@ -38,6 +38,17 @@ function register_settings() {
             console.log('DC: Settings : Maximum ability score: ', value);
         }
     });
+    game.settings.register('dc', 'difficulty', {
+        name: 'Difficulty',
+        hint: 'The current target number for any roll.',
+        scope: 'world',     // "world" = sync to db, "client" = local storage 
+        config: false,      // false if you dont want it to show in module config
+        type: Number,       // Number, Boolean, String,  
+        default: 6,
+        onChange: value => {
+            console.log('DC: Settings : Difficulty Target: ', value);
+        }
+    });
     console.log("DC: Game settings registered.");
 }
 
@@ -47,10 +58,16 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/shared/option-display.hbs',
         'systems/dc/templates/shared/race-display.hbs',
         'systems/dc/templates/shared/class-display.hbs',
+        'systems/dc/templates/shared/sheet-panel.hbs',
+        'systems/dc/templates/shared/action-buttons.hbs',
         'systems/dc/templates/shared/stat-block.hbs',
         'systems/dc/templates/shared/skill-block.hbs',
+        'systems/dc/templates/shared/inventory.hbs',
+        'systems/dc/templates/shared/spell-tab.hbs',
         //Entity Sheets - Tabs
         'systems/dc/templates/tabs/hero/core.hbs',
+        'systems/dc/templates/tabs/hero/store.hbs',
+        'systems/dc/templates/tabs/hero/spell-store.hbs',
         'systems/dc/templates/tabs/hero/race-select.hbs',
         'systems/dc/templates/tabs/hero/class-select.hbs',
         'systems/dc/templates/tabs/enemy/race-select.hbs',
@@ -62,6 +79,8 @@ async function preload_handlebars_templates() {
         'systems/dc/templates/tabs/gm/entity-tab.hbs',
         'systems/dc/templates/tabs/gm/race-tab.hbs',
         'systems/dc/templates/tabs/gm/class-tab.hbs',
+        'systems/dc/templates/tabs/gm/combat.hbs',
+        'systems/dc/templates/tabs/gm/player-table-row.hbs',
         //Editor
         'systems/dc/templates/editor/shared/editor-data.hbs',
         //Editor Table Rows
@@ -119,6 +138,18 @@ function load_handlebars_helpers() {
         }
     });
 
+    Handlebars.registerHelper('pathLookup', function (obj, path, options) {
+        let val = utils.tools.path.get(obj, path);
+        return val ? val : 'Value not found.';
+    });
+
+    Handlebars.registerHelper('has_spell', function (obj, school, spell, options) {
+        if (obj[school][spell].active) {
+            return true;
+        }
+        return false;
+    });
+
     Handlebars.registerHelper('ifInt', function (value, options) {
         if (parseInt(value) || value == '0' && !(value == true || value == false)) return options.fn(this);
         return options.inverse(this);
@@ -136,7 +167,7 @@ function load_handlebars_helpers() {
         for (let i = value; i < max; i++) {
             t += `<i class="far fa-circle"/>`;
         }
-        return new Handlebars.SafeString(t);
+        return new Handlebars.SafeString(t + '</p>');
     });
 }
 
@@ -144,7 +175,7 @@ function load_system() {
     if (!game.user.isGM) {
         utils.socket.emit('request_system', 'GM');
     }else{
-        utils.templates = utils.journal.load('Templates', import_generic_templates());
+        //utils.templates = utils.journal.load('Templates', import_generic_templates());
         utils.game_data = utils.journal.load(game.settings.get('dc', 'system_journal'), import_fantasy_system());
     }
 }

@@ -1,0 +1,71 @@
+<section>
+  <h3 class="center">Equipment:</h3>
+  <table>
+    {{#each data.data.inventory.weapons as |item|}}
+      <tr>
+        {{#ifCond item.skill '==' 'melee_skill'}}
+          <td class="center pad perc5"><i class="fa fa-fist-raised" title="Melee Weapon"/></td>
+        {{else}}
+          <td class="center pad perc5"><i class="fa fa-crop" title="Ranged Weapon"/></td>
+        {{/ifCond}}
+        <td class="center pad perc5">{{item.amount}}</td>
+        <td class="pad perc35"       >{{item.label}}</td>
+        <td class="center pad perc10"><i class="fa fa-hourglass-end" title="AP Cost"></i> {{item.ap_cost}}</td>
+        <td class="center pad perc10"><i class="fa fa-bahai" title="Damage"></i> {{item.damage}}</td>
+        <td class="center pad perc10"><i class="fa fa-hands" title="Hands"></i> {{item.hands}}</td>
+        <td class="center pad perc15"><i class="fa fa-reply" title="Range"></i> {{item.range}}</td>
+        {{#ifCond ../actor.data.data.equipment.weapon '==' @key}}
+          <td class="center pad perc10"><a class="fas fa-check equip-item" data-target="weapon" data-goods="weapons" data-item="{{@key}}" title="Equip {{item.label}}"></a></td>
+        {{else}}
+          <td class="center pad perc10"><a class="fas fa-times equip-item" data-target="weapon" data-goods="weapons" data-item="{{@key}}" title="Equip {{item.label}}"></a></td>
+        {{/ifCond}}
+      </tr> 
+    {{/each}}
+    {{#each data.data.inventory.armour as |item|}}
+      <tr>
+        <td class="center pad perc5"><i class="fa fa-tshirt" title="Armour"/></td>
+        <td class="center pad perc5">{{item.amount}}</td>
+        <td class="pad perc20">{{item.label}}</td>
+        <td class="center pad perc10"></td>
+        <td class="center pad perc10"></td>
+        <td class="center pad perc10"><i class="fa fa-shield-alt" title="Armour Value"></i> {{item.armour_value}}</td>
+        <td class="center pad perc15"><i class="fa fa-heart" title="Temp HP"></i> {{item.temp_hp}}</td>
+        {{#ifCond ../data.data.equipment.armour '==' @key}}
+          <td class="center pad perc10"><a class="fas fa-check equip-item" data-target="armour" data-goods="armour" data-item="{{@key}}" title="Equip {{item.label}}"></a></td>
+        {{else}}
+          <td class="center pad perc10"><a class="fas fa-times equip-item" data-target="armour" data-goods="armour" data-item="{{@key}}" title="Equip {{item.label}}"></a></td>
+        {{/ifCond}}
+      </tr>
+    {{/each}}
+    {{#each data.data.inventory.utility as |item|}}
+      <tr>
+        <td class="center pad perc5"><i class="fa fa-shield-alt" title="Utility"/></td>
+        <td class="center pad perc5">{{item.amount}}</td>
+        <td class="pad perc20">{{item.label}}</td>
+        <td class="center pad perc10"></td>
+        <td class="center pad perc10"></td>
+        <td class="center pad perc10"></td>
+        <td class="center pad perc15"></td>
+        {{#ifCond ../data.data.equipment.utility '==' @key}}
+          <td class="center pad perc10"><a class="fas fa-check equip-item" data-target="utility" data-goods="utilities" data-item="{{@key}}" title="Equip {{item.label}}"></a></td>
+        {{else}}
+          <td class="center pad perc10"><a class="fas fa-times equip-item" data-target="utility" data-goods="utilities" data-item="{{@key}}" title="Equip {{item.label}}"></a></td>
+        {{/ifCond}}
+      </tr>
+    {{/each}}
+  </table>
+  <h3 class="center">Consumeables:</h3>
+  <table>
+    {{#each data.data.inventory.potions as |item|}}
+      {{#ifCond item.amount '>=' 1}}
+        <tr>
+          <td class="center pad perc5"><i class="fa fa-flask" title="Potion"/></td>
+          <td class="center pad perc5">{{item.amount}}</td>
+          <td class="pad perc50">{{item.label}}</td>
+          <td class="center pad perc30">{{lookup item.descriptions.main 0}}</td>
+          <td class="center pad perc10"><a class="use-potion fa fa-wine-bottle" data-potion="{{@key}}" title="Drink {{item.label}}"></a></td>
+        </tr>
+      {{/ifCond}}
+    {{/each}}
+  </table>
+</section>

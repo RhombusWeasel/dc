@@ -1,0 +1,35 @@
+<section>
+  <div>
+    <h2 class="center pad">Spells</h2>
+    <h3 class="center pad">Spell Points: {{actor.data.data.points.spell.value}}</h3>
+    {{#each spell_list as |spells|}}
+      <h3 class="center pad">{{pretty_print @key}}</h3>
+      <table>
+        <tr>
+          <th class="center pad">Name</th>
+          <th class="center pad">Effect</th>
+          <th class="center pad perc5">MP</th>
+          <th class="center pad perc5">SP</th>
+          <th class="center pad perc5"></th>
+        </tr>
+        {{#each spells as |spell|}}
+          <tr>
+            <td>{{spell.label}}</td>
+            <td>{{lookup spell.descriptions.main 0}}</td>
+            <td class="center pad perc5">{{spell.mp_cost}}</td>
+            <td class="center pad perc5">{{spell.sp_cost}}</td>
+              {{#if (has_spell ../../data.data.spells @../key @key)}}
+                <td>-</td>
+              {{else}}
+                {{#ifCond ../../data.data.points.spell.value '>=' spell.sp_cost}}
+                  <td class="center pad perc5 buy-spell" data-school="{{@../key}}" data-spell="{{@key}}"><a class="fa fa-coins"></a></td>
+                {{else}}
+                  <td>-</td>
+                {{/ifCond}}
+              {{/if}}
+          </tr>
+        {{/each}}
+      </table>
+    {{/each}}
+  </div>
+</section>

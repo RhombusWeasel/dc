@@ -1,55 +1,59 @@
 <section>
-    <div class="flexrow">
-        <div class="center pad">
-            <input class="center" type="text" name="name" value="{{actor.name}}" data-edit="name"/>
-            <table>
-                <tr>
-                    <td class="center">Size</td>
-                    <td class="center">{{actor.data.data.size}}</td>
-                </tr>
-                <tr>
-                    <td class="center">Currency</td>
-                    <td class="center"><input type="number" name="data.currency" value="{{actor.data.data.currency}}"></td>
-                </tr>
-                <tr>
-                    <td class="center">Loot Target</td>
-                    <td class="center"><input type="number" name="data.loot_target" value="{{actor.data.data.loot_target}}"></td>
-                    <td class="center"><a class="target-roll" data-formula="1d6cs>={{actor.data.data.loot_target}}"><i class="fa fa-dice" /></a></td>
-                </tr>
-                <tr>
-                    <td class="center">Armour Class</td>
-                    <td class="center"><input type="number" name="data.armour_value" value="{{actor.data.data.armour_value}}"></td>
-                    <td class="center"><a class="target-roll" data-formula="{{actor.data.data.stats.buff.value}}d10cs>={{sum 6 '-' actor.data.data.armour_value}}"><i class="fa fa-dice" /></a></td>
-                </tr>
-            </table>
-        </div>
-        <div class="pad">
-            <h2 class="center">Pools</h2>
-            <table>
-            {{#each data.data.pools as |pool|}}
-                <tr>
-                    <td class="center">{{pool.label}}</td>
-                    {{#isGM}}
-                    <td><input class="small-input" type="number" name="data.pools.{{@key}}.value" value="{{pool.value}}"/></td>
-                    {{else}}
-                    <td class="center">{{pool.value}}</td>
-                    {{/isGM}}
-                    <td class="perc5">/</td>
-                    <td class="center">{{pool.max}}</td>
-                </tr>
-            {{/each}}
-            </table>
-        </div>
+  <div class="flexrow">
+    <div class="center pad">
+      <table>
+        <tr>
+          <td class="perc40 pad center">Name</td>
+          <td class="perc40 pad center"><input class="center" type="text" name="name" value="{{actor.name}}" data-edit="name"/></td>
+          <td class="perc20 pad center"></td>
+        </tr>
+        <tr>
+          <td class="perc40 pad center">Size</td>
+          <td class="perc40 pad center">{{actor.data.data.size}}</td>
+          <td class="perc20 pad"></td>
+        </tr>
+        <tr>
+          <td class="perc40 pad center">Currency</td>
+          <td class="perc40 pad center"><input type="number" name="data.currency" value="{{actor.data.data.currency}}"></td>
+          <td class="perc20 pad"></td>
+        </tr>
+        <tr>
+          <td class="perc40 pad center">Loot Target</td>
+          <td class="perc40 pad center"><input type="number" name="data.loot_target" value="{{actor.data.data.loot_target}}"></td>
+          <td class="perc20 pad center"><a class="target-roll" data-formula="1d6cs>={{actor.data.data.loot_target}}" data-roll_label="Treasure Roll [{{actor.data.data.loot_target}}]"><i class="fa fa-dice" /></a></td>
+        </tr>
+      </table>
     </div>
-    <div class="flexrow">
-        <div class="pad">
-            {{> "systems/dc/templates/shared/stat-block.hbs" }}
-            {{> "systems/dc/templates/shared/skill-block.hbs"}}
-        </div>
-        <div class="pad">
-            <h2 class="center">Notepad</h2>
-            <textarea class="textbox" name="data.notes" id="notes">{{{data.data.notes}}}</textarea>
-        </div>
+    <div class="pad">
+      <table>
+      {{#each data.data.pools as |pool|}}
+        {{#if (eq pool.active true)}}
+          <tr>
+            <td class="center">{{pool.label}}</td>
+            {{#isGM}}
+            <td><input class="small-input" type="number" name="data.pools.{{@key}}.value" value="{{pool.value}}"/></td>
+            {{else}}
+            <td class="center">{{pool.value}}</td>
+            {{/isGM}}
+            <td class="perc5">/</td>
+            <td class="center">{{pool.max}}</td>
+          </tr>
+        {{/if}}
+      {{/each}}
+      </table>
     </div>
-    <div class="center"><a class="nuke-sheet">!NUKE SHEET!</a></div>
+  </div>
+  <div>
+    {{> "systems/dc/templates/shared/action-buttons.hbs"}}
+  </div>
+  <h1 class="pad"></h1>
+  <div class="flexrow">
+    <div class="pad">
+      {{> "systems/dc/templates/shared/sheet-panel.hbs" group='panel1'}}
+    </div>
+    <div class="pad">
+      {{> "systems/dc/templates/shared/sheet-panel.hbs" group='panel2'}}
+    </div>
+  </div>
+  <div class="center"><a class="nuke-sheet">!NUKE SHEET!</a></div>
 </section>
