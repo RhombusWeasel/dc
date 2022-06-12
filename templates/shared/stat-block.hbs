@@ -1,11 +1,33 @@
 <section>
-    <h2 class="center">Stats</h2>
-    <table>
-    {{#each actor.data.data.stats as |stat|}}
-        <tr>
-            <th class="center">{{stat.label}}</th>
-            <td class="center">{{get_pips stat.value stat.max}}</td>
+  <h3 class="center">Stats</h3>
+  {{#ifCond data.data.skill_points '>' 0}}
+    <h3 class="center">Skill Points: {{data.data.skill_points}}</h3>
+  {{/ifCond}}
+  <table>
+  {{#each actor.data.data.stats as |stat|}}
+    <tr>
+      <th></th>
+      <th class="center">{{stat.label}}</th>
+      <td class="center">{{get_pips stat.value stat.max}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    {{#each ../actor.data.data.skills as |sk|}}
+      {{#ifCond sk.stat '==' @../key}}
+        <tr title="{{lookup sk.descriptions.main 0}}">
+          <td class="center"><em>{{sk.label}}</em></td>
+          <td></td>
+          <td class="center">{{get_pips sk.value sk.max}}</td>
+          {{#ifCond ../../actor.data.data.points.skill.value '>' sk.value}}
+          <td class="center"><a class="skill-buff" data-path="skills.{{@key}}.value" data-skill="{{@key}}"><i class="fa fa-plus"></i></a></td>
+          {{else}}
+          <td></td>
+          {{/ifCond}}
+          <td class="center"><a class="skill-roll" data-path="{{@key}}"><i class="fa fa-dice" /></a></td>
         </tr>
+      {{/ifCond}}
     {{/each}}
-    </table>
+  {{/each}}
+  </table>
 </section>

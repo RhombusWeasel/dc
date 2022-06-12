@@ -3,9 +3,11 @@ export default class HeroSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     let tabs = [
-      {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},
-      {navSelector: ".race-tabs",  contentSelector: ".race-body",  initial: "human"},
-      {navSelector: ".class-tabs", contentSelector: ".class-body", initial: "barbarian"},
+      {navSelector: ".sheet-tabs",  contentSelector: ".sheet-body",  initial: "core"},
+      {navSelector: ".race-tabs",   contentSelector: ".race-body",   initial: "human"},
+      {navSelector: ".class-tabs",  contentSelector: ".class-body",  initial: "barbarian"},
+      {navSelector: ".panel1-tabs", contentSelector: ".panel1-body", initial: "traits"},
+      {navSelector: ".panel2-tabs", contentSelector: ".panel2-body", initial: "inventory"},
     ];
     for (const key in utils.game_data.races) {
       if (Object.hasOwnProperty.call(utils.game_data.races, key)) {
@@ -44,6 +46,19 @@ export default class HeroSheet extends ActorSheet {
     data.races   = utils.game_data.races;
     data.classes = utils.game_data.classes;
     data.player  = true;
+    
+    // Shopping Data:
+    data.item_list = {
+      weapons: utils.game_data.weapons,
+      armour:  utils.game_data.armour,
+      utility: utils.game_data.utility,
+      potions: utils.game_data.potions,
+    };
+    // Spell Data:
+    data.spell_list = {
+      elemental: utils.game_data.spells.elemental,
+    };
+
     return data;
   }
 
@@ -53,10 +68,17 @@ export default class HeroSheet extends ActorSheet {
     html.find(".skill-buff").click(this._on_skill_buff.bind(this));
     html.find(".skill-roll").click(this._on_skill_roll.bind(this));
     html.find(".target-roll").click(this._on_target_roll.bind(this));
+    html.find(".attack-roll").click(this._on_attack_roll.bind(this));
+    html.find(".block-roll").click(this._on_block_roll.bind(this));
+    html.find(".buy-item").click(this._on_buy_item.bind(this));
+    html.find(".buy-spell").click(this._on_buy_spell.bind(this));
+    html.find(".cast-spell").click(this._on_cast_spell.bind(this));
+    html.find(".action-button").click(this._on_action_button.bind(this));
+    html.find(".equip-item").click(this._on_equip_item.bind(this));
+    html.find(".use-potion").click(this._on_use_potion.bind(this));
     html.find(".text-change").on('input', this._on_text_change.bind(this));
     html.find(".nuke-sheet").click(this._on_nuke_sheet.bind(this));
 
-    html.find(".class-select").change(this._on_test_dropdown.bind(this));
     return super.activateListeners(html);
   }
 
@@ -68,12 +90,10 @@ export default class HeroSheet extends ActorSheet {
       utils.tools.templates.iterate(this.actor.data.data, utils.game_data[el.dataset.target][el.dataset.sub_field].modifiers);
       this.actor.data.data[el.dataset.sub_target] = el.dataset.sub_field;
     }
-    console.log(el.dataset);
     utils.tools.templates.iterate(this.actor.data.data, utils.game_data[el.dataset.target][el.dataset.main_field].modifiers);
     this.actor.data.data[el.dataset.main_target] = el.dataset.main_field;
     // Set Pools
     var mods = this.actor.data.data?.triggers?.always ? this.actor.data.data.triggers.always : {};
-    console.log(mods);
     var char = utils.tools.templates.apply(this.actor.data.data, mods);
     this.actor.data.data.pools.hp.value = char.stats.buff.value + 5
     this.actor.data.data.pools.hp.max   = char.stats.buff.value + 5
@@ -93,24 +113,14 @@ export default class HeroSheet extends ActorSheet {
     let skill   = this.actor.data.data.skills[el.dataset.skill];
     this.actor.update({
       [`data.${el.dataset.path}`]: skill.value + 1,
-      'data.skill_points': this.actor.data.data.skill_points - (skill.value + 1),
+      'data.points.skill.value': this.actor.data.data.points.skill.value - (skill.value + 1),
     });
   }
 
   _on_skill_roll(ev) {
     ev.preventDefault();
-    let el      = ev.currentTarget;
-    var mods    = this.actor.data.data?.triggers?.always ? this.actor.data.data.triggers.always : {};
-    let char    = utils.tools.templates.apply(this.actor.data.data, mods);
-    let skill   = this.actor.data.data.skills[el.dataset.path];
-    let stat    = char.stats[skill.stat];
-    let formula = `${stat.value}d10cs>=${6 - skill.value}`;
-    new Roll(formula).toMessage({
-      speaker: {
-        alias: this.actor.name,
-      },
-      flavor: `${skill.label}`,
-    });
+    let el     = ev.currentTarget;
+    let result = utils.act.skill_roll(this.actor, el.dataset.path);
   }
   
   _on_target_roll(ev) {
@@ -124,12 +134,68 @@ export default class HeroSheet extends ActorSheet {
     });
   }
 
-  _on_test_dropdown(ev) {}
+  _on_action_button(ev) {
+    ev.preventDefault();
+    let el = ev.currentTarget;
+    utils.act.modify_pool(this.actor, 'ap', -parseInt(el.dataset.ap_cost));
+    this.actor.update({data: this.actor.data.data});
+  }
+
+  _on_attack_roll(ev) {
+    ev.preventDefault();
+    let el     = ev.currentTarget;
+    utils.act.modify_pool(this.actor, 'ap', -parseInt(el.dataset.ap_cost));
+    let result = utils.act.skill_roll(this.actor, el.dataset.skill, ['on_attack']);
+    this.actor.update({data: this.actor.data.data});
+  }
+
+  _on_block_roll(ev) {
+    ev.preventDefault();
+    let el = ev.currentTarget;
+    let result = utils.act.block(this.actor);
+  }
 
   _on_text_change(ev) {
     ev.preventDefault();
     let el = ev.currentTarget;
-    this.actor.update({[el.dataset.path]: el.value})
+    this.actor.update({[el.dataset.path]: el.value});
+  }
+
+  _on_buy_item(ev) {
+    ev.preventDefault();
+    let el    = ev.currentTarget;
+    let goods = el.dataset.type;
+    let item  = el.dataset.item;
+    utils.act.buy_item(this.actor, goods, item);
+    this.actor.update({data: this.actor.data.data});
+  }
+
+  _on_equip_item(ev) {
+    ev.preventDefault();
+    let el    = ev.currentTarget;
+    utils.act.equip_item(this.actor, el.dataset.target, el.dataset.item);
+    this.actor.update({data: this.actor.data.data});
+  }
+
+  _on_buy_spell(ev) {
+    ev.preventDefault();
+    let el = ev.currentTarget;
+    utils.act.buy_spell(this.actor, el.dataset.school, el.dataset.spell);
+    this.actor.update({data: this.actor.data.data});
+  }
+
+  _on_cast_spell(ev) {
+    ev.preventDefault();
+    let el = ev.currentTarget;
+    let result = utils.act.cast_spell(this.actor, el.dataset.school, el.dataset.spell);
+    this.actor.update({data: this.actor.data.data});
+  }
+
+  _on_use_potion(ev) {
+    ev.preventDefault();
+    let el = ev.currentTarget;
+    utils.act.drink_potion(this.actor, el.dataset.potion);
+    this.actor.update({data: this.actor.data.data});
   }
 
   _on_nuke_sheet(ev) {

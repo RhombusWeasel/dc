@@ -26,8 +26,8 @@
         "path": "lang/en.json"
       }
     ],
-    "gridDistance": 5,
-    "gridUnits": "ft",
+    "gridDistance": 1,
+    "gridUnits": "Sq",
     "primaryTokenAttribute": "hp",
     "secondaryTokenAttribute": "mp",
     "url": "https://github.com/RhombusWeasel/dc/",

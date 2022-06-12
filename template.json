@@ -43,7 +43,8 @@
             "templates": ["core"]
         },
         "gm": {
-            "templates": ["core"]
+            "templates": ["core"],
+            "show_offline_players": true
         }
     },
     "Item": {

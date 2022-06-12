@@ -1,0 +1,23 @@
+<section>
+  <nav class="{{group}}-tabs tabs" data-group="{{group}}">
+    <a class="fa fa-user"           data-tab="traits"    title="Traits"></a>
+    <a class="fa fa-clipboard-list" data-tab="inventory" title="Inventory"></a>
+    <a class="fa fa-book"           data-tab="abilities" title="Abilities"></a>
+    <a class="fa fa-book-dead"      data-tab="spells"    title="Spells"></a>
+  </nav>
+  <h1></h1>
+  <section class="{{group}}-body">
+    <div class="tab" data-group="{{group}}" data-tab="traits">
+      {{> "systems/dc/templates/shared/stat-block.hbs"}}
+    </div>
+    <div class="tab" data-group="{{group}}" data-tab="inventory">
+      {{> "systems/dc/templates/shared/inventory.hbs"}}
+    </div>
+    <div class="tab" data-group="{{group}}" data-tab="abilities">
+      // Add abilities tab
+    </div>
+    <div class="tab" data-group="{{group}}" data-tab="spells">
+      {{> "systems/dc/templates/shared/spell-tab.hbs"}}
+    </div>
+  </section>
+</section>

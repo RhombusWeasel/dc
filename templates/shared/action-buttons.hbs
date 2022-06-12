@@ -1,0 +1,35 @@
+<section>
+  {{#with actor.data.data as |act|}}
+    <div class="flexrow">
+      {{#ifCond act.pools.ap.value '>=' 3}}
+        <button class="action-button" data-ap_cost="3">Move <i class="fa fa-running"></i>:{{sum act.stats.spry.value '+' 5}} <i class="fa fa-hourglass-end"></i>:3</button>
+        <button class="action-button" data-ap_cost="3">Skill <i class="fa fa-hourglass-end"></i>:3</button>
+      {{else}}
+        {{#ifCond act.pools.ap.value '>=' 1}}
+          <button class="action-button" data-ap_cost="1">Move <i class="fa fa-running"></i>:1 <i class="fa fa-hourglass-end"></i>:1</button>
+        {{/ifCond}}
+      {{/ifCond}}
+      {{#ifCond act.equipment.weapon '!=' 'None'}}
+        {{#with (lookup act.inventory.weapons act.equipment.weapon) as |wep|}}
+          {{#ifCond act.pools.ap.value '>=' wep.ap_cost}}
+            <button class="attack-roll" data-ap_cost="{{wep.ap_cost}}" data-skill="{{wep.skill}}">{{wep.label}} <i class="fa fa-bahai"></i>:{{wep.damage}} <i class="fa fa-hourglass-end"></i>:{{wep.ap_cost}}</button>
+          {{/ifCond}}
+        {{/with}}
+      {{else}}
+        {{#ifCond act.pools.ap.value '>=' 3}}
+          <button class="attack-roll" data-ap_cost="3" data-skill="melee_skill">Punch <i class="fa fa-bahai"></i>:2 <i class="fa fa-hourglass-end"></i>:3</button>
+        {{/ifCond}}
+      {{/ifCond}}
+    </div>
+    <div class="flexrow">
+      {{#ifCond act.equipment.armour '!=' 'None'}}
+        {{#with (lookup act.inventory.armour act.equipment.armour) as |arm|}}
+          <button class="block-roll">Block <i class="fa fa-user-shield" title="Armour Value"></i>:{{arm.armour_value}} [{{act.stats.buff.value}}d10>={{sum 6 '-' arm.armour_value}}]</button>
+        {{/with}}
+      {{else}}
+        <button class="block-roll">Block <i class="fa fa-user-shield" title="Armour Value"></i>:0 [{{act.stats.buff.value}}d10>=6]</button>
+      {{/ifCond}}
+      <button class="skill-roll" data-path="tumbling">Dodge <i class="fa fa-user-ninja" title="Tumbling"></i>:{{act.skills.tumbling.value}} [{{act.stats.spry.value}}d10>={{sum 6 '-' act.skills.tumbling.value}}]</button>
+    </div>
+  {{/with}}
+</section>

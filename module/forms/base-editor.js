@@ -8,10 +8,10 @@ export default class BaseEditor extends FormApplication {
             dict_key       : addr.key,
             uuid           : utils.tools.uuid(4, 4, 4, 4),
             editor_type    : editor_type,
-            data_format    : utils.templates[editor_type],
-            mod_templates  : utils.templates.modifiers,
-            edits          : utils.tools.path.get(this.game_data, data.path) ? utils.tools.path.get(this.game_data, data.path) : utils.system.new.template(editor_type, data.template_data),
-            mod_index      : 0,
+            data_format    : utils.tools.templates.build(utils.game_data[editor_type + '_tmp']),
+            mod_templates  : utils.game_data.modifiers,
+            edits          : utils.tools.path.get(this.game_data, data.path) ? utils.tools.path.get(this.game_data, data.path) : utils.system.clone(editor_type + '_tmp', data.template_data),
+            mod_index      : 'point',
             tmp_mod        : utils.system.new.modifier(0, {}),
             hide_modifiers : data.template_data?.hide_modifiers ? true : false,
         };
@@ -46,9 +46,9 @@ export default class BaseEditor extends FormApplication {
         data.template_data  = utils.templates;
         data.data_format    = this.dc.data_format;
         data.edits          = this.dc.edits;
-        data.mod_templates  = utils.templates.modifiers;
+        data.mod_templates  = utils.game_data.modifiers;
         data.mod_index      = this.dc.mod_index;
-        data.mod_format     = utils.templates.modifiers[this.dc.mod_index].template;
+        data.mod_format     = utils.tools.templates.build(utils.game_data.modifiers[this.dc.mod_index]);
         data.tmp_mod        = this.dc.tmp_mod;
         data.hide_modifiers = this.dc.hide_modifiers;
         return data;
@@ -108,7 +108,7 @@ export default class BaseEditor extends FormApplication {
         ev.preventDefault();
         let el = ev.currentTarget;
         utils.tools.path.set(this.dc[el.dataset.target], el.dataset.path, el.value);
-        this.dc.addr.key = utils.tools.safe_key(el.value);
+        this.dc.addr.key   = utils.tools.safe_key(el.value);
     }
 
     _on_int_change(ev) {
@@ -121,7 +121,7 @@ export default class BaseEditor extends FormApplication {
     _on_save_changes(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        utils.tools.path.set(utils.game_data, `${this.dc.addr.root}.${this.dc.addr.key}`, this.dc.edits);
+        utils.tools.path.set(utils.game_data, `${this.dc.addr.root}.${utils.tools.safe_key(this.dc.edits.label)}`, this.dc.edits);
         utils.gm.save_system();
         this.close();
     }
@@ -135,8 +135,8 @@ export default class BaseEditor extends FormApplication {
     _on_mod_select(ev) {
         ev.preventDefault();
         let el            = ev.currentTarget;
-        this.dc.mod_index = parseInt(el.value);
-        this.dc.tmp_mod   = utils.system.new.modifier(this.dc.mod_index, {});
+        this.dc.mod_index = el.value;
+        this.dc.tmp_mod   = utils.tools.deep_copy(utils.game_data.modifiers[this.dc.mod_index]);
         this.getData();
         this.render(true);
     }
@@ -144,7 +144,15 @@ export default class BaseEditor extends FormApplication {
     _on_add_modifier(ev) {
         ev.preventDefault();
         let el = ev.currentTarget;
-        this.dc.edits.modifiers.push(utils.tools.templates.modifiers.convert(this.dc.tmp_mod));
+        for (const key in this.dc.tmp_mod) {
+            if (Object.hasOwnProperty.call(this.dc.tmp_mod, key)) {
+                if (utils.tools.type(this.dc.tmp_mod[key]) == 'dict' && this.dc.tmp_mod[key].default) {
+                    this.dc.tmp_mod[key] = this.dc.tmp_mod[key].default;
+                }
+            }
+        }
+        this.dc.edits.modifiers.push(utils.tools.templates.modifiers.convert(utils.tools.deep_copy(this.dc.tmp_mod)));
+        this.dc.tmp_mod = utils.tools.deep_copy(utils.game_data.modifiers[this.dc.mod_index]);
         this.render(true);
     }
 

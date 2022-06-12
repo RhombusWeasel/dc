@@ -18,14 +18,14 @@
         {{/ifCond}}
     {{/each}}
     {{#each template.classes as |class|}}
-        {{#if (eq class.playable false)}}
+        {{#ifCond (eq class.playable false) '&&' (eq class.allow_variants true)}}
             {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=class type='class' path='classes'}}
             {{#each ../template.classes as |variant|}}
                 {{#ifCond (eq @../key variant.sub_field) '&&' (eq variant.playable false)}}
                     {{> "systems/dc/templates/tabs/gm/gm-table-row.hbs" entry=variant type='class' path='classes'}}
                 {{/ifCond}}
             {{/each}}
-        {{/if}}
+        {{/ifCond}}
     {{/each}}
     </table>
 </section>

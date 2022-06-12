@@ -9,6 +9,9 @@
 .center {
     text-align: center;
 }
+.rjust {
+    text-align: right;
+}
 .pad {
     padding: 5px;
 }
@@ -26,6 +29,9 @@
     'cp cp cn cn cn cn cn cn cn cn'
     'cp cp cn cn cn cn cn cn cn cn'
     ;
+}
+.char-sheet {
+    font-size: medium;
 }
 .textbox {
     /* white-space: pre-line !important; */
@@ -55,6 +61,9 @@
 }
 .perc40 {
     width: 40%
+}
+.perc35 {
+    width: 35%
 }
 .perc30 {
     width: 30%

@@ -8,6 +8,8 @@ export default class EnemySheet extends HeroSheet {
       {navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "core"},
       {navSelector: ".race-tabs",  contentSelector: ".race-body",  initial: "orkin"},
       {navSelector: ".class-tabs", contentSelector: ".class-body", initial: "mook"},
+      {navSelector: ".panel1-tabs", contentSelector: ".panel1-body", initial: "traits"},
+      {navSelector: ".panel2-tabs", contentSelector: ".panel2-body", initial: "inventory"},
     ];
     for (const key in utils.game_data.races) {
       if (Object.hasOwnProperty.call(utils.game_data.races, key)) {
@@ -28,7 +30,6 @@ export default class EnemySheet extends HeroSheet {
         }
       }
     }
-    console.log(enemy_tabs);
     return mergeObject(super.defaultOptions, {
       classes: ["style_doc"],
       tabs: enemy_tabs
@@ -45,7 +46,6 @@ export default class EnemySheet extends HeroSheet {
         const data = super.getData();
         if (!(this.actor.data.data?.pools)) {
           let char = utils.system.new.entity();
-          console.log(char);
           this.actor.update({data: char});
         }
         data.races = utils.game_data.races;

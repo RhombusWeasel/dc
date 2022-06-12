@@ -1,0 +1,102 @@
+<section>
+    <h1 class="center">Store</h1>
+    <div class="flexrow">
+        <div class="pad">
+            <h3 class="center">Weapons</h3>
+                <table>
+                    <tr>
+                        <th>Weapon</th>
+                        <th><a class="fa fa-hourglass-end" title="AP Cost"></a></th>
+                        <th><a class="fa fa-bahai" title="Damage"></a></th>
+                        <th><a class="fa fa-hands" title="Hands"></a></th>
+                        <th><a class="fa fa-reply" title="Range"></a></th>
+                        <th><a class="fa fa-coins" title="CP Cost"></a></th>
+                        <th><a class="fa fa-hand-holding-usd" title="Purchase"></a></th>
+                    </tr>
+                {{#each item_list.weapons as |item|}}
+                    <tr>
+                        <td>{{item.label}}</td>
+                        <td class="center">{{item.ap_cost}}</td>
+                        <td class="center">{{item.damage}}</td>
+                        <td class="center">{{item.hands}}</td>
+                        <td class="center">{{item.range}}</td>
+                        <td class="rjust">{{item.cp_cost}}</td>
+                        {{#ifCond ../data.data.currency '>=' item.cp_cost}}
+                            <td class="center pad buy-item" data-type="weapons" data-item="{{@key}}"><a class="fa fa-coins"></a></td>
+                        {{else}}
+                            <td class="center pad">-</td>
+                        {{/ifCond}}
+                    </tr>
+                {{/each}}
+                </table>
+            <h3 class="center">Armour</h3>
+            <table>
+                <tr>
+                    <th>Armour</th>
+                    <th><a class="fa fa-shield-alt" title="Armour Value"></a></th>
+                    <th><a class="fa fa-heart" title="Temp HP"></a></th>
+                    <th><a class="fa fa-coins" title="CP Cost"></a></th>
+                    <th><a class="fa fa-hand-holding-usd" title="Purchase"></a></th>
+                </tr>
+                {{#each item_list.armour as |item|}}
+                    <tr>
+                        <td>{{item.label}}</td>
+                        <td class="center">{{item.armour_value}}</td>
+                        <td class="center">{{item.temp_hp}}</td>
+                        <td class="rjust">{{item.cp_cost}}</td>
+                        {{#ifCond ../data.data.currency '>=' item.cp_cost}}
+                            <td class="center pad buy-item" data-type="armour" data-item="{{@key}}"><a class="fa fa-coins"></a></td>
+                        {{else}}
+                            <td class="center pad">-</td>
+                        {{/ifCond}}
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="pad">
+            <h3 class="center">Utility Items</h3>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Effect</th>
+                    <th><a class="fa fa-coins" title="CP Cost"></a></th>
+                    <th><a class="fa fa-hand-holding-usd" title="Purchase"></a></th>
+                </tr>
+                {{#each item_list.utility as |item|}}
+                    <tr>
+                        <td>{{item.label}}</td>
+                        <td>{{lookup item.descriptions.main 0}}</td>
+                        <td class="rjust">{{item.cp_cost}}</td>
+                        {{#ifCond ../data.data.currency '>=' item.cp_cost}}
+                            <td class="center pad buy-item" data-type="utility" data-item="{{@key}}"><a class="fa fa-coins"></a></td>
+                        {{else}}
+                            <td class="center pad">-</td>
+                        {{/ifCond}}
+                    </tr>
+                {{/each}}
+            </table>
+            <h3 class="center">Potions</h3>
+            <table>
+                <tr>
+                    <th>Potion</th>
+                    <th>Effect</th>
+                    <th><a class="fa fa-coins" title="CP Cost"></a></th>
+                    <th><a class="fa fa-hand-holding-usd" title="Purchase"></a></th>
+                </tr>
+                {{#each item_list.potions as |item|}}
+                    <tr>
+                        <td>{{item.label}}</td>
+                        <td>{{lookup item.descriptions.main 0}}</td>
+                        <td class="rjust">{{item.cp_cost}}</td>
+                        {{#ifCond ../data.data.currency '>=' item.cp_cost}}
+                            <td class="center pad buy-item" data-type="potions" data-item="{{@key}}"><a class="fa fa-coins"></a></td>
+                        {{else}}
+                            <td class="center pad">-</td>
+                        {{/ifCond}}
+                    </tr>
+                {{/each}}
+            </table>
+            <h3 class="center">Scrolls</h3>
+        </div>
+    </div>
+</section>
