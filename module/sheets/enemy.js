@@ -15,7 +15,6 @@ export default class EnemySheet extends HeroSheet {
       if (Object.hasOwnProperty.call(utils.game_data.races, key)) {
         const race = utils.game_data.races[key];
         if (race?.allow_variants) {
-          console.log('Adding ', race.label);
           let initial = Object.keys(Object.fromEntries(Object.entries(utils.game_data.races).filter(([k,v]) => v.sub_field==key)))[0];
           enemy_tabs.push({ navSelector: `.${key}-tabs`, contentSelector: `.${key}-body`, initial: initial});
         }
