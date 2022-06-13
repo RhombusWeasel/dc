@@ -22,8 +22,9 @@ function import_fantasy_system() {
             cp_cost:      150,
             armour_value:   1,
             temp_hp:        2,
-            requirements: [],
-            modifiers:    [],
+            amount:         1,
+            requirements:  [],
+            modifiers:     [],
         },
         class_tmp: {
             label:          'Class',
@@ -94,6 +95,7 @@ function import_fantasy_system() {
         potion_tmp: {
             label:        'Potion',
             cp_cost:      50,
+            amount:        1,
             descriptions: {main: [``], flavor: [``]},
             modifiers:    [],
         },
@@ -178,6 +180,7 @@ function import_fantasy_system() {
             range:          1,
             cp_cost:      100,
             hands:          1,
+            amount:         1,
             skill:        'melee_skill',
             requirements: [],
             modifiers:    [],
@@ -190,7 +193,7 @@ function import_fantasy_system() {
             label:        'Add Point',
             image:        'icons/svg/cowled.svg',
             path:         {path: 'path', select: 'points', default: 'skill_point'},
-            value:        2,
+            value:        1,
             descriptions: {main: [`For adding skill points, stat points, ability points and spell points.`], flavor: [``]}
         },
         stat: {
@@ -206,7 +209,7 @@ function import_fantasy_system() {
             label:        'Skill Point',
             path:         {path: 'path',    select: 'skills',   default: 'skills.animal_ken'},
             trigger:      {path: 'trigger', select: 'triggers', default: 'triggers.once'},
-            value:        2,
+            value:        1,
             descriptions: {main: [`Buffs a specific skill`], flavor: [``]},
         },
         add_pool: {
@@ -222,7 +225,7 @@ function import_fantasy_system() {
             label:        'Modify Pool',
             path:         {path: 'path', select: 'pools', default: 'pools.rage'},
             trigger:      {path: 'trigger', select: 'triggers', default: 'triggers.once'},
-            value:        2,
+            value:        1,
             descriptions: {main: [`Modifies the value of a pool on a given trigger`], flavor: [``]}
         },
         increase_pool: {
@@ -230,7 +233,7 @@ function import_fantasy_system() {
             label:        'Increase Pool',
             path:         {path: 'path',    select: 'pools',    default: 'pools.hp'},
             trigger:      {path: 'trigger', select: 'triggers', default: 'triggers.once'},
-            value:        2,
+            value:        1,
             descriptions: {main: [`Modifies the maximum value of a pool on a given trigger`], flavor: [``]}
         },
     };
@@ -286,23 +289,6 @@ function import_fantasy_system() {
                 utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill',       {path: 'skills.melee_skill', label: 'Combat Mastery',   trigger: 'triggers.once',           value:    2, descriptions: {main: [``], flavor: [``]}})),
             ],
         }),
-        ranger: utils.system.clone('class_tmp', {
-            label          : 'Ranger',
-            sub_field      : 'rogue',
-            playable       : true,
-            allow_variants : false,
-            descriptions   : {
-                main: [
-                    'Rangers are master hunters capable of tracking and killing any creature unlucky enough to be their prey.  They focus primarily on archery and trapmaking but let me be clear. Lying in wait for you or chasing you down, they are deadly either way.',
-                ],
-                flavor: [''],
-            },
-            modifiers      : [
-                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.add_pool',    {path: 'pools.focus',         label: 'Focussed Rage',    trigger: 'triggers.once',             value: true, descriptions: {main: [``], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.modify_pool', {path: 'pools.focus',         label: 'Concentration',    trigger: 'triggers.on_skill_succeed', value:    1, descriptions: {main: [``], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill',       {path: 'skills.ranged_skill', label: 'Hunting Mastery',  trigger: 'triggers.once',             value:    2, descriptions: {main: [``], flavor: [``]}})),
-            ],
-        }),
         monk: utils.system.clone('class_tmp', {
             label          : 'Monk',
             playable       : true,
@@ -340,6 +326,23 @@ function import_fantasy_system() {
             },
             requirements   : [],
             modifiers      : [],
+        }),
+        ranger: utils.system.clone('class_tmp', {
+            label          : 'Ranger',
+            sub_field      : 'rogue',
+            playable       : true,
+            allow_variants : false,
+            descriptions   : {
+                main: [
+                    'Rangers are master hunters capable of tracking and killing any creature unlucky enough to be their prey.  They focus primarily on archery and trapmaking but let me be clear. Lying in wait for you or chasing you down, they are deadly either way.',
+                ],
+                flavor: [''],
+            },
+            modifiers      : [
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.add_pool',    {path: 'pools.focus',         label: 'Focussed Rage',    trigger: 'triggers.once',             value: true, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.modify_pool', {path: 'pools.focus',         label: 'Concentration',    trigger: 'triggers.on_skill_succeed', value:    1, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill',       {path: 'skills.ranged_skill', label: 'Hunting Mastery',  trigger: 'triggers.once',             value:    2, descriptions: {main: [``], flavor: [``]}})),
+            ],
         }),
         mage: utils.system.clone('class_tmp', {
             label          : 'Mage',
@@ -391,9 +394,9 @@ function import_fantasy_system() {
                 flavor: [''],
             },
             modifiers      : [
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'War Party', path: 'skills.melee_skill', value:  2, descriptions: {main: [``], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'Spotters',  path: 'skills.observation', value:  2, descriptions: {main: [``], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'Stunty',    path: 'skills.tumbling',    value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill', {label: 'War Party', path: 'skills.melee_skill', trigger: 'triggers.once', value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill', {label: 'Spotters',  path: 'skills.observation', trigger: 'triggers.once', value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill', {label: 'Stunty',    path: 'skills.tumbling',    trigger: 'triggers.once', value:  2, descriptions: {main: [``], flavor: [``]}})),
             ],
         }),
         tribal_hunter: utils.system.clone('class_tmp', {
@@ -406,9 +409,9 @@ function import_fantasy_system() {
                 flavor: [''],
             },
             modifiers      : [
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'Hunting Party', path: 'skills.ranged_skill', value:  2, descriptions: {main: [``], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'Spotters',      path: 'skills.observation',  value:  2, descriptions: {main: [``], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'Stunty',        path: 'skills.tumbling',     value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill', {label: 'Hunting Party', path: 'skills.ranged_skill', trigger: 'triggers.once', value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill', {label: 'Spotters',      path: 'skills.observation', trigger: 'triggers.once', value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill', {label: 'Stunty',        path: 'skills.tumbling',    trigger: 'triggers.once', value:  2, descriptions: {main: [``], flavor: [``]}})),
             ],
         }),
         tribal_shaman: utils.system.clone('class_tmp', {
@@ -422,9 +425,9 @@ function import_fantasy_system() {
             },
             requirements   : [],
             modifiers      : [
-                utils.tools.templates.modifiers.convert({type: 'point', label: 'Arcane Background', path: 'spell_points', value:   3, descriptions: {main: [`+3 Spell Points`], flavor: ['']}}),
-                utils.tools.templates.modifiers.convert(utils.system.clone('pool_tmp', {label: 'Mana Pool', path: 'pools.mana', min: 0, value:  0, max:   5, descriptions: {main: [`Mages can access a Mana pool to cast their spells`], flavor: [``]}})),
-                utils.tools.templates.modifiers.convert(utils.system.clone('race_tmp', {label: 'Tribal Voodoo', path: 'skills.arcane_lore', value:  2, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.point',    {label: 'Arcane Study',  path: 'points.spell.value', trigger: 'triggers.once', value:    3, descriptions: {main: [`3 Spell Points`], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.add_pool', {label: 'Channel Mana',  path: 'pools.mana',         trigger: 'triggers.once', value: true, descriptions: {main: [``], flavor: [``]}})),
+                utils.tools.templates.modifiers.convert(utils.system.clone('modifiers.skill',    {label: 'Tribal Voodoo', path: 'skills.melee_skill', trigger: 'triggers.once', value:    2, descriptions: {main: [``], flavor: [``]}})),
             ],
         }),
     };
@@ -524,6 +527,36 @@ function import_fantasy_system() {
             modifiers:    [
                 utils.tools.templates.modifiers.convert(
                     {type: 'modify_pool', path: 'pools.ap', value: 6, trigger: 'triggers.once', label: '', descriptions: {main: [``], flavor: [``]}}
+                ),
+            ],
+        }),
+        weak_mana_potion: utils.system.clone('potion_tmp', {
+            label:        'Weak Mana Potion',
+            cp_cost:      50,
+            descriptions: {main: [`+2 MANA`]},
+            modifiers:    [
+                utils.tools.templates.modifiers.convert(
+                    {type: 'modify_pool', path: 'pools.mana', value: 2, trigger: 'triggers.once', label: '', descriptions: {main: [``], flavor: [``]}}
+                ),
+            ],
+        }),
+        mana_potion: utils.system.clone('potion_tmp', {
+            label:        'Mana Potion',
+            cp_cost:      150,
+            descriptions: {main: [`+4 MANA`]},
+            modifiers:    [
+                utils.tools.templates.modifiers.convert(
+                    {type: 'modify_pool', path: 'pools.mana', value: 4, trigger: 'triggers.once', label: '', descriptions: {main: [``], flavor: [``]}}
+                ),
+            ],
+        }),
+        strong_mana_potion: utils.system.clone('potion_tmp', {
+            label:        'Strong Mana Potion',
+            cp_cost:      400,
+            descriptions: {main: [`+6 MANA`]},
+            modifiers:    [
+                utils.tools.templates.modifiers.convert(
+                    {type: 'modify_pool', path: 'pools.mana', value: 6, trigger: 'triggers.once', label: '', descriptions: {main: [``], flavor: [``]}}
                 ),
             ],
         }),
